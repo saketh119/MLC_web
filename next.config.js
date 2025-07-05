@@ -1,8 +1,9 @@
-/** @type {import('next').NextConfig} */
+// next.config.js
 const nextConfig = {
-  images: {
-    domains: ['your-domain.com'], // add image domains if using external
+  experimental: {
+    appDir: true,
   },
 };
 
 module.exports = nextConfig;
+
