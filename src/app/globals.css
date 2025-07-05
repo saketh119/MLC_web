@@ -2,6 +2,9 @@
 
 
 @import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 
 :root {
@@ -64,13 +67,8 @@ h1, h2, h3, h4 {
 .glow-heading {
   text-shadow: 2px 0 0px #00f0ff, 0 0 6px #00f0ff, 0 0 12px #00f0ff;
 }
-/* Hide scrollbar for Webkit browsers */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
 
-/* Hide scrollbar for Firefox */
-.no-scrollbar {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+/* Custom font example (if you use Orbitron or others) */
+body {
+  font-family: 'Orbitron', sans-serif;
 }
