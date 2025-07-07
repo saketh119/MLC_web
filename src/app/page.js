@@ -112,7 +112,7 @@ export default function Home() {
 </section>
 
         {/* Club Highlights and Experience Sections */}
-        <section className="w-full px-4 sm:px-10 lg:px-24 xl:px-32 py-12 bg-black text-white">
+        <section className="w-full px-4 sm:px-10 lg:px-24 xl:px-32 py-12 bg-black text-white no-scrollbar">
        <h2 className="text-3xl font-bold text-center mt-2 mb-6"> what we do</h2>
         <StickyScroll
   content={[

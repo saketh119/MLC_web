@@ -78,7 +78,7 @@ export const StickyScroll = ({
       {/* Sticky card */}
       <div
         className={cn(
-          "sticky top-10 hidden h-60 w-80 overflow-hidden rounded-lg backdrop-blur-md shadow-lg ring-1 ring-cyan-500/30 transition-all duration-500 lg:block",
+          "sticky top-10 hidden h-60 w-80 overflow-hidden rounded-lg backdrop-blur-md shadow-lg ring-1 ring-cyan-500/30 transition-all duration-500 lg:block no-scrollbar",
           contentClassName
         )}
         style={{ background: backgroundGradient }}
