@@ -4,4 +4,4 @@ const nextConfig = {
   // any other config options
 };
 
-export default nextConfig;
+module.exports = nextConfig; // ✅ CommonJS export
