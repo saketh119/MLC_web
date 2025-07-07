@@ -47,7 +47,8 @@ export const StickyScroll = ({
   return (
     <motion.div
       animate={{ backgroundColor: "#000000" }}
-      className="relative h-[500px] overflow-y-scroll grid grid-cols-1 md:grid-cols-2 gap-10 w-full max-w-7xl mx-auto px-4 py-12 no-scrollbar"
+     className="relative h-auto grid grid-cols-1 md:grid-cols-2 gap-10 w-full max-w-7xl mx-auto px-4 py-12"
+
       ref={ref}
     >
       {/* Text content */}
