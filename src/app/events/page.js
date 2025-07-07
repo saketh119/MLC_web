@@ -87,7 +87,7 @@ export default function EventsPage() {
       <p className="text-md text-gray-300 mt-8 max-w-xl text-center md:text-left">
          Join the Best Technical Club of VIT-AP, where curiosity meets innovation.
           Engage in hands-on learning, develop groundbreaking projects, and be part
-          of a community that’s shaping the future of AI & ML.</p>
+          of a community that&apos;s shaping the future of AI & ML.</p>
 
       {/* CTA Button */}
       <div className="mt-8 flex justify-center md:justify-start">
