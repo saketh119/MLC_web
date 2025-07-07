@@ -82,7 +82,7 @@ export default function EventsPage() {
       </h1>
 
       <p className="mt-0 text-sm text-gray-300 max-w-xl text-center md:text-left">
-        This isn't just a motto — it's our mission.
+        This isn&apos;t just a motto — it&apos;s our mission.
       </p>
       <p className="text-md text-gray-300 mt-8 max-w-xl text-center md:text-left">
          Join the Best Technical Club of VIT-AP, where curiosity meets innovation.
