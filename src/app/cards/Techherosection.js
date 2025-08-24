@@ -27,7 +27,8 @@ const TechHeroSection = () => {
   }, [])
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 overflow-hidden">
+    <div className="relative min-h-screen bg-gradient-to-br from-black via-neutral-900 to-black overflow-hidden">
+
       {/* Animated Circuit Background */}
       <div className="absolute inset-0 circuit-pattern opacity-20"></div>
 
@@ -53,7 +54,7 @@ const TechHeroSection = () => {
         <div className="grid md:grid-cols-3 gap-8 mb-16">
           {/* LEARN Section */}
           <div className="group relative">
-            <div className="bg-card/80 backdrop-blur-sm rounded-2xl p-8 border border-border/50 hover:border-primary/50 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-primary/20">
+            <div className="bg-black/80 rounded-2xl p-8 border border-white/10 hover:border-primary/50 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-primary/20">
               <div className="relative pulse-ring-animation mb-6">
                 <div className="w-20 h-20 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center mx-auto">
                   <BookOpen className="w-10 h-10 text-white" />
@@ -83,7 +84,7 @@ const TechHeroSection = () => {
 
           {/* CODE Section */}
           <div className="group relative">
-            <div className="bg-card/80 backdrop-blur-sm rounded-2xl p-8 border border-border/50 hover:border-accent/50 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-accent/20">
+            <div className="bg-black/80 rounded-2xl p-8 border border-white/10 hover:border-accent/50 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-accent/20">
               <div className="relative pulse-ring-animation mb-6">
                 <div className="w-20 h-20 bg-gradient-to-br from-accent to-primary rounded-2xl flex items-center justify-center mx-auto">
                   <Code2 className="w-10 h-10 text-white" />
@@ -110,7 +111,7 @@ const TechHeroSection = () => {
 
           {/* INNOVATE Section */}
           <div className="group relative">
-            <div className="bg-card/80 backdrop-blur-sm rounded-2xl p-8 border border-border/50 hover:border-secondary/50 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-secondary/20">
+            <div className="bg-black/80 rounded-2xl p-8 border border-white/10 hover:border-secondary/50 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-secondary/20">
               <div className="relative pulse-ring-animation mb-6">
                 <div className="w-20 h-20 bg-gradient-to-br from-secondary to-accent rounded-2xl flex items-center justify-center mx-auto">
                   <Lightbulb className="w-10 h-10 text-white" />

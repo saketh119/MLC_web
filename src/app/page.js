@@ -41,6 +41,7 @@ export default function Home() {
       <Head>
         <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
       </Head>
+      
 
       <div className="bg-black text-white min-h-screen font-sans">
         {/* Navbar */}
