@@ -1,0 +1,17 @@
+{
+  "tailwindCSS.experimental.configFile": "./tailwind.config.js",
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  "css.validate": false,
+  "tailwindCSS.includeLanguages": {
+    "css": "css",
+    "postcss": "css"
+  },
+  "files.associations": {
+  "*.css": "tailwindcss"
+  }
+  
+}
+
+
