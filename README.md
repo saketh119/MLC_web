@@ -34,3 +34,26 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+
+## Vaani – MLC AI Chatbot
+
+Vaani is an interactive AI chatbot integrated into this website for the Machine Learning Club (MLC) at VIT-AP.
+
+You can start editing the chatbot by modifying src/app/components/chatData.js to add new questions, answers, or keywords. The chat interface will update automatically as you make changes.
+
+*Features*
+WhatsApp-style rounded chat bubbles with smooth animations
+Typing indicator while Vaani “thinks”
+Auto-scroll to the latest message
+Keyword-based responses from chatData.js
+Optional Hugging Face AI responses (with 3-second timeout & fallback)
+Responsive and mobile-friendly
+
+*Usage*
+Click the 💬 chat button, type a message, and Vaani will reply. If AI takes too long, it falls back to pre-defined answers or displays:
+"Sorry, Vaani is taking too long to respond. Try again!"
+
+*Tech Stack*
+Next.js 13, Tailwind CSS + Tailwind Animate, React Hooks, Hugging Face Inference API
