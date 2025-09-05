@@ -56,8 +56,5 @@ Click the 💬 chat button, type a message, and Vaani will reply. If AI takes to
 "Sorry, Vaani is taking too long to respond. Try again!"
 
 *Tech Stack*
-<<<<<<< HEAD
+
 Next.js 13, Tailwind CSS + Tailwind Animate, React Hooks, Hugging Face Inference API
-=======
-Next.js 13, Tailwind CSS + Tailwind Animate, React Hooks, Hugging Face Inference API
->>>>>>> e878a7a68703a7fa806ac49fedf31811d0cfd092
