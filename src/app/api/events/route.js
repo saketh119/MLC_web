@@ -18,6 +18,7 @@ export async function GET() {
     });
   }
 }
+<<<<<<< HEAD
 
 // src/app/api/chat/route.js
 import { NextResponse } from "next/server";
@@ -47,3 +48,5 @@ export async function POST(req) {
     return NextResponse.json({ reply: "⚠️ Error: Could not connect to AI." }, { status: 500 });
   }
 }
+=======
+>>>>>>> e878a7a68703a7fa806ac49fedf31811d0cfd092
