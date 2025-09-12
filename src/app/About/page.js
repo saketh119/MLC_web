@@ -12,7 +12,7 @@ import {
 
 const navItems = [
   { title: "Home", icon: <IconHome />, href: "/" },
-  { title: "About", icon: <IconInfoCircle />, href: "/About" },
+  { title: "About", icon: <IconInfoCircle />, href: "/about" },
   { title: "Events", icon: <IconCalendarEvent />, href: "/events" },
 ];
 

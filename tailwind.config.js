@@ -70,6 +70,10 @@ module.exports = {
           '50%': { 'box-shadow': '0 0 40px rgba(0, 255, 255, 0.6)' },
         },
       },
+      fontFamily: {
+  'black-future': ['var(--font-black-future)'],
+  'sans': ['var(--font-poppins)','ui-sans-serif','system-ui','sans-serif'],
+      },
     },
   },
   plugins: [

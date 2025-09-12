@@ -25,7 +25,7 @@
    ========================= */
 @layer base {
   body {
-    @apply bg-background text-foreground;
+  @apply bg-background text-foreground font-sans;
     background: radial-gradient(circle at top left, #0f172a, #020617);
     background-attachment: fixed;
   }

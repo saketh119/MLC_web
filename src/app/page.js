@@ -1,12 +1,10 @@
 "use client"
-import { StickyScroll } from "./cards/StickyScroll"
 import Head from "next/head"
-import { FloatingDock } from "./cards/floatingdock"
+import Image from "next/image"
 import { IconHome, IconInfoCircle, IconCalendarEvent } from "@tabler/icons-react"
-import WatchIntroButton from "./cards/watchintrobutton"
-import { Code2, Lightbulb, BookOpen, Cpu, Zap } from "lucide-react"
-import { useState, useEffect } from "react"
-import Chatbot from "./components/Chatbot";
+import { FloatingDock } from "./cards/floatingdock"
+import { StickyScroll } from "./cards/StickyScroll"
+import Chatbot from "./components/Chatbot"
 
 const navItems = [
   { title: "Home", icon: <IconHome />, href: "/" },
@@ -14,238 +12,122 @@ const navItems = [
   { title: "Events", icon: <IconCalendarEvent />, href: "/events" },
 ]
 
-const codeSnippets = [
-  "import tensorflow as tf",
-  "model = tf.keras.Sequential()",
-  "model.add(Dense(128, activation='relu'))",
-  "model.compile(optimizer='adam')",
-]
-
 export default function Home() {
-  const [currentCodeIndex, setCurrentCodeIndex] = useState(0)
-  const [isTyping, setIsTyping] = useState(true)
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIsTyping(false)
-      setTimeout(() => {
-        setCurrentCodeIndex((prev) => (prev + 1) % codeSnippets.length)
-        setIsTyping(true)
-      }, 500)
-    }, 3000)
-
-    return () => clearInterval(interval)
-  }, [])
-  
   return (
     <>
       <Head>
-        <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap"
+          rel="stylesheet"
+        />
       </Head>
-      
-
       <div className="bg-black text-white min-h-screen font-sans">
         {/* Navbar */}
-        <nav className="sticky top-0 z-50 flex justify-between items-center px-6 py-4 bg-black/40 backdrop-blur-md">
-          {/* Left Section */}
-          <div className="flex items-center space-x-3 w-[280px]">
-            <div className="w-10 h-10 bg-white rounded-full flex justify-center items-center text-black font-bold">
-              ML
-            </div>
-            <div className="flex flex-col leading-tight">
-              <h1
-                className="text-xl sm:text-2xl font-extrabold tracking-wide whitespace-nowrap"
-                style={{
-                  fontFamily: "Orbitron, sans-serif",
-                  background: "linear-gradient(to right, #00FFFF, #007BFF)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                }}
-              >
-                MACHINE LEARNING
-              </h1>
-              <span className="text-xs text-white/80 font-light mt-1">Campus Club at VIT-AP</span>
-            </div>
-          </div>
-
-          {/* Right Section (Floating Dock) */}
-          <div className="w-[280px] flex justify-end">
-            {/* Desktop Floating Dock */}
-            <div className="hidden md:flex">
-              <FloatingDock items={navItems} desktopClassName="fixed top-4 right-4 rounded-2xl bg-cyan-400/10" />
-            </div>
-
-            {/* Mobile Floating Dock */}
-            <div className="md:hidden">
-              <FloatingDock items={navItems} mobileClassName="fixed top-4 right-4 z-50" />
-            </div>
+        <nav className="sticky top-0 z-50 flex justify-between items-center px-6 py-4 bg-black">
+          <div className="text-xs tracking-wide">MACHINE LEARNING CLUB</div>
+          <div className="hidden md:flex">
+            <FloatingDock items={navItems} desktopClassName="bg-cyan-400/10 rounded-2xl" />
           </div>
         </nav>
-
-        <section className="relative min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 overflow-hidden">
-          {/* Animated Circuit Background */}
-          <div className="absolute inset-0 circuit-pattern opacity-20"></div>
-
-          {/* Watch Intro Button */}
-          <div className="absolute top-8 right-8 z-10">
-            <WatchIntroButton />
-          </div>
-
-          {/* Floating Tech Elements */}
-          <div className="absolute top-20 left-10 float-animation">
-            <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center">
-              <Cpu className="w-8 h-8 text-primary" />
-            </div>
-          </div>
-          <div className="absolute top-40 right-20 float-animation" style={{ animationDelay: "1s" }}>
-            <div className="w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center">
-              <Zap className="w-6 h-6 text-accent" />
-            </div>
-          </div>
-
-          <div className="relative z-10 container mx-auto px-4 py-20">
-            {/* Main Interactive Sections */}
-            <div className="grid md:grid-cols-3 gap-8 mb-16">
-              {/* LEARN Section */}
-              <div className="group relative">
-                <div className="bg-card/80 backdrop-blur-sm rounded-2xl p-8 border border-border/50 hover:border-primary/50 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-primary/20">
-                  <div className="relative pulse-ring-animation mb-6">
-                    <div className="w-20 h-20 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center mx-auto">
-                      <BookOpen className="w-10 h-10 text-white" />
-                    </div>
-                  </div>
-
-                  <h3 className="text-4xl font-bold text-center mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                    LEARN
-                  </h3>
-
-                  <div className="space-y-3 text-muted-foreground">
-                    <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                      <div className="w-2 h-2 bg-primary rounded-full"></div>
-                      <span>Machine Learning Fundamentals</span>
-                    </div>
-                    <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
-                      <div className="w-2 h-2 bg-secondary rounded-full"></div>
-                      <span>Deep Learning Architectures</span>
-                    </div>
-                    <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-900">
-                      <div className="w-2 h-2 bg-accent rounded-full"></div>
-                      <span>Data Science Techniques</span>
-                    </div>
-                  </div>
-                </div>
+        {/* Hero Section */}
+        <section className="px-6 lg:px-16 pt-6 pb-14 max-w-[1400px] mx-auto">
+          {/* Top thin line */}
+          <div className="h-px bg-white/60 w-full mb-6" />
+          <div className="flex flex-col lg:flex-row gap-10 items-start">
+            {/* Left Title Block */}
+            <div className="flex-1 relative">
+              {/* Blue dots above title */}
+              <div className="flex gap-4 mb-4 pl-2">
+                <span className="w-3 h-3 rounded-full bg-[#0094FF] inline-block" />
+                <span className="w-3 h-3 rounded-full bg-[#0094FF] inline-block" />
               </div>
-
-              {/* CODE Section */}
-              <div className="group relative">
-                <div className="bg-card/80 backdrop-blur-sm rounded-2xl p-8 border border-border/50 hover:border-accent/50 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-accent/20">
-                  <div className="relative pulse-ring-animation mb-6">
-                    <div className="w-20 h-20 bg-gradient-to-br from-accent to-primary rounded-2xl flex items-center justify-center mx-auto">
-                      <Code2 className="w-10 h-10 text-white" />
-                    </div>
-                  </div>
-
-                  <h3 className="text-4xl font-bold text-center mb-4 bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">
-                    CODE
-                  </h3>
-
-                  {/* Interactive Code Display */}
-                  <div className="bg-slate-900 rounded-lg p-4 font-mono text-sm border border-accent/30">
-                    <div className="flex items-center gap-2 mb-2">
-                      <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                      <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                      <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                    </div>
-                    <div className="text-accent">
-                      <span className={`${isTyping ? "typing-animation" : ""}`}>{codeSnippets[currentCodeIndex]}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* INNOVATE Section */}
-              <div className="group relative">
-                <div className="bg-card/80 backdrop-blur-sm rounded-2xl p-8 border border-border/50 hover:border-secondary/50 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-secondary/20">
-                  <div className="relative pulse-ring-animation mb-6">
-                    <div className="w-20 h-20 bg-gradient-to-br from-secondary to-accent rounded-2xl flex items-center justify-center mx-auto">
-                      <Lightbulb className="w-10 h-10 text-white" />
-                    </div>
-                  </div>
-
-                  <h3 className="text-4xl font-bold text-center mb-4 bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent">
-                    INNOVATE
-                  </h3>
-
-                  <div className="space-y-3 text-muted-foreground">
-                    <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                      <div className="w-2 h-2 bg-secondary rounded-full animate-pulse"></div>
-                      <span>AI-Powered Solutions</span>
-                    </div>
-                    <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
-                      <div className="w-2 h-2 bg-accent rounded-full animate-pulse"></div>
-                      <span>Research Projects</span>
-                    </div>
-                    <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-900">
-                      <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
-                      <span>Industry Partnerships</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <h1 className="font-extrabold leading-[0.9] text-[54px] sm:text-[72px] md:text-[92px] tracking-tight select-none font-black-future">
+                <span className="block">MACHINE</span>
+                <span className="block mt-4">LEARNING CLUB</span>
+              </h1>
             </div>
-
-            {/* Mission Statement */}
-            <div className="text-center max-w-4xl mx-auto">
-              <p className="text-xl text-muted-foreground mb-8">
-                This isn't just a motto — it's our <span className="text-primary font-semibold">mission</span>.
+            {/* Right Pill + Text */}
+            <div className="w-full lg:w-[560px] flex flex-col gap-6">
+              {/* Pill (video preview) */}
+              <div className="relative rounded-[50px] overflow-hidden bg-white/10 border border-white/15 h-28 flex items-center pl-6 pr-8">
+                <div className="w-16 h-16 rounded-full bg-black/70 border-4 border-[#3a3a3a] flex items-center justify-center mr-8">
+                  <div className="w-11 h-11 rounded-full bg-[#0094FF] flex items-center justify-center text-black font-bold text-xl">▶</div>
+                </div>
+                <span className="text-3xl font-bold tracking-wide font-black-future">WHAT IS MLC?</span>
+                {/* Background image overlay via absolute element (optional) */}
+                <div className="absolute inset-0 opacity-20 bg-[url('/mlc-family.jpg')] bg-cover bg-center" />
+              </div>
+              {/* Stars row */}
+              <div className="flex justify-end gap-6 text-white text-2xl pr-2">
+                {Array.from({length:4}).map((_,i)=>(<span key={i}>✦</span>))}
+              </div>
+              {/* Description */}
+              <p className="text-sm leading-relaxed text-gray-200 text-right pr-1">
+                Lorem ipsum dolor sit amet consectetur.<br/>
+                Dignissim facilisi accumsan pharetra aliquet<br/>
+                vestibulum facilisis eros adipiscing.<br/>
+                Consectetur habitasse commodo ut volutpat -
               </p>
-
-              <p className="text-lg text-muted-foreground mb-12 leading-relaxed">
-                Join the <span className="text-accent font-semibold">Best Technical Club</span> of VIT-AP, where
-                curiosity meets innovation. Engage in hands-on learning, develop groundbreaking projects, and be part of
-                a community that's shaping the future of <span className="text-secondary font-semibold">AI & ML</span>.
-              </p>
-
-              {/* Statistics */}
-              <div className="flex justify-center gap-8 py-6 mb-8">
-                <div className="text-center">
-                  <div className="text-3xl md:text-4xl font-bold text-cyan-400">5000+</div>
-                  <div className="text-sm text-gray-400">Active Students</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl md:text-4xl font-bold text-blue-400">80+</div>
-                  <div className="text-sm text-gray-400">Events Hosted</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl md:text-4xl font-bold text-purple-400">5+</div>
-                  <div className="text-sm text-gray-400">Years Strong</div>
-                </div>
-              </div>
-
-              {/* CTA Button */}
-              <div className="flex justify-center">
-                <button
-                  className="group relative px-8 py-4 bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-500 hover:to-purple-500 rounded-full text-white font-semibold text-lg shadow-2xl hover:shadow-pink-500/25 transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
-                  onClick={() => {
-                    alert("MLC isn't open for new registrations now, please come back later.")
-                  }}
-                >
-                  <span className="relative z-10">Join the Club Now</span>
-                </button>
+              {/* Bottom mini stars */}
+              <div className="flex justify-end gap-8 text-white text-xl pr-4 mt-2">
+                {Array.from({length:3}).map((_,i)=>(<span key={i}>✦ ✦</span>))}
               </div>
             </div>
+          </div>
+          {/* Badge */}
+          <div className="mt-10">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white text-xs tracking-wide font-medium">
+              <span className="text-[13px]">♕</span>
+              BEST TECHNICAL CLUB 2023-24
+            </div>
+          </div>
+          {/* Stats with separators */}
+          <div className="mt-12 flex w-full max-w-[1100px] justify-between text-left">
+            {[
+              { num: '200', label: 'STUDENTS' },
+              { num: '125', label: 'Events' },
+              { num: '6', label: 'Years' },
+              { num: '25', label: 'Patents' }
+            ].map((s,idx)=> (
+              <div key={idx} className="flex-1 flex flex-col items-start pl-2 relative">
+                <div className="flex items-end gap-1">
+                  <span className="text-[76px] font-extrabold leading-none font-black-future">{s.num}</span>
+                  <span className="text-[#0094FF] text-5xl font-extrabold leading-none mb-1">+</span>
+                </div>
+                <span className="text-xs tracking-wider mt-2">{s.label}</span>
+                {idx !== 3 && <div className="absolute top-1/2 -right-[1px] -translate-y-1/2 h-40 w-px bg-white/40" />}
+              </div>
+            ))}
           </div>
         </section>
-
+        {/* Family Photo */}
+        <section className="px-4 md:px-12">
+          <div className="rounded-2xl overflow-hidden shadow-lg">
+            <Image
+              src="/mlc-family.jpg"
+              alt="MLC Family"
+              width={1200}
+              height={600}
+              className="w-full object-cover"
+            />
+          </div>
+        </section>
+        {/* Scrolling OUR FAMILY Banner */}
+        <div className="relative overflow-hidden my-10">
+          <div className="animate-marquee flex gap-8 text-2xl font-bold text-cyan-400 whitespace-nowrap">
+            <span> OUR FAMILY ✦ OUR FAMILY ✦ OUR FAMILY ✦ OUR FAMILY ✦ OUR FAMILY ✦ OUR FAMILY ✦</span>
+            <span> OUR FAMILY ✦ OUR FAMILY ✦ OUR FAMILY ✦ OUR FAMILY ✦ OUR FAMILY ✦ OUR FAMILY ✦</span>
+          </div>
+        </div>
+        
         {/* Enhanced What We Do Section */}
         <section className="w-full px-4 sm:px-10 lg:px-24 xl:px-32 py-20 bg-gradient-to-b from-black/20 to-black/40 relative">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
               What We Do
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-blue-600 mx-auto rounded-full"></div>
+            <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-blue-600 mx-auto rounded-full" />
           </div>
-
           <StickyScroll
             content={[
               {
@@ -274,7 +156,8 @@ export default function Home() {
               },
               {
                 title: "Achievements",
-                description: "We've been awarded Best Technical Club of VIT-AP 2023-2024, recognizing our excellence.",
+                description:
+                  "We've been awarded Best Technical Club of VIT-AP 2023-2024, recognizing our excellence.",
                 content: (
                   <img
                     src="/placeholder.svg?height=400&width=600"
@@ -285,7 +168,8 @@ export default function Home() {
               },
               {
                 title: "Bootcamps",
-                description: "Intensive learning experiences that transform beginners into skilled practitioners.",
+                description:
+                  "Intensive learning experiences that transform beginners into skilled practitioners.",
                 content: (
                   <img
                     src="/placeholder.svg?height=400&width=600"
@@ -309,191 +193,128 @@ export default function Home() {
             ]}
           />
         </section>
-
+        {/* Testimonials */}
         <section className="bg-black text-white py-16 px-6 md:px-5" id="experience">
           <h2 className="text-3xl font-bold text-center mb-12">what people say about us</h2>
-
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Card 1 */}
-            <div className="bg-gray-900 rounded-lg p-6 shadow-md border border-cyan-600 hover:scale-105 transition-transform">
-              <p className="text-gray-300 mb-4">
-                "Being a part of MLC shaped my technical journey. The exposure to AI/ML research and the club culture
-                gave me confidence to pursue innovation fearlessly."
-              </p>
-              <div className="flex items-center mt-6">
-                <img
-                  src="/images/akhil.jpg"
-                  alt="Irfan Saddiq"
-                  className="w-12 h-12 rounded-full mr-4 border border-cyan-400"
-                />
-                <div>
-                  <div className="text-cyan-400 font-semibold">Irfan Saddiq</div>
-                  <div className="text-gray-400 text-sm">Former President (2023-24)</div>
+            {[
+              {
+                quote:
+                  "Being a part of MLC shaped my technical journey. The exposure to AI/ML research and the club culture gave me confidence to pursue innovation fearlessly.",
+                img: "/images/akhil.jpg",
+                name: "Irfan Saddiq",
+                role: "Former President (2023-24)",
+                border: "border-cyan-600",
+                ring: "border-cyan-400",
+              },
+              {
+                quote:
+                  "Leading the projects division taught me how to work with teams, manage deadlines, and deliver real-world tech solutions. MLC is where you grow beyond the classroom.",
+                img: "/images/sreevidya.jpg",
+                name: "Abu Suleman",
+                role: "Former Club Advisor",
+                border: "border-cyan-600",
+                ring: "border-cyan-400",
+              },
+              {
+                quote:
+                  "I joined as a volunteer and ended up leading major events. MLC empowered me with leadership, technical, and networking skills that I carry even today.",
+                img: "/images/meghana.jpg",
+                name: "Sathwik Sangani",
+                role: "Former President",
+                border: "border-cyan-600",
+                ring: "border-cyan-400",
+              },
+              {
+                quote:
+                  "The mentorship and peer support in MLC accelerated my growth in AI/ML projects far beyond classrooms.",
+                img: "/images/placeholder1.jpg",
+                name: "Preetham Reddy",
+                role: "Former Vice President",
+                border: "border-cyan-600",
+                ring: "border-cyan-400",
+              },
+              {
+                quote:
+                  "Working on real-world datasets with the team gave me confidence to pursue internships in data science.",
+                img: "/images/placeholder2.jpg",
+                name: "Krishna Reddy",
+                role: "Former Projects Manager",
+                border: "border-cyan-600",
+                ring: "border-cyan-400",
+              },
+              {
+                quote:
+                  "From hackathons to workshops, every event pushed me to think bigger and build faster with confidence.",
+                img: "/images/placeholder3.jpg",
+                name: "Rajesh Andra",
+                role: "Former Research Manager",
+                border: "border-cyan-600",
+                ring: "border-cyan-400",
+              },
+              {
+                quote:
+                  "MLC gave me the platform to present ideas and collaborate with brilliant minds across domains.",
+                img: "/images/placeholder4.jpg",
+                name: "Yashasvi Koushik",
+                role: "Former Advisor",
+                border: "border-purple-600",
+                ring: "border-purple-400",
+              },
+              {
+                quote:
+                  "The exposure to competitive coding and ML challenges helped me sharpen problem-solving skills.",
+                img: "/images/placeholder5.jpg",
+                name: "Sai Krishna",
+                role: "Former Club Manager",
+                border: "border-emerald-600",
+                ring: "border-emerald-400",
+              },
+              {
+                quote:
+                  "Designing visuals and branding for events expanded my creative and collaborative abilities.",
+                img: "/images/placeholder6.jpg",
+                name: "Placeholder Name 6",
+                role: "Design Lead",
+                border: "border-pink-600",
+                ring: "border-pink-400",
+              },
+            ].map((card, i) => (
+              <div
+                key={i}
+                className={`bg-gray-900 rounded-lg p-6 shadow-md hover:scale-105 transition-transform border ${card.border}`}
+              >
+                <p className="text-gray-300 mb-4">"{card.quote}"</p>
+                <div className="flex items-center mt-6">
+                  <img
+                    src={card.img}
+                    alt={card.name}
+                    className={`w-12 h-12 rounded-full mr-4 border ${card.ring}`}
+                  />
+                  <div>
+                    <div className="font-semibold text-cyan-400">{card.name}</div>
+                    <div className="text-gray-400 text-sm">{card.role}</div>
+                  </div>
                 </div>
               </div>
-            </div>
-
-            {/* Card 2 */}
-            <div className="bg-gray-900 rounded-lg p-6 shadow-md border border-cyan-600 hover:scale-105 transition-transform">
-              <p className="text-gray-300 mb-4">
-                "Leading the projects division taught me how to work with teams, manage deadlines, and deliver
-                real-world tech solutions. MLC is where you grow beyond the classroom."
-              </p>
-              <div className="flex items-center mt-6">
-                <img
-                  src="/images/sreevidya.jpg"
-                  alt="Sree Vidya"
-                  className="w-12 h-12 rounded-full mr-4 border border-cyan-400"
-                />
-                <div>
-                  <div className="text-cyan-400 font-semibold">Abu Suleman</div>
-                  <div className="text-gray-400 text-sm">Former Club Advisor</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Card 3 */}
-            <div className="bg-gray-900 rounded-lg p-6 shadow-md border border-cyan-600 hover:scale-105 transition-transform">
-              <p className="text-gray-300 mb-4">
-                "I joined as a volunteer and ended up leading major events. MLC empowered me with leadership, technical,
-                and networking skills that I carry even today."
-              </p>
-              <div className="flex items-center mt-6">
-                <img
-                  src="/images/meghana.jpg"
-                  alt="Meghana K"
-                  className="w-12 h-12 rounded-full mr-4 border border-cyan-400"
-                />
-                <div>
-                  <div className="text-cyan-400 font-semibold">Sathwik Sangani</div>
-                  <div className="text-gray-400 text-sm">Former President</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Card 4 */}
-            <div className="bg-gray-900 rounded-lg p-6 shadow-md border border-cyan-600 hover:scale-105 transition-transform">
-              <p className="text-gray-300 mb-4">
-                "The mentorship and peer support in MLC accelerated my growth in AI/ML projects far beyond classrooms."
-              </p>
-              <div className="flex items-center mt-6">
-                <img
-                  src="/images/placeholder1.jpg"
-                  alt="Member 1"
-                  className="w-12 h-12 rounded-full mr-4 border border-cyan-400"
-                />
-                <div>
-                  <div className="text-cyan-400 font-semibold">Preetham Reddy</div>
-                  <div className="text-gray-400 text-sm">Former Vice President</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Card 5 */}
-            <div className="bg-gray-900 rounded-lg p-6 shadow-md border border-cyan-600 hover:scale-105 transition-transform">
-              <p className="text-gray-300 mb-4">
-                "Working on real-world datasets with the team gave me confidence to pursue internships in data science."
-              </p>
-              <div className="flex items-center mt-6">
-                <img
-                  src="/images/placeholder2.jpg"
-                  alt="Member 2"
-                  className="w-12 h-12 rounded-full mr-4 border border-cyan-400"
-                />
-                <div>
-                  <div className="text-cyan-400 font-semibold">Krishna Reddy</div>
-                  <div className="text-gray-400 text-sm">Former Projects Manager</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Card 6 */}
-            <div className="bg-gray-900 rounded-lg p-6 shadow-md border border-cyan-600 hover:scale-105 transition-transform">
-              <p className="text-gray-300 mb-4">
-                "From hackathons to workshops, every event pushed me to think bigger and build faster with confidence."
-              </p>
-              <div className="flex items-center mt-6">
-                <img
-                  src="/images/placeholder3.jpg"
-                  alt="Member 3"
-                  className="w-12 h-12 rounded-full mr-4 border border-cyan-400"
-                />
-                <div>
-                  <div className="text-cyan-400 font-semibold">Rajesh Andra</div>
-                  <div className="text-gray-400 text-sm">Former Researh Manager</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Card 7 */}
-            <div className="bg-gray-900 rounded-lg p-6 shadow-md border border-purple-600 hover:scale-105 transition-transform">
-              <p className="text-gray-300 mb-4">
-                "MLC gave me the platform to present ideas and collaborate with brilliant minds across domains."
-              </p>
-              <div className="flex items-center mt-6">
-                <img
-                  src="/images/placeholder4.jpg"
-                  alt="Member 4"
-                  className="w-12 h-12 rounded-full mr-4 border border-purple-400"
-                />
-                <div>
-                  <div className="text-purple-300 font-semibold">Yashasvi Koushik</div>
-                  <div className="text-gray-400 text-sm">Former Advisor</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Card 8 */}
-            <div className="bg-gray-900 rounded-lg p-6 shadow-md border border-emerald-600 hover:scale-105 transition-transform">
-              <p className="text-gray-300 mb-4">
-                "The exposure to competitive coding and ML challenges helped me sharpen problem-solving skills."
-              </p>
-              <div className="flex items-center mt-6">
-                <img
-                  src="/images/placeholder5.jpg"
-                  alt="Member 5"
-                  className="w-12 h-12 rounded-full mr-4 border border-emerald-400"
-                />
-                <div>
-                  <div className="text-emerald-300 font-semibold">Sai Krishna</div>
-                  <div className="text-gray-400 text-sm">Former Club Manager</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Card 9 */}
-            <div className="bg-gray-900 rounded-lg p-6 shadow-md border border-pink-600 hover:scale-105 transition-transform">
-              <p className="text-gray-300 mb-4">
-                "Designing visuals and branding for events expanded my creative and collaborative abilities."
-              </p>
-              <div className="flex items-center mt-6">
-                <img
-                  src="/images/placeholder6.jpg"
-                  alt="Member 6"
-                  className="w-12 h-12 rounded-full mr-4 border border-pink-400"
-                />
-                <div>
-                  <div className="text-pink-300 font-semibold">Placeholder Name 6</div>
-                  <div className="text-gray-400 text-sm">Design Lead</div>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </section>
-
         {/* Footer */}
-        <footer className="bg-black/60 backdrop-blur-xl border-t border-white/10 text-center py-8">
+        <footer className="bg-black/60 backdrop-blur-xl border-t border-white/10 text-center py-8 mt-8">
           <div className="max-w-4xl mx-auto px-6">
-            <div className="flex justify-center items-center mb-4">Former Reaserch Manager</div>
             <p className="text-gray-400 text-sm mb-4">Empowering the next generation of AI innovators at VIT-AP</p>
             <p className="text-gray-500 text-xs">
               © {new Date().getFullYear()} Machine Learning Club, VIT-AP. All rights reserved.
             </p>
           </div>
-  </footer>
-  {/* Chatbot */}
-  <Chatbot />
+        </footer>
+        <Chatbot />
       </div>
+      <style jsx>{`
+        .animate-marquee { animation: marquee 10s linear infinite; }
+        @keyframes marquee { 0% { transform: translateX(0%);} 100% { transform: translateX(-50%);} }
+      `}</style>
     </>
   )
 }
