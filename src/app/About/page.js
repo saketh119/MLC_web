@@ -16,6 +16,26 @@ const navItems = [
   { title: "Events", icon: <IconCalendarEvent />, href: "/events" },
 ];
 
+// Dummy core team data (replace with real data later)
+const coreTeam = [
+  { name: "Akhil Reddy", role: "President", initials: "AR", linkedin: "https://linkedin.com" },
+  { name: "Irfan Saddiq", role: "Vice President", initials: "IS", linkedin: "https://linkedin.com" },
+  { name: "Preetham Reddy", role: "General Secretary", initials: "PR", linkedin: "https://linkedin.com" },
+  { name: "Sathwik Sangani", role: "Tech Lead", initials: "SS", linkedin: "https://linkedin.com" },
+  { name: "Krishna Reddy", role: "Projects Head", initials: "KR", linkedin: "https://linkedin.com" },
+  { name: "Rajesh Andra", role: "Research Lead", initials: "RA", linkedin: "https://linkedin.com" },
+  { name: "Abu Suleman", role: "Operations Lead", initials: "AS", linkedin: "https://linkedin.com" },
+  { name: "Meghana K", role: "Design Lead", initials: "MK", linkedin: "https://linkedin.com" },
+  { name: "Sree Vidya", role: "Outreach Lead", initials: "SV", linkedin: "https://linkedin.com" },
+  { name: "Bhavya Sri", role: "Event Coordinator", initials: "BS", linkedin: "https://linkedin.com" },
+  { name: "Harsha Vardhan", role: "AI Engineer", initials: "HV", linkedin: "https://linkedin.com" },
+  { name: "Tanvi Rao", role: "Content Strategist", initials: "TR", linkedin: "https://linkedin.com" },
+  { name: "Aditya Jain", role: "Data Lead", initials: "AJ", linkedin: "https://linkedin.com" },
+  { name: "Ritika Sharma", role: "ML Engineer", initials: "RS", linkedin: "https://linkedin.com" },
+  { name: "Yash Gupta", role: "Core Member", initials: "YG", linkedin: "https://linkedin.com" },
+  { name: "Navya Patel", role: "Core Member", initials: "NP", linkedin: "https://linkedin.com" },
+];
+
 // Member card component
 const MemberCard = ({ name, role, image, linkedin }) => (
   <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-5 w-64 flex flex-col items-center shadow-md hover:shadow-xl transition-transform transform hover:scale-105 duration-300">
@@ -146,6 +166,38 @@ export default function AboutUs() {
             </div>
           </div>
         ))}
+
+        {/* Static Core Team Grid (16 square boxes) */}
+        <div className="mt-20">
+          <h3 className="text-2xl font-semibold mb-8 text-center">Core Team (2025–2026)</h3>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6 gap-6 max-w-6xl mx-auto">
+            {coreTeam.map((member, i) => (
+              <div key={member.name + i} className="flex flex-col items-center group">
+                <div
+                  className="relative aspect-square w-full max-w-[140px] rounded-xl overflow-hidden bg-gradient-to-br from-cyan-700/30 to-blue-800/30 border border-cyan-400/30 group-hover:border-cyan-300/60 backdrop-blur-md shadow-md group-hover:shadow-cyan-500/20 transition duration-300 flex items-center justify-center"
+                >
+                  <span className="text-cyan-200 font-semibold text-2xl tracking-wide select-none">{member.initials}</span>
+                  {member.linkedin && (
+                    <a
+                      href={member.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="absolute top-2 right-2 text-cyan-300 hover:text-cyan-200 transition"
+                      aria-label={`LinkedIn profile of ${member.name}`}
+                    >
+                      <IconBrandLinkedin size={22} />
+                    </a>
+                  )}
+                </div>
+                <div className="mt-3 text-center">
+                  <p className="text-sm font-semibold text-cyan-200 leading-tight">{member.name}</p>
+                  <p className="text-xs text-gray-400 mt-1">{member.role}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="text-center text-xs text-gray-500 mt-4"></p>
+        </div>
       </div>
 
       {/* Footer */}

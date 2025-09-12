@@ -209,11 +209,11 @@ export default function Home() {
               {/* Statistics */}
               <div className="flex justify-center gap-8 py-6 mb-8">
                 <div className="text-center">
-                  <div className="text-3xl md:text-4xl font-bold text-cyan-400">500+</div>
+                  <div className="text-3xl md:text-4xl font-bold text-cyan-400">5000+</div>
                   <div className="text-sm text-gray-400">Active Students</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl md:text-4xl font-bold text-blue-400">50+</div>
+                  <div className="text-3xl md:text-4xl font-bold text-blue-400">80+</div>
                   <div className="text-sm text-gray-400">Events Hosted</div>
                 </div>
                 <div className="text-center">
@@ -323,11 +323,11 @@ export default function Home() {
               <div className="flex items-center mt-6">
                 <img
                   src="/images/akhil.jpg"
-                  alt="Akhil Reddy"
+                  alt="Irfan Saddiq"
                   className="w-12 h-12 rounded-full mr-4 border border-cyan-400"
                 />
                 <div>
-                  <div className="text-cyan-400 font-semibold">Akhil Reddy</div>
+                  <div className="text-cyan-400 font-semibold">Irfan Saddiq</div>
                   <div className="text-gray-400 text-sm">Former President (2023-24)</div>
                 </div>
               </div>
@@ -346,8 +346,8 @@ export default function Home() {
                   className="w-12 h-12 rounded-full mr-4 border border-cyan-400"
                 />
                 <div>
-                  <div className="text-cyan-400 font-semibold">Sree Vidya</div>
-                  <div className="text-gray-400 text-sm">Projects Head (2022-23)</div>
+                  <div className="text-cyan-400 font-semibold">Abu Suleman</div>
+                  <div className="text-gray-400 text-sm">Former Club Advisor</div>
                 </div>
               </div>
             </div>
@@ -365,8 +365,116 @@ export default function Home() {
                   className="w-12 h-12 rounded-full mr-4 border border-cyan-400"
                 />
                 <div>
-                  <div className="text-cyan-400 font-semibold">Meghana K</div>
-                  <div className="text-gray-400 text-sm">Core Member (2021-22)</div>
+                  <div className="text-cyan-400 font-semibold">Sathwik Sangani</div>
+                  <div className="text-gray-400 text-sm">Former President</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 4 */}
+            <div className="bg-gray-900 rounded-lg p-6 shadow-md border border-cyan-600 hover:scale-105 transition-transform">
+              <p className="text-gray-300 mb-4">
+                "The mentorship and peer support in MLC accelerated my growth in AI/ML projects far beyond classrooms."
+              </p>
+              <div className="flex items-center mt-6">
+                <img
+                  src="/images/placeholder1.jpg"
+                  alt="Member 1"
+                  className="w-12 h-12 rounded-full mr-4 border border-cyan-400"
+                />
+                <div>
+                  <div className="text-cyan-400 font-semibold">Preetham Reddy</div>
+                  <div className="text-gray-400 text-sm">Former Vice President</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 5 */}
+            <div className="bg-gray-900 rounded-lg p-6 shadow-md border border-cyan-600 hover:scale-105 transition-transform">
+              <p className="text-gray-300 mb-4">
+                "Working on real-world datasets with the team gave me confidence to pursue internships in data science."
+              </p>
+              <div className="flex items-center mt-6">
+                <img
+                  src="/images/placeholder2.jpg"
+                  alt="Member 2"
+                  className="w-12 h-12 rounded-full mr-4 border border-cyan-400"
+                />
+                <div>
+                  <div className="text-cyan-400 font-semibold">Krishna Reddy</div>
+                  <div className="text-gray-400 text-sm">Former Projects Manager</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 6 */}
+            <div className="bg-gray-900 rounded-lg p-6 shadow-md border border-cyan-600 hover:scale-105 transition-transform">
+              <p className="text-gray-300 mb-4">
+                "From hackathons to workshops, every event pushed me to think bigger and build faster with confidence."
+              </p>
+              <div className="flex items-center mt-6">
+                <img
+                  src="/images/placeholder3.jpg"
+                  alt="Member 3"
+                  className="w-12 h-12 rounded-full mr-4 border border-cyan-400"
+                />
+                <div>
+                  <div className="text-cyan-400 font-semibold">Rajesh Andra</div>
+                  <div className="text-gray-400 text-sm">Former Researh Manager</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 7 */}
+            <div className="bg-gray-900 rounded-lg p-6 shadow-md border border-purple-600 hover:scale-105 transition-transform">
+              <p className="text-gray-300 mb-4">
+                "MLC gave me the platform to present ideas and collaborate with brilliant minds across domains."
+              </p>
+              <div className="flex items-center mt-6">
+                <img
+                  src="/images/placeholder4.jpg"
+                  alt="Member 4"
+                  className="w-12 h-12 rounded-full mr-4 border border-purple-400"
+                />
+                <div>
+                  <div className="text-purple-300 font-semibold">Yashasvi Koushik</div>
+                  <div className="text-gray-400 text-sm">Former Advisor</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 8 */}
+            <div className="bg-gray-900 rounded-lg p-6 shadow-md border border-emerald-600 hover:scale-105 transition-transform">
+              <p className="text-gray-300 mb-4">
+                "The exposure to competitive coding and ML challenges helped me sharpen problem-solving skills."
+              </p>
+              <div className="flex items-center mt-6">
+                <img
+                  src="/images/placeholder5.jpg"
+                  alt="Member 5"
+                  className="w-12 h-12 rounded-full mr-4 border border-emerald-400"
+                />
+                <div>
+                  <div className="text-emerald-300 font-semibold">Sai Krishna</div>
+                  <div className="text-gray-400 text-sm">Former Club Manager</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 9 */}
+            <div className="bg-gray-900 rounded-lg p-6 shadow-md border border-pink-600 hover:scale-105 transition-transform">
+              <p className="text-gray-300 mb-4">
+                "Designing visuals and branding for events expanded my creative and collaborative abilities."
+              </p>
+              <div className="flex items-center mt-6">
+                <img
+                  src="/images/placeholder6.jpg"
+                  alt="Member 6"
+                  className="w-12 h-12 rounded-full mr-4 border border-pink-400"
+                />
+                <div>
+                  <div className="text-pink-300 font-semibold">Placeholder Name 6</div>
+                  <div className="text-gray-400 text-sm">Design Lead</div>
                 </div>
               </div>
             </div>
@@ -376,7 +484,7 @@ export default function Home() {
         {/* Footer */}
         <footer className="bg-black/60 backdrop-blur-xl border-t border-white/10 text-center py-8">
           <div className="max-w-4xl mx-auto px-6">
-            <div className="flex justify-center items-center mb-4"></div>
+            <div className="flex justify-center items-center mb-4">Former Reaserch Manager</div>
             <p className="text-gray-400 text-sm mb-4">Empowering the next generation of AI innovators at VIT-AP</p>
             <p className="text-gray-500 text-xs">
               © {new Date().getFullYear()} Machine Learning Club, VIT-AP. All rights reserved.

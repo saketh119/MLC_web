@@ -13,6 +13,18 @@ const navItems = [
   { title: "Events", icon: <IconCalendarEvent />, href: "/events" },
 ];
 
+// Static dummy event metadata (2-3 line descriptions)
+const dummyEvents = [
+  { title: "AI Bootcamp", tag: "Workshop", desc: "Hands-on intro to ML pipelines and model deployment. Build, train, and ship a mini model." },
+  { title: "HackNight 2.0", tag: "Hackathon", desc: "An overnight rapid prototyping sprint where teams solve real-world problem statements with AI." },
+  { title: "Vision Quest", tag: "Seminar", desc: "Dive into computer vision trends: transformers, multimodal fusion, and edge deployment tactics." },
+  { title: "Data Drift Lab", tag: "Hands-on", desc: "Explore dataset bias, drift detection, and model monitoring strategies in production-like settings." },
+  { title: "GenAI Playground", tag: "Demo Day", desc: "Showcase of prompt engineering, fine‑tuning strategies, and creative LLM applications." },
+  { title: "Quant Masters", tag: "Session", desc: "Math for ML: optimization intuition, loss landscapes, gradients, and convergence pitfalls simplified." },
+  { title: "Edge AI Sprint", tag: "Challenge", desc: "Optimize models for low-power devices; prune, quantize, benchmark, iterate, and deploy." },
+  { title: "Research Primer", tag: "Meetup", desc: "How to read papers, form hypotheses, replicate experiments, and publish impactful results." },
+];
+
 export default function EventsPage() {
   const [events, setEvents] = useState([]);
 
@@ -114,6 +126,30 @@ export default function EventsPage() {
         {/* Events Section */}
         <section className="py-12 px-4" data-aos="fade-up">
           <h1 className="text-4xl font-bold text-center mb-8 text-gradient">Our Events</h1>
+
+          {/* Static Dummy Upcoming Events (8 boxes, 16:9) */}
+          <div className="max-w-5xl mx-auto mb-12">
+            <h2 className="text-2xl font-semibold mb-4 text-center">Upcoming Highlights</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {dummyEvents.map((ev, i) => (
+                <div key={i} className="flex flex-col gap-3">
+                  <div
+                    className="group relative w-full aspect-video rounded-xl overflow-hidden bg-gradient-to-br from-slate-800/70 to-slate-900/70 border border-white/10 hover:border-cyan-400/40 shadow-md hover:shadow-cyan-500/10 transition duration-300"
+                  >
+                    <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
+                      <span className="text-[11px] tracking-wider uppercase text-cyan-300/80 mb-2">{ev.tag}</span>
+                      <h3 className="text-lg font-semibold text-white">{ev.title}</h3>
+                    </div>
+                    <div className="absolute inset-0 bg-cyan-500/0 group-hover:bg-cyan-500/5 transition-colors" />
+                  </div>
+                  <p className="text-xs text-gray-400 leading-relaxed px-1">
+                    {ev.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {events.map((event, idx) => (
               <div
