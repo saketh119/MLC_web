@@ -1,8 +1,4 @@
 "use client"
-<<<<<<< HEAD
-
-=======
->>>>>>> e878a7a68703a7fa806ac49fedf31811d0cfd092
 import { StickyScroll } from "./cards/StickyScroll"
 import Head from "next/head"
 import { FloatingDock } from "./cards/floatingdock"
@@ -10,12 +6,7 @@ import { IconHome, IconInfoCircle, IconCalendarEvent } from "@tabler/icons-react
 import WatchIntroButton from "./cards/watchintrobutton"
 import { Code2, Lightbulb, BookOpen, Cpu, Zap } from "lucide-react"
 import { useState, useEffect } from "react"
-<<<<<<< HEAD
 import Chatbot from "./components/Chatbot";
-
-
-=======
->>>>>>> e878a7a68703a7fa806ac49fedf31811d0cfd092
 
 const navItems = [
   { title: "Home", icon: <IconHome />, href: "/" },
@@ -45,12 +36,7 @@ export default function Home() {
 
     return () => clearInterval(interval)
   }, [])
-
-<<<<<<< HEAD
   
-
-=======
->>>>>>> e878a7a68703a7fa806ac49fedf31811d0cfd092
   return (
     <>
       <Head>
@@ -396,20 +382,9 @@ export default function Home() {
               © {new Date().getFullYear()} Machine Learning Club, VIT-AP. All rights reserved.
             </p>
           </div>
-        </footer>
-<<<<<<< HEAD
-        {/* Footer */}
-<footer className="bg-black/60 backdrop-blur-xl border-t border-white/10 text-center py-8">
-  <div className="max-w-4xl mx-auto px-6">
-    <div className="flex justify-center items-center mb-4"></div>
-  </div>
-</footer>
-
-{/* ✅ Add Chatbot */}
-<Chatbot />
-
-=======
->>>>>>> e878a7a68703a7fa806ac49fedf31811d0cfd092
+  </footer>
+  {/* Chatbot */}
+  <Chatbot />
       </div>
     </>
   )
