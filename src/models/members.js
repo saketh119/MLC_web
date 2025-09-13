@@ -5,6 +5,7 @@ const MemberSchema = new mongoose.Schema({
   role: String,
   image: String,
   linkedin: String,
+  category: { type: String, default: 'Others' },
 });
 
 export default mongoose.models.Member || mongoose.model('Member', MemberSchema);

@@ -220,14 +220,14 @@ export default function Home() {
                 quote:
                   "I joined as a volunteer and ended up leading major events. MLC empowered me with leadership, technical, and networking skills that I carry even today.",
                 img: "/images/meghana.jpg",
-                name: "Sathwik Sangani",
-                role: "Former President",
+                name: "Yashasvi Koushik",
+                role: "Former Club Advisor",
                 border: "border-cyan-600",
                 ring: "border-cyan-400",
               },
               {
                 quote:
-                  "The mentorship and peer support in MLC accelerated my growth in AI/ML projects far beyond classrooms.",
+                  "Managing events at MLC gave me valuable leadership experience, while mentorship and peer support accelerated my growth in AI/ML projects beyond the classroom.ntorship and peer support in MLC accelerated my growth in AI/ML projects far beyond classrooms.",
                 img: "/images/placeholder1.jpg",
                 name: "Preetham Reddy",
                 role: "Former Vice President",
@@ -256,8 +256,8 @@ export default function Home() {
                 quote:
                   "MLC gave me the platform to present ideas and collaborate with brilliant minds across domains.",
                 img: "/images/placeholder4.jpg",
-                name: "Yashasvi Koushik",
-                role: "Former Advisor",
+                name: "Sathwik Sangani",
+                role: "Former President",
                 border: "border-purple-600",
                 ring: "border-purple-400",
               },
@@ -274,8 +274,8 @@ export default function Home() {
                 quote:
                   "Designing visuals and branding for events expanded my creative and collaborative abilities.",
                 img: "/images/placeholder6.jpg",
-                name: "Placeholder Name 6",
-                role: "Design Lead",
+                name: "Nithya Ancha",
+                role: "Former Club Manager",
                 border: "border-pink-600",
                 ring: "border-pink-400",
               },
@@ -284,16 +284,22 @@ export default function Home() {
                 key={i}
                 className={`bg-gray-900 rounded-lg p-6 shadow-md hover:scale-105 transition-transform border ${card.border}`}
               >
-                <p className="text-gray-300 mb-4">"{card.quote}"</p>
-                <div className="flex items-center mt-6">
-                  <img
-                    src={card.img}
-                    alt={card.name}
-                    className={`w-12 h-12 rounded-full mr-4 border ${card.ring}`}
-                  />
-                  <div>
-                    <div className="font-semibold text-cyan-400">{card.name}</div>
-                    <div className="text-gray-400 text-sm">{card.role}</div>
+                <div className="flex flex-col md:flex-row items-start gap-6">
+                  {/* Left: Portrait + name/role */}
+                  <div className="w-full md:w-44 flex flex-col items-center">
+                    <img
+                      src={card.img}
+                      alt={card.name}
+                      className={`w-28 h-28 md:w-32 md:h-32 rounded-xl object-cover border ${card.ring}`}
+                    />
+                    <div className="mt-3 text-center">
+                      <div className="font-semibold text-cyan-400 leading-tight">{card.name}</div>
+                      <div className="text-gray-400 text-xs">{card.role}</div>
+                    </div>
+                  </div>
+                  {/* Right: Quote */}
+                  <div className="flex-1 text-gray-300 text-sm leading-relaxed">
+                    <p className="">“{card.quote}”</p>
                   </div>
                 </div>
               </div>

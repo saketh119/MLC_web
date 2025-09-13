@@ -9,9 +9,53 @@ import { FloatingDock } from "../cards/floatingdock";
 
 const navItems = [
   { title: "Home", icon: <IconHome />, href: "/" },
-  { title: "About", icon: <IconInfoCircle />, href: "/About" },
+  { title: "About", icon: <IconInfoCircle />, href: "/about" },
   { title: "Events", icon: <IconCalendarEvent />, href: "/events" },
 ];
+
+// Derive S3-like filenames from event title, trying multiple encodings and extensions
+function buildImageCandidates(title) {
+  if (!title || typeof title !== 'string') return [];
+  const trimmed = title.trim();
+  // Common encodings seen in your bucket: + for spaces, %20 for spaces
+  const variants = [
+    trimmed.replace(/\s+/g, '+'),
+    encodeURIComponent(trimmed),
+    trimmed.replace(/\s+/g, ' '),
+  ];
+  const exts = ['.jpeg', '.jpg', '.png', '.webp'];
+  const bases = variants.map(v => `https://mlcevents.s3.eu-north-1.amazonaws.com/${v}`);
+  const urls = [];
+  for (const b of bases) {
+    for (const e of exts) urls.push(`${b}${e}`);
+  }
+  return Array.from(new Set(urls));
+}
+
+function SmartImage({ title, provided, className }) {
+  const [src, setSrc] = useState(provided || null);
+  const [candidates, setCandidates] = useState([]);
+
+  useEffect(() => {
+    const list = buildImageCandidates(title);
+    setCandidates(list);
+    // Reset when title or provided changes
+    setSrc(provided || (list[0] || null));
+  }, [title, provided]);
+
+  const onError = () => {
+    if (!candidates.length) {
+      setSrc('/vercel.svg');
+      return;
+    }
+    const next = candidates.findIndex(u => u === src) + 1;
+    if (next < candidates.length) setSrc(candidates[next]);
+    else setSrc('/vercel.svg');
+  };
+
+  if (!src) return <img src={'/vercel.svg'} alt={title} className={className} />;
+  return <img src={src} onError={onError} alt={title} className={className} />;
+}
 
 // Static dummy event metadata (2-3 line descriptions)
 const dummyEvents = [
@@ -31,7 +75,7 @@ export default function EventsPage() {
   useEffect(() => {
     fetch('/api/events')
       .then(res => res.json())
-      .then(data => setEvents(data))
+      .then(data => Array.isArray(data) ? setEvents(data) : setEvents([]))
       .catch(err => console.error('Error fetching events:', err));
 
     AOS.init({ once: true, duration: 1000 });
@@ -151,26 +195,32 @@ export default function EventsPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {events.map((event, idx) => (
-              <div
-                key={event._id?.$oid || idx}
-                className="glass-card rounded-xl overflow-hidden border border-white/10 hover:shadow-xl transition duration-300"
-                data-aos="fade-up"
-              >
-                <img
-                  src={event["Image Url"] || "/placeholder.png"}
-                  alt={event["Event Name"] || "Event"}
-                  className="w-full h-52 object-cover"
-                />
-                <div className="p-4">
-                  <h2 className="text-xl font-semibold mb-2">{event["Event Name"] || "Untitled Event"}</h2>
-                  <p className="text-sm mb-2 text-gray-300">{event["Description"] || "No description provided."}</p>
-                  <p className="text-xs text-gray-500">
-                    {event["Date"] ? new Date(event["Date"]).toLocaleDateString() : "Invalid Date"}
-                  </p>
+            {events.map((raw, idx) => {
+              const id = raw?._id?.toString?.() || raw?._id?.$oid || raw?.id || idx;
+              const title = raw?.name ?? raw?.["Event Name"] ?? "Untitled Event";
+              const desc = raw?.description ?? raw?.["Description"] ?? "No description provided.";
+              const dateVal = raw?.date ?? raw?.["Date"] ?? null;
+              const providedUrl = Array.isArray(raw?.imageUrls) && raw.imageUrls.length > 0
+                ? raw.imageUrls[0]
+                : (raw?.imageUrl || raw?.["Image Url"] || raw?.image || null);
+
+              return (
+                <div
+                  key={id}
+                  className="glass-card rounded-xl overflow-hidden border border-white/10 hover:shadow-xl transition duration-300"
+                  data-aos="fade-up"
+                >
+                  <SmartImage title={title} provided={providedUrl} className="w-full h-52 object-cover" />
+                  <div className="p-4">
+                    <h2 className="text-xl font-semibold mb-2">{title}</h2>
+                    <p className="text-sm mb-2 text-gray-300">{desc}</p>
+                    <p className="text-xs text-gray-500">
+                      {dateVal ? new Date(dateVal).toLocaleDateString() : ""}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </section>
         {/* Footer */}

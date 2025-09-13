@@ -16,10 +16,8 @@ async function dbConnect() {
   if (cached.conn) return cached.conn;
 
   if (!cached.promise) {
-    cached.promise = mongoose.connect(MONGODB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    }).then((mongoose) => mongoose);
+    // Connect with default options; deprecated driver flags removed
+    cached.promise = mongoose.connect(MONGODB_URI).then((mongoose) => mongoose);
   }
 
   cached.conn = await cached.promise;
@@ -27,3 +25,10 @@ async function dbConnect() {
 }
 
 export default dbConnect;
+
+// Helper to get a GridFSBucket for streaming file data
+export function getBucket() {
+  if (!cached?.conn) throw new Error('MongoDB not connected');
+  const db = cached.conn.connection.db;
+  return new mongoose.mongo.GridFSBucket(db, { bucketName: 'images' });
+}
