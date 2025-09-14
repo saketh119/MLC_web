@@ -22,7 +22,18 @@ export async function GET() {
       return bd - ad; // desc
     });
 
-    return new Response(JSON.stringify(sorted), {
+    // Normalize common fields (non-destructive): add imageUrl and name if missing
+    const normalized = sorted.map((e) => {
+      const imageUrl = Array.isArray(e?.imageUrls) && e.imageUrls.length > 0
+        ? e.imageUrls[0]
+        : (e?.imageUrl || e?.['Image Url'] || e?.image || null);
+      const name = e?.name ?? e?.['Event Name'] ?? e?.title ?? 'Untitled Event';
+      const description = e?.description ?? e?.['Description'] ?? e?.desc ?? '';
+      const date = e?.date ?? e?.Date ?? null;
+      return { ...e, imageUrl, name, description, date };
+    });
+
+    return new Response(JSON.stringify(normalized), {
       status: 200,
       headers: { 'Content-Type': 'application/json' },
     });

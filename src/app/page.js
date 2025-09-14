@@ -12,6 +12,9 @@ const navItems = [
   { title: "Events", icon: <IconCalendarEvent />, href: "/events" },
 ]
 
+// Fallback avatar when local images are missing
+const DEFAULT_CLOUDINARY_AVATAR = "https://res.cloudinary.com/djl3h6ql8/image/upload/v1757847529/mlc_events/bifsbpnt4socpsrpi0ls.jpg";
+
 export default function Home() {
   return (
     <>
@@ -20,6 +23,8 @@ export default function Home() {
           href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap"
           rel="stylesheet"
         />
+        <link rel="preconnect" href="https://res.cloudinary.com" />
+        <link rel="dns-prefetch" href="//res.cloudinary.com" />
       </Head>
       <div className="bg-black text-white min-h-screen font-sans">
         {/* Navbar */}
@@ -100,6 +105,7 @@ export default function Home() {
             ))}
           </div>
         </section>
+        {/* Bottom Gallery removed as requested; you can add manual images here later */}
         {/* Family Photo */}
         <section className="px-4 md:px-12">
           <div className="rounded-2xl overflow-hidden shadow-lg">
@@ -210,7 +216,7 @@ export default function Home() {
               {
                 quote:
                   "Leading the projects division taught me how to work with teams, manage deadlines, and deliver real-world tech solutions. MLC is where you grow beyond the classroom.",
-                img: "/images/sreevidya.jpg",
+                img: "https://res.cloudinary.com/djl3h6ql8/image/upload/v1757850255/mlc_events/zxwrkldcimoeictqwy9g.jpg",
                 name: "Abu Suleman",
                 role: "Former Club Advisor",
                 border: "border-cyan-600",
@@ -228,7 +234,7 @@ export default function Home() {
               {
                 quote:
                   "Managing events at MLC gave me valuable leadership experience, while mentorship and peer support accelerated my growth in AI/ML projects beyond the classroom.ntorship and peer support in MLC accelerated my growth in AI/ML projects far beyond classrooms.",
-                img: "/images/placeholder1.jpg",
+                img: "https://res.cloudinary.com/djl3h6ql8/image/upload/v1757848280/mlc_events/lqacwoisnrywhotpuwi6.jpg",
                 name: "Preetham Reddy",
                 role: "Former Vice President",
                 border: "border-cyan-600",
@@ -237,7 +243,7 @@ export default function Home() {
               {
                 quote:
                   "Working on real-world datasets with the team gave me confidence to pursue internships in data science.",
-                img: "/images/placeholder2.jpg",
+                img: "https://res.cloudinary.com/djl3h6ql8/image/upload/v1757849387/mlc_events/xr3d4yupydy3c3u9zeec.jpg",
                 name: "Krishna Reddy",
                 role: "Former Projects Manager",
                 border: "border-cyan-600",
@@ -246,7 +252,7 @@ export default function Home() {
               {
                 quote:
                   "From hackathons to workshops, every event pushed me to think bigger and build faster with confidence.",
-                img: "/images/placeholder3.jpg",
+                img: "https://res.cloudinary.com/djl3h6ql8/image/upload/v1757848682/mlc_events/w8tkdjlnrqmohjlhenyk.jpg",
                 name: "Rajesh Andra",
                 role: "Former Research Manager",
                 border: "border-cyan-600",
@@ -255,7 +261,7 @@ export default function Home() {
               {
                 quote:
                   "MLC gave me the platform to present ideas and collaborate with brilliant minds across domains.",
-                img: "/images/placeholder4.jpg",
+                img: "https://res.cloudinary.com/djl3h6ql8/image/upload/v1757850048/mlc_events/tzox2d2f2nid8qnwqnvn.jpg",
                 name: "Sathwik Sangani",
                 role: "Former President",
                 border: "border-purple-600",
@@ -264,7 +270,7 @@ export default function Home() {
               {
                 quote:
                   "The exposure to competitive coding and ML challenges helped me sharpen problem-solving skills.",
-                img: "/images/placeholder5.jpg",
+                img: "https://res.cloudinary.com/djl3h6ql8/image/upload/v1757849254/mlc_events/ltemudphhov90z45mcua.jpg",
                 name: "Sai Krishna",
                 role: "Former Club Manager",
                 border: "border-emerald-600",
@@ -272,8 +278,8 @@ export default function Home() {
               },
               {
                 quote:
-                  "Designing visuals and branding for events expanded my creative and collaborative abilities.",
-                img: "/images/placeholder6.jpg",
+                  "MLC gave me the platform to present ideas and collaborate with brilliant minds across domains.",
+                img: "https://res.cloudinary.com/djl3h6ql8/image/upload/v1757847529/mlc_events/bifsbpnt4socpsrpi0ls.jpg",
                 name: "Nithya Ancha",
                 role: "Former Club Manager",
                 border: "border-pink-600",
@@ -291,6 +297,10 @@ export default function Home() {
                       src={card.img}
                       alt={card.name}
                       className={`w-28 h-28 md:w-32 md:h-32 rounded-xl object-cover border ${card.ring}`}
+                      onError={(e) => {
+                        e.currentTarget.onerror = null;
+                        e.currentTarget.src = DEFAULT_CLOUDINARY_AVATAR;
+                      }}
                     />
                     <div className="mt-3 text-center">
                       <div className="font-semibold text-cyan-400 leading-tight">{card.name}</div>

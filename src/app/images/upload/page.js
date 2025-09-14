@@ -18,7 +18,8 @@ export default function UploadImagePage() {
       const fd = new FormData();
       fd.append("title", title);
       fd.append("file", file);
-      const res = await fetch("/api/upload", { method: "POST", body: fd });
+  // Switch to Cloudinary-backed upload
+      const res = await fetch("/api/images/cloudinary", { method: "POST", body: fd });
       if (!res.ok) throw new Error(await res.text());
       const data = await res.json();
       setResult(data);
@@ -64,6 +65,7 @@ export default function UploadImagePage() {
           <div className="mt-8 bg-neutral-900 p-6 rounded-xl border border-white/10">
             <h2 className="text-xl font-semibold mb-3">Result</h2>
             <p className="text-sm text-gray-300 break-words">servedUrl: {result.servedUrl}</p>
+            <p className="text-sm text-gray-300 break-words">public_id: {result.public_id}</p>
             <div className="mt-4">
               <img src={result.servedUrl} alt={result.title || "uploaded"} className="max-w-full rounded-md border border-white/10" />
             </div>
