@@ -3,18 +3,7 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Timeline from '../cards/Timeline';
 import { FloatingDock } from "../cards/floatingdock";
-import {
-  IconHome,
-  IconInfoCircle,
-  IconCalendarEvent,
-  IconBrandLinkedin,
-} from '@tabler/icons-react';
-
-const navItems = [
-  { title: "Home", icon: <IconHome />, href: "/" },
-  { title: "About", icon: <IconInfoCircle />, href: "/about" },
-  { title: "Events", icon: <IconCalendarEvent />, href: "/events" },
-];
+import { IconHome, IconInfoCircle, IconCalendarEvent, IconBrandLinkedin } from '@tabler/icons-react';
 
 // Dummy core team data (replace with real data later)
 const coreTeam = [
@@ -61,6 +50,12 @@ const MemberCard = ({ name, role, image, linkedin }) => (
   </div>
 );
 
+const navItems = [
+  { title: "Home", icon: <IconHome />, href: "/" },
+  { title: "About", icon: <IconInfoCircle />, href: "/About" },
+  { title: "Events", icon: <IconCalendarEvent />, href: "/events" },
+];
+
 export default function AboutUs() {
   const [members, setMembers] = useState([]);
 
@@ -72,66 +67,62 @@ export default function AboutUs() {
 
   return (
     <div className="bg-black text-white min-h-screen font-sans">
-      {/* Navbar */}
-      <nav className="sticky top-0 z-50 flex justify-between items-center px-6 py-4 bg-black/40 backdrop-blur-md">
-        <div className="flex items-center space-x-3 w-[280px]">
-          <div className="w-10 h-10 bg-white rounded-full flex justify-center items-center text-black font-bold">ML</div>
-          <div className="flex flex-col leading-tight">
-            <h1
-              className="text-xl sm:text-2xl font-extrabold tracking-wide whitespace-nowrap"
-              style={{
-                fontFamily: "var(--font-orbitron)",
-                background: "linear-gradient(to right, #00FFFF, #007BFF)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}
-            >
-              MACHINE LEARNING
-            </h1>
-            <span className="text-xs text-white/80 font-light mt-1">Campus Club at VIT-AP</span>
-          </div>
-        </div>
-
-        <div className="w-[280px] flex justify-end">
-          <FloatingDock
-            items={navItems}
-            desktopClassName="fixed top-4 right-4 rounded-2xl bg-cyan-400/10"
-            mobileClassName="fixed top-6 right-4 z-50"
-          />
+      {/* Navbar (match Home/Events) */}
+      <nav className="sticky top-0 z-50 flex justify-between items-center px-6 py-4 bg-black">
+        <div className="text-xs tracking-wide">MACHINE LEARNING CLUB</div>
+        <div className="hidden md:flex">
+          <FloatingDock items={navItems} desktopClassName="bg-cyan-400/10 rounded-2xl" />
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="px-6 md:px-20 py-20 bg-black text-white">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h1
-              className="text-4xl sm:text-3xl md:text-6xl lg:text-6xl font-extrabold tracking-wide text-center md:text-left leading-tight whitespace-nowrap"
-              style={{
-                textShadow: "0 0 8px #00ffff, 0 0 16px #00ffff, 0 0 24px #00ffff"
-              }}
-            >
-              Learn <span className="text-cyan-400">||</span> Code <span className="text-cyan-400">||</span> Innovate
-            </h1>
+      {/* Hero Section: ABOUT US layout */}
+      <section className="px-6 md:px-12 lg:px-20 pt-10 pb-14 bg-black text-white">
+        <div className="max-w-7xl mx-auto">
+          <h1 className="text-[48px] sm:text-[64px] md:text-[88px] font-extrabold tracking-tight mb-8 font-black-future">
+            ABOUT US !
+          </h1>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+            {/* Left: Big rounded image */}
+            <div className="relative rounded-[24px] overflow-hidden shadow-xl border border-white/10">
+              <Image
+                src="/mlc-family.jpg"
+                alt="MLC Group"
+                width={1200}
+                height={800}
+                className="w-full h-auto object-cover"
+                priority
+              />
+              {/* Accent bar (subtle) */}
+              <div className="absolute -bottom-1 left-6 h-2 w-28 bg-orange-500 rounded-full" />
+            </div>
 
-            <p className="mt-0 text-sm text-gray-300 max-w-xl text-center md:text-left">
-              This isn&apos;t just a motto — it&apos;s our mission.
-            </p>
-            <p className="text-md text-gray-300 mt-8 max-w-xl text-center md:text-left">
-              Join the Best Technical Club of VIT-AP, where curiosity meets innovation.
-              Engage in hands-on learning, develop groundbreaking projects, and be part
-              of a community that&apos;s shaping the future of AI &amp; ML.
-            </p>
+            {/* Right: About copy + stats */}
+            <div className="flex flex-col">
+              <h3 className="text-cyan-400 font-bold uppercase tracking-wide text-lg mb-3">ABOUT THE CLUB</h3>
+              <p className="text-gray-300 leading-relaxed max-w-xl">
+                Lorem ipsum dolor sit amet consectetur. Dignissim facilisi accumsan pharetra aliquet
+                vestibulum facilisis eros adipiscing. Consectetur habitasse commodo ut volutpat.
+              </p>
 
-            <div className="mt-8 flex justify-center md:justify-start">
-              <button
-                className="bg-pink-600 hover:bg-pink-700 transition px-6 py-3 rounded-full text-white font-semibold shadow-md"
-                onClick={() => {
-                  alert("MLC isn’t open for new registrations now, please come back later.");
-                }}
-              >
-                Join the Club Now
-              </button>
+              {/* Stats */}
+              <div className="grid grid-cols-2 gap-x-10 gap-y-10 mt-10">
+                <div>
+                  <div className="text-6xl md:text-7xl font-extrabold font-black-future">200<span className="text-cyan-400">+</span></div>
+                  <div className="text-[11px] uppercase tracking-wider mt-2 text-cyan-400">Students</div>
+                </div>
+                <div>
+                  <div className="text-6xl md:text-7xl font-extrabold font-black-future">125<span className="text-cyan-400">+</span></div>
+                  <div className="text-[11px] uppercase tracking-wider mt-2 text-cyan-400">Events</div>
+                </div>
+                <div>
+                  <div className="text-6xl md:text-7xl font-extrabold font-black-future">6<span className="text-cyan-400">+</span></div>
+                  <div className="text-[11px] uppercase tracking-wider mt-2 text-cyan-400">Years</div>
+                </div>
+                <div>
+                  <div className="text-6xl md:text-7xl font-extrabold font-black-future">25<span className="text-cyan-400">+</span></div>
+                  <div className="text-[11px] uppercase tracking-wider mt-2 text-cyan-400">Patents</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

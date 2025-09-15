@@ -142,7 +142,8 @@ export default function Home() {
                   "We regularly participate and win inter-college hackathons, pushing the boundaries of innovation.",
                 content: (
                   <img
-                    src="/placeholder.svg?height=400&width=600"
+                    // TODO: Replace with your Cloudinary secure_url for Hackathons
+                    src="https://res.cloudinary.com/djl3h6ql8/image/upload/f_auto,q_auto,c_fill,w_600,h_400/v1234567890/mlc_events/replace_hackathons.jpg"
                     alt="Hackathon"
                     className="w-full h-full object-cover rounded-lg"
                   />
@@ -154,7 +155,8 @@ export default function Home() {
                   "Hands-on sessions conducted by industry experts and seniors, bridging theory with practice.",
                 content: (
                   <img
-                    src="/placeholder.svg?height=400&width=600"
+                    // TODO: Replace with your Cloudinary secure_url for Workshops
+                    src="https://res.cloudinary.com/djl3h6ql8/image/upload/v1757875241/mlc_events/oj8ttkguywjxvg4rbcji.jpg"
                     alt="Workshop"
                     className="w-full h-full object-cover rounded-lg"
                   />
@@ -166,7 +168,8 @@ export default function Home() {
                   "We've been awarded Best Technical Club of VIT-AP 2023-2024, recognizing our excellence.",
                 content: (
                   <img
-                    src="/placeholder.svg?height=400&width=600"
+                    // TODO: Replace with your Cloudinary secure_url for Achievements
+                    src="https://res.cloudinary.com/djl3h6ql8/image/upload/v1757875771/mlc_events/couhsclljjdtg0fkbjie.jpg"
                     alt="Award"
                     className="w-full h-full object-cover rounded-lg"
                   />
@@ -178,7 +181,8 @@ export default function Home() {
                   "Intensive learning experiences that transform beginners into skilled practitioners.",
                 content: (
                   <img
-                    src="/placeholder.svg?height=400&width=600"
+                    // TODO: Replace with your Cloudinary secure_url for Bootcamps
+                    src="https://res.cloudinary.com/djl3h6ql8/image/upload/f_auto,q_auto,c_fill,w_600,h_400/v1234567890/mlc_events/replace_bootcamps.jpg"
                     alt="Bootcamp"
                     className="w-full h-full object-cover rounded-lg"
                   />
@@ -190,7 +194,8 @@ export default function Home() {
                   "Competitive events that foster creativity, problem-solving, and collaborative innovation.",
                 content: (
                   <img
-                    src="/placeholder.svg?height=400&width=600"
+                    // TODO: Replace with your Cloudinary secure_url for Codeathons & Ideathons
+                    src="https://res.cloudinary.com/djl3h6ql8/image/upload/f_auto,q_auto,c_fill,w_600,h_400/v1234567890/mlc_events/replace_codeathons.jpg"
                     alt="Competition"
                     className="w-full h-full object-cover rounded-lg"
                   />
@@ -261,7 +266,7 @@ export default function Home() {
               {
                 quote:
                   "MLC gave me the platform to present ideas and collaborate with brilliant minds across domains.",
-                img: "https://res.cloudinary.com/djl3h6ql8/image/upload/v1757850048/mlc_events/tzox2d2f2nid8qnwqnvn.jpg",
+                img: "https://res.cloudinary.com/djl3h6ql8/image/upload/v1757871603/mlc_events/djtudgtwqjpcs6qe3acd.jpg",
                 name: "Sathwik Sangani",
                 role: "Former President",
                 border: "border-purple-600",

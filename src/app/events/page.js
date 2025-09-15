@@ -5,6 +5,7 @@ import 'aos/dist/aos.css';
 import { IconHome, IconInfoCircle, IconCalendarEvent } from '@tabler/icons-react';
 import Head from "next/head"; 
 import React from "react";
+import Image from 'next/image';
 import { FloatingDock } from "../cards/floatingdock";
 
 const navItems = [
@@ -283,46 +284,53 @@ export default function EventsPage() {
         />
           </div>
         </nav>
-<section className="px-6 md:px-20 py-20 bg-black text-white">
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-    
-    {/* Left Content */}
-    <div>
-      <h1
-        className="text-4xl sm:text-3xl md:text-6xl lg:text-6xl font-extrabold tracking-wide text-center md:text-left leading-tight whitespace-nowrap"
-        style={{
-          textShadow: "0 0 8px #00ffff, 0 0 16px #00ffff, 0 0 24px #00ffff"
-        }}
-      >
-        Learn <span className="text-cyan-400">||</span> Code <span className="text-cyan-400">||</span> Innovate
-      </h1>
+<section className="px-6 md:px-12 lg:px-20 pt-10 pb-14 bg-black text-white">
+  <div className="max-w-7xl mx-auto">
+    <h1 className="text-[48px] sm:text-[64px] md:text-[88px] font-extrabold tracking-tight mb-8 font-black-future">
+      EVENTS !
+    </h1>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+      {/* Left: Big rounded image */}
+      <div className="relative rounded-[24px] overflow-hidden shadow-xl border border-white/10">
+        <Image
+          src="/mlc-family.jpg"
+          alt="MLC Events Collage"
+          width={1200}
+          height={800}
+          className="w-full h-auto object-cover"
+          priority
+        />
+        <div className="absolute -bottom-1 left-6 h-2 w-28 bg-orange-500 rounded-full" />
+      </div>
 
-      <p className="mt-0 text-sm text-gray-300 max-w-xl text-center md:text-left">
-        This isn&apos;t just a motto — it&apos;s our mission.
-      </p>
-      <p className="text-md text-gray-300 mt-8 max-w-xl text-center md:text-left">
-         Join the Best Technical Club of VIT-AP, where curiosity meets innovation.
-          Engage in hands-on learning, develop groundbreaking projects, and be part
-          of a community that&apos;s shaping the future of AI & ML.</p>
+      {/* Right: About copy + stats */}
+      <div className="flex flex-col">
+        <h3 className="text-cyan-400 font-bold uppercase tracking-wide text-lg mb-3">ABOUT THE EVENTS</h3>
+        <p className="text-gray-300 leading-relaxed max-w-xl">
+          Explore our workshops, hackathons, seminars, and showcase nights. We create hands-on
+          experiences where ideas turn into real projects and teams learn by building.
+        </p>
 
-      {/* CTA Button */}
-      <div className="mt-8 flex justify-center md:justify-start">
-        <button
-          className="bg-pink-600 hover:bg-pink-700 transition px-6 py-3 rounded-full text-white font-semibold shadow-md"
-          onClick={() => {
-            // 🔒 Registration Closed — show alert
-            alert("MLC isn't open for new registrations now, please come back later.");
-
-            // ✅ Registration Open — redirect to Google Form
-            // window.open('https://your-google-form-link.com', '_blank');
-          }}
-        >
-          Join the Club Now
-        </button>
+        <div className="grid grid-cols-2 gap-x-10 gap-y-10 mt-10">
+          <div>
+            <div className="text-6xl md:text-7xl font-extrabold font-black-future">200<span className="text-cyan-400">+</span></div>
+            <div className="text-[11px] uppercase tracking-wider mt-2 text-cyan-400">Students</div>
+          </div>
+          <div>
+            <div className="text-6xl md:text-7xl font-extrabold font-black-future">125<span className="text-cyan-400">+</span></div>
+            <div className="text-[11px] uppercase tracking-wider mt-2 text-cyan-400">Events</div>
+          </div>
+          <div>
+            <div className="text-6xl md:text-7xl font-extrabold font-black-future">6<span className="text-cyan-400">+</span></div>
+            <div className="text-[11px] uppercase tracking-wider mt-2 text-cyan-400">Years</div>
+          </div>
+          <div>
+            <div className="text-6xl md:text-7xl font-extrabold font-black-future">25<span className="text-cyan-400">+</span></div>
+            <div className="text-[11px] uppercase tracking-wider mt-2 text-cyan-400">Patents</div>
+          </div>
+        </div>
       </div>
     </div>
-
-    {/* Right side: (empty or image if needed) */}
   </div>
 </section>
 
