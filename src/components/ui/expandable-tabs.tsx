@@ -23,7 +23,9 @@ type TabItem = Tab | Separator;
 interface ExpandableTabsProps {
   tabs: TabItem[];
   className?: string;
-  activeColor?: string;
+  activeColor?: string; // class names applied when selected
+  inactiveColor?: string; // class names applied when not selected
+  iconClass?: string; // force icon color sizing overrides
   onChange?: (index: number | null) => void;
 }
 
@@ -51,7 +53,9 @@ const transition = { delay: 0.1, type: "spring", bounce: 0, duration: 0.6 } as c
 export function ExpandableTabs({
   tabs,
   className,
-  activeColor = "text-primary",
+  activeColor = "text-cyan-400",
+  inactiveColor = "text-white/70 hover:text-white",
+  iconClass = "",
   onChange,
 }: ExpandableTabsProps) {
   const [selected, setSelected] = React.useState<number | null>(null);
@@ -98,11 +102,11 @@ export function ExpandableTabs({
             className={cn(
               "relative flex items-center rounded-xl px-4 py-2 text-sm font-medium transition-colors duration-300",
               selected === index
-                ? cn("bg-muted", activeColor)
-                : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                ? cn("bg-white/10", activeColor)
+                : cn("hover:bg-white/5", inactiveColor)
             )}
           >
-            <Icon size={20} />
+            <Icon size={20} className={cn("transition-colors", selected === index ? activeColor : inactiveColor, iconClass)} />
             <AnimatePresence initial={false}>
               {selected === index && (
                 <motion.span

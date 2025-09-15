@@ -27,11 +27,23 @@ export default function MemberCard({ name, role, image, linkedin, email, index =
 
       {/* Name and role */}
       <motion.h3
-        className="text-xl font-bold text-white group-hover:text-cyan-300 transition-colors duration-300 mb-2"
+        className="text-xl font-bold text-white group-hover:text-cyan-300 transition-colors duration-300 mb-1"
         whileHover={{ scale: 1.05 }}
       >
         {name}
       </motion.h3>
+
+      {/* LinkedIn handle (shown only if linkedin exists) */}
+      {linkedin && (
+        <a
+          href={linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block text-[11px] text-cyan-400/80 hover:text-cyan-300 transition-colors mb-2 break-all"
+        >
+          {linkedin.replace(/^https?:\/\/(www\.)?linkedin\.com\//i, "")} {/* show relative handle */}
+        </a>
+      )}
 
       <p className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors duration-300 mb-6">{role}</p>
 

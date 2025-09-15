@@ -1,7 +1,7 @@
 "use client"
 import Head from "next/head"
 import Image from "next/image"
-import { IconHome, IconInfoCircle, IconCalendarEvent } from "@tabler/icons-react"
+import { IconHome, IconInfoCircle, IconCalendarEvent, IconBrandLinkedin } from "@tabler/icons-react"
 import { FloatingDock } from "./cards/floatingdock"
 import { StickyScroll } from "./cards/StickyScroll"
 import Chatbot from "./components/Chatbot"
@@ -47,6 +47,27 @@ export default function Home() {
                 <span className="block">MACHINE</span>
                 <span className="block mt-4">LEARNING CLUB</span>
               </h1>
+              {/* Club short intro */}
+              <div className="mt-6 max-w-xl">
+                <div className="relative rounded-2xl border border-white/10 bg-gradient-to-br from-gray-900/60 to-gray-800/40 p-5 shadow-lg">
+                  <p className="text-sm text-gray-300 leading-relaxed">
+                    We are a student‑led community exploring the art and science of Machine Learning.
+                    From zero‑to‑one workshops and hands‑on bootcamps to hackathons and research sprints,
+                    we learn by building and share what we discover.
+                  </p>
+                  
+                  <div className="mt-5">
+                    <a
+                      href="/contact"
+                      className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-2 text-xs font-semibold tracking-wide text-white shadow-lg shadow-cyan-500/20 hover:from-cyan-400 hover:to-blue-500 focus:outline-none focus:ring-2 focus:ring-cyan-400/60 transition"
+                    >
+                      Join Now
+                      <span className="text-lg leading-none">→</span>
+                    </a>
+                  </div>
+                  <div className="absolute -top-1 left-6 h-1 w-24 bg-gradient-to-r from-cyan-400 to-blue-600 rounded-full" />
+                </div>
+              </div>
             </div>
             {/* Right Pill + Text replaced with Spline Card */}
             <div className="w-full lg:w-[560px] h-[360px] md:h-[420px] relative">
@@ -189,13 +210,14 @@ export default function Home() {
         <section className="bg-black text-white py-16 px-6 md:px-5" id="experience">
           <h2 className="text-3xl font-bold text-center mb-12">what people say about us</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
+            {[ 
               {
                 quote:
                   "Being a part of MLC shaped my technical journey. The exposure to AI/ML research and the club culture gave me confidence to pursue innovation fearlessly.",
-                img: "/images/akhil.jpg",
+                img: "https://res.cloudinary.com/djl3h6ql8/image/upload/v1757963300/mlc_events/cbrthxaheayjei0wrrhx.jpg",
                 name: "Irfan Saddiq",
-                role: "Former President (2023-24)",
+                role: "President (2023-24)",
+                linkedin: "https://www.linkedin.com/in/irfan-saddiq",
                 border: "border-cyan-600",
                 ring: "border-cyan-400",
               },
@@ -204,7 +226,8 @@ export default function Home() {
                   "Leading the projects division taught me how to work with teams, manage deadlines, and deliver real-world tech solutions. MLC is where you grow beyond the classroom.",
                 img: "https://res.cloudinary.com/djl3h6ql8/image/upload/v1757850255/mlc_events/zxwrkldcimoeictqwy9g.jpg",
                 name: "Abu Suleman",
-                role: "Former Club Advisor",
+                role: "Club Advisor(2023-24)",
+                linkedin: "https://www.linkedin.com/in/abu-suleman",
                 border: "border-cyan-600",
                 ring: "border-cyan-400",
               },
@@ -213,7 +236,8 @@ export default function Home() {
                   "I joined as a volunteer and ended up leading major events. MLC empowered me with leadership, technical, and networking skills that I carry even today.",
                 img: "/images/meghana.jpg",
                 name: "Yashasvi Koushik",
-                role: "Former Club Advisor",
+                role: "Club Advisor(2023-25)",
+                linkedin: "https://www.linkedin.com/in/yashasvi-koushik",
                 border: "border-cyan-600",
                 ring: "border-cyan-400",
               },
@@ -222,7 +246,8 @@ export default function Home() {
                   "Managing events at MLC gave me valuable leadership experience, while mentorship and peer support accelerated my growth in AI/ML projects beyond the classroom.ntorship and peer support in MLC accelerated my growth in AI/ML projects far beyond classrooms.",
                 img: "https://res.cloudinary.com/djl3h6ql8/image/upload/v1757848280/mlc_events/lqacwoisnrywhotpuwi6.jpg",
                 name: "Preetham Reddy",
-                role: "Former Vice President",
+                role: "Vice President(2024-25)",
+                linkedin: "https://www.linkedin.com/in/preetham-reddy",
                 border: "border-cyan-600",
                 ring: "border-cyan-400",
               },
@@ -231,7 +256,8 @@ export default function Home() {
                   "Working on real-world datasets with the team gave me confidence to pursue internships in data science.",
                 img: "https://res.cloudinary.com/djl3h6ql8/image/upload/v1757849387/mlc_events/xr3d4yupydy3c3u9zeec.jpg",
                 name: "Krishna Reddy",
-                role: "Former Projects Manager",
+                role: "Projects Manager(2024-25)",
+                linkedin: "https://www.linkedin.com/in/krishna-reddy",
                 border: "border-cyan-600",
                 ring: "border-cyan-400",
               },
@@ -240,7 +266,8 @@ export default function Home() {
                   "From hackathons to workshops, every event pushed me to think bigger and build faster with confidence.",
                 img: "https://res.cloudinary.com/djl3h6ql8/image/upload/v1757848682/mlc_events/w8tkdjlnrqmohjlhenyk.jpg",
                 name: "Rajesh Andra",
-                role: "Former Research Manager",
+                role: "Research Manager(2024-25)",
+                linkedin: "https://www.linkedin.com/in/rajesh-andra",
                 border: "border-cyan-600",
                 ring: "border-cyan-400",
               },
@@ -249,7 +276,8 @@ export default function Home() {
                   "MLC gave me the platform to present ideas and collaborate with brilliant minds across domains.",
                 img: "https://res.cloudinary.com/djl3h6ql8/image/upload/v1757871603/mlc_events/djtudgtwqjpcs6qe3acd.jpg",
                 name: "Sathwik Sangani",
-                role: "Former President",
+                role: "President(2024-25)",
+                linkedin: "https://www.linkedin.com/in/sathwik-sangani",
                 border: "border-purple-600",
                 ring: "border-purple-400",
               },
@@ -258,7 +286,8 @@ export default function Home() {
                   "The exposure to competitive coding and ML challenges helped me sharpen problem-solving skills.",
                 img: "https://res.cloudinary.com/djl3h6ql8/image/upload/v1757849254/mlc_events/ltemudphhov90z45mcua.jpg",
                 name: "Sai Krishna",
-                role: "Former Club Manager",
+                role: "Club Manager(2024-25)",
+                linkedin: "https://www.linkedin.com/in/sai-krishna",
                 border: "border-emerald-600",
                 ring: "border-emerald-400",
               },
@@ -267,15 +296,27 @@ export default function Home() {
                   "MLC gave me the platform to present ideas and collaborate with brilliant minds across domains.",
                 img: "https://res.cloudinary.com/djl3h6ql8/image/upload/v1757847529/mlc_events/bifsbpnt4socpsrpi0ls.jpg",
                 name: "Nithya Ancha",
-                role: "Former Club Manager",
+                role: "Club Manager (2023-24)",
+                linkedin: "https://www.linkedin.com/in/nithya-ancha",
                 border: "border-pink-600",
                 ring: "border-pink-400",
               },
             ].map((card, i) => (
-              <div
-                key={i}
-                className={`bg-gray-900 rounded-lg p-6 shadow-md hover:scale-105 transition-transform border ${card.border}`}
-              >
+               <div
+                 key={i}
+                 className={`relative bg-gray-900 rounded-lg p-6 shadow-md hover:scale-105 transition-transform border ${card.border}`}
+               >
+                 {card.linkedin && (
+                   <a
+                     href={card.linkedin}
+                     target="_blank"
+                     rel="noopener noreferrer"
+                     aria-label={`LinkedIn profile of ${card.name}`}
+                     className="absolute top-3 right-3 text-cyan-300 hover:text-cyan-200 transition-colors"
+                   >
+                     <IconBrandLinkedin size={18} stroke={1.5} />
+                   </a>
+                 )}
                 <div className="flex flex-col md:flex-row items-start gap-6">
                   {/* Left: Portrait + name/role */}
                   <div className="w-full md:w-44 flex flex-col items-center">
@@ -289,7 +330,9 @@ export default function Home() {
                       }}
                     />
                     <div className="mt-3 text-center">
-                      <div className="font-semibold text-cyan-400 leading-tight">{card.name}</div>
+                      <div className="font-semibold text-cyan-400 leading-tight">
+                        {card.name}
+                      </div>
                       <div className="text-gray-400 text-xs">{card.role}</div>
                     </div>
                   </div>

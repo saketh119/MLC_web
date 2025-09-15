@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="MLC Logo">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+  </defs>
+  <rect x="4" y="4" width="112" height="112" rx="24" fill="#020617" stroke="url(#g)" stroke-width="4"/>
+  <path d="M34 82V38h10l16 24 16-24h10v44h-10V56l-16 24-16-24v26H34z" fill="url(#g)"/>
+  <circle cx="94" cy="30" r="6" fill="#06b6d4"/>
+</svg>
