@@ -67,13 +67,7 @@ export default function AboutUs() {
 
   return (
     <div className="bg-black text-white min-h-screen font-sans">
-      {/* Navbar (match Home/Events) */}
-      <nav className="sticky top-0 z-50 flex justify-between items-center px-6 py-4 bg-black">
-        <div className="text-xs tracking-wide">MACHINE LEARNING CLUB</div>
-        <div className="hidden md:flex">
-          <FloatingDock items={navItems} desktopClassName="bg-cyan-400/10 rounded-2xl" />
-        </div>
-      </nav>
+      {/* Navbar removed (handled by RootLayout) */}
 
       {/* Hero Section: ABOUT US layout */}
       <section className="px-6 md:px-12 lg:px-20 pt-10 pb-14 bg-black text-white">

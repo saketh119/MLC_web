@@ -4,27 +4,38 @@ import { cn } from "@/lib/utils"
 
 export const StickyScroll = ({ content = [], contentClassName }) => {
   const [activeCard, setActiveCard] = useState(0)
-  const ref = useRef(null)
+  const sectionRef = useRef(null)
+  const itemRefs = useRef([])
 
+  // Window scroll-driven activation based on which item is closest to viewport center
   useEffect(() => {
-    const handleScroll = () => {
-      if (!ref.current) return
+    if (typeof window === "undefined") return
 
-      const scrollTop = ref.current.scrollTop
-      const cardHeight = ref.current.scrollHeight / content.length
-      const newActiveCard = Math.floor(scrollTop / cardHeight)
+    const onScroll = () => {
+      if (!itemRefs.current || itemRefs.current.length === 0) return
 
-      if (newActiveCard !== activeCard && newActiveCard < content.length) {
-        setActiveCard(newActiveCard)
-      }
+      const centerY = window.innerHeight * 0.45 // choose a point slightly above center for nicer feel
+      let bestIndex = 0
+      let bestDistance = Infinity
+
+      itemRefs.current.forEach((el, idx) => {
+        if (!el) return
+        const rect = el.getBoundingClientRect()
+        const itemCenter = rect.top + rect.height / 2
+        const dist = Math.abs(itemCenter - centerY)
+        if (dist < bestDistance) {
+          bestDistance = dist
+          bestIndex = idx
+        }
+      })
+
+      setActiveCard((prev) => (prev !== bestIndex ? bestIndex : prev))
     }
 
-    const scrollContainer = ref.current
-    if (scrollContainer) {
-      scrollContainer.addEventListener("scroll", handleScroll)
-      return () => scrollContainer.removeEventListener("scroll", handleScroll)
-    }
-  }, [activeCard, content.length])
+    onScroll() // initialize on mount
+    window.addEventListener("scroll", onScroll, { passive: true })
+    return () => window.removeEventListener("scroll", onScroll)
+  }, [content.length])
 
   const gradients = [
     "linear-gradient(135deg, rgba(6, 182, 212, 0.3) 0%, rgba(59, 130, 246, 0.4) 50%, rgba(147, 51, 234, 0.3) 100%)",
@@ -37,8 +48,8 @@ export const StickyScroll = ({ content = [], contentClassName }) => {
   if (!Array.isArray(content) || content.length === 0) return null
 
   return (
-    <div className="relative w-full max-w-7xl mx-auto px-4 py-16">
-      <div className="relative h-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start" ref={ref}>
+    <div className="relative w-full max-w-7xl mx-auto px-4 py-16" ref={sectionRef}>
+      <div className="relative h-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
         {/* Text content */}
         <div className="relative flex items-start">
           <div className="max-w-2xl space-y-8">
@@ -53,7 +64,8 @@ export const StickyScroll = ({ content = [], contentClassName }) => {
             {content.map((item, index) => (
               <div
                 key={`${item.title}-${index}`}
-                className="relative py-12 group transition-all duration-300"
+                ref={(el) => (itemRefs.current[index] = el)}
+                className="relative py-12 group transition-all duration-300 will-change-transform"
                 style={{
                   opacity: activeCard === index ? 1 : 0.4,
                   transform: activeCard === index ? "scale(1) translateX(0)" : "scale(0.95) translateX(-10px)",

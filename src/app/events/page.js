@@ -10,7 +10,7 @@ import { FloatingDock } from "../cards/floatingdock";
 
 const navItems = [
   { title: "Home", icon: <IconHome />, href: "/" },
-  { title: "About", icon: <IconInfoCircle />, href: "/about" },
+  { title: "About", icon: <IconInfoCircle />, href: "/About" },
   { title: "Events", icon: <IconCalendarEvent />, href: "/events" },
 ];
 
@@ -247,43 +247,7 @@ export default function EventsPage() {
       </Head>
 
       <div className="bg-black text-white min-h-screen font-sans">
-        {/* Navbar */}
-        <link rel="preconnect" href="https://res.cloudinary.com" />
-        <link rel="dns-prefetch" href="//res.cloudinary.com" />
-      <nav className="sticky top-0 z-50 flex justify-between items-center px-6 py-4 bg-black/40 backdrop-blur-md">
-  {/* Left Section */}
-  <div className="flex items-center space-x-3 w-[280px]">
-    <div className="w-10 h-10 bg-white rounded-full flex justify-center items-center text-black font-bold">
-      ML
-    </div>
-    <div className="flex flex-col leading-tight">
-      <h1
-        className="text-xl sm:text-2xl font-extrabold tracking-wide whitespace-nowrap"
-        style={{
-          fontFamily: "Orbitron, sans-serif",
-          background: "linear-gradient(to right, #00FFFF, #007BFF)",
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
-        }}
-      >
-        MACHINE LEARNING
-      </h1>
-      <span className="text-xs text-white/80 font-light mt-1">
-        Campus Club at VIT-AP
-      </span>
-    </div>
-  </div>
-
-  {/* Right Section (Floating Dock) */}
-  <div className="w-[280px] flex justify-end">
-        {/* Floating Dock Navbar */}
-        <FloatingDock
-          items={navItems}
-          desktopClassName="fixed top-4 right-4  rounded-2xl bg-cyan-400/10   "
-          mobileClassName="fixed top-6 right-4 z-50"
-        />
-          </div>
-        </nav>
+        {/* Navbar removed (handled by RootLayout) */}
 <section className="px-6 md:px-12 lg:px-20 pt-10 pb-14 bg-black text-white">
   <div className="max-w-7xl mx-auto">
     <h1 className="text-[48px] sm:text-[64px] md:text-[88px] font-extrabold tracking-tight mb-8 font-black-future">

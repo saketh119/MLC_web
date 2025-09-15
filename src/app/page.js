@@ -5,6 +5,9 @@ import { IconHome, IconInfoCircle, IconCalendarEvent } from "@tabler/icons-react
 import { FloatingDock } from "./cards/floatingdock"
 import { StickyScroll } from "./cards/StickyScroll"
 import Chatbot from "./components/Chatbot"
+import { SplineScene } from "@/components/ui/splite"
+import { ExpandableTabs } from "@/components/ui/expandable-tabs"
+import { Home as HomeIcon, Info as InfoIcon, Calendar as CalendarIcon } from "lucide-react"
 
 const navItems = [
   { title: "Home", icon: <IconHome />, href: "/" },
@@ -27,13 +30,7 @@ export default function Home() {
         <link rel="dns-prefetch" href="//res.cloudinary.com" />
       </Head>
       <div className="bg-black text-white min-h-screen font-sans">
-        {/* Navbar */}
-        <nav className="sticky top-0 z-50 flex justify-between items-center px-6 py-4 bg-black">
-          <div className="text-xs tracking-wide">MACHINE LEARNING CLUB</div>
-          <div className="hidden md:flex">
-            <FloatingDock items={navItems} desktopClassName="bg-cyan-400/10 rounded-2xl" />
-          </div>
-        </nav>
+        {/* Navbar now rendered globally via RootLayout */}
         {/* Hero Section */}
         <section className="px-6 lg:px-16 pt-6 pb-14 max-w-[1400px] mx-auto">
           {/* Top thin line */}
@@ -51,39 +48,29 @@ export default function Home() {
                 <span className="block mt-4">LEARNING CLUB</span>
               </h1>
             </div>
-            {/* Right Pill + Text */}
-            <div className="w-full lg:w-[560px] flex flex-col gap-6">
-              {/* Pill (video preview) */}
-              <div className="relative rounded-[50px] overflow-hidden bg-white/10 border border-white/15 h-28 flex items-center pl-6 pr-8">
-                <div className="w-16 h-16 rounded-full bg-black/70 border-4 border-[#3a3a3a] flex items-center justify-center mr-8">
-                  <div className="w-11 h-11 rounded-full bg-[#0094FF] flex items-center justify-center text-black font-bold text-xl">▶</div>
-                </div>
-                <span className="text-3xl font-bold tracking-wide font-black-future">WHAT IS MLC?</span>
-                {/* Background image overlay via absolute element (optional) */}
-                <div className="absolute inset-0 opacity-20 bg-[url('/mlc-family.jpg')] bg-cover bg-center" />
-              </div>
-              {/* Stars row */}
-              <div className="flex justify-end gap-6 text-white text-2xl pr-2">
-                {Array.from({length:4}).map((_,i)=>(<span key={i}>✦</span>))}
-              </div>
-              {/* Description */}
-              <p className="text-sm leading-relaxed text-gray-200 text-right pr-1">
-                Lorem ipsum dolor sit amet consectetur.<br/>
-                Dignissim facilisi accumsan pharetra aliquet<br/>
-                vestibulum facilisis eros adipiscing.<br/>
-                Consectetur habitasse commodo ut volutpat -
-              </p>
-              {/* Bottom mini stars */}
-              <div className="flex justify-end gap-8 text-white text-xl pr-4 mt-2">
-                {Array.from({length:3}).map((_,i)=>(<span key={i}>✦ ✦</span>))}
-              </div>
+            {/* Right Pill + Text replaced with Spline Card */}
+            <div className="w-full lg:w-[560px] h-[360px] md:h-[420px] relative">
+              <SplineScene 
+                scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+                className="w-full h-full"
+              />
             </div>
           </div>
-          {/* Badge */}
+          {/* Badge + line to stars */}
           <div className="mt-10">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white text-xs tracking-wide font-medium">
-              <span className="text-[13px]">♕</span>
-              BEST TECHNICAL CLUB 2023-24
+            <div className="flex items-center gap-4">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white text-xs tracking-wide font-medium">
+                <span className="text-[13px]">♕</span>
+                BEST TECHNICAL CLUB 2023-24
+              </div>
+              {/* Thin line stretching to the right */}
+                <div className="flex-1 h-px bg-white/40" />
+                {/* Star group at the end of the line */}
+                <div className="hidden md:flex items-center gap-6 text-white text-xl pr-2">
+                  {Array.from({ length: 4 }).map((_, i) => (
+                    <span key={i}>✦</span>
+                  ))}
+                </div>
             </div>
           </div>
           {/* Stats with separators */}
@@ -118,13 +105,7 @@ export default function Home() {
             />
           </div>
         </section>
-        {/* Scrolling OUR FAMILY Banner */}
-        <div className="relative overflow-hidden my-10">
-          <div className="animate-marquee flex gap-8 text-2xl font-bold text-cyan-400 whitespace-nowrap">
-            <span> OUR FAMILY ✦ OUR FAMILY ✦ OUR FAMILY ✦ OUR FAMILY ✦ OUR FAMILY ✦ OUR FAMILY ✦</span>
-            <span> OUR FAMILY ✦ OUR FAMILY ✦ OUR FAMILY ✦ OUR FAMILY ✦ OUR FAMILY ✦ OUR FAMILY ✦</span>
-          </div>
-        </div>
+        
         
         {/* Enhanced What We Do Section */}
         <section className="w-full px-4 sm:px-10 lg:px-24 xl:px-32 py-20 bg-gradient-to-b from-black/20 to-black/40 relative">
