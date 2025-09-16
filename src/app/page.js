@@ -32,23 +32,23 @@ export default function Home() {
       <div className="bg-black text-white min-h-screen font-sans">
         {/* Navbar now rendered globally via RootLayout */}
         {/* Hero Section */}
-        <section className="px-6 lg:px-16 pt-6 pb-14 max-w-[1400px] mx-auto">
+        <section className="px-1 lg:px-16 pt-6 pb-14 max-w-[1400px] mx-auto">
           {/* Top thin line */}
-          <div className="h-px bg-white/60 w-full mb-6" />
+          {/* <div className="h-px bg-white/60 w-full mb-6" /> */}
           <div className="flex flex-col lg:flex-row gap-10 items-start">
             {/* Left Title Block */}
             <div className="flex-1 relative">
               {/* Blue dots above title */}
-              <div className="flex gap-4 mb-4 pl-2">
+              {/* <div className="flex gap-4 mb-4 pl-2">
                 <span className="w-3 h-3 rounded-full bg-[#0094FF] inline-block" />
                 <span className="w-3 h-3 rounded-full bg-[#0094FF] inline-block" />
-              </div>
+              </div> */}
               <h1 className="font-extrabold leading-[0.9] text-[54px] sm:text-[72px] md:text-[92px] tracking-tight select-none font-black-future">
                 <span className="block">MACHINE</span>
                 <span className="block mt-4">LEARNING CLUB</span>
               </h1>
               {/* Club short intro */}
-              <div className="mt-6 max-w-xl">
+              <div className="mt-4 max-w-xl">
                 <div className="relative rounded-2xl border border-white/10 bg-gradient-to-br from-gray-900/60 to-gray-800/40 p-5 shadow-lg">
                   <p className="text-sm text-gray-300 leading-relaxed">
                     We are a student‑led community exploring the art and science of Machine Learning.
@@ -129,9 +129,9 @@ export default function Home() {
         
         
         {/* Enhanced What We Do Section */}
-        <section className="w-full px-4 sm:px-10 lg:px-24 xl:px-32 py-20 bg-gradient-to-b from-black/20 to-black/40 relative">
+        <section className="w-full px-4 sm:px-10 lg:px-10 xl:px-32 py-10 bg-gradient-to-b from-black/20 to-black/40 relative">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-5xl font-bold mb-2 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
               What We Do
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-blue-600 mx-auto rounded-full" />
