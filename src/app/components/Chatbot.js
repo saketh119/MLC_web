@@ -113,7 +113,7 @@ export default function Chatbot() {
           className="fixed bottom-20 right-4 w-80 h-96 bg-white rounded-2xl shadow-xl flex flex-col z-[9999]"
         >
           <div className="bg-blue-600 text-white p-3 rounded-t-2xl font-bold">
-            🤖 Vaani – MLC Chatbot
+            🤖  MLC Chatbot
           </div>
 
           <div className="flex-1 overflow-y-auto p-3 space-y-2 flex flex-col scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">

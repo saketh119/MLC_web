@@ -6,6 +6,8 @@ import { FloatingDock } from "./cards/floatingdock"
 import { StickyScroll } from "./cards/StickyScroll"
 import Chatbot from "./components/Chatbot"
 import { SplineScene } from "@/components/ui/splite"
+import { Mail, Linkedin, Instagram, Github, Youtube } from "lucide-react";
+import { Footer } from "@/components/Footer"
 import { ExpandableTabs } from "@/components/ui/expandable-tabs"
 import { Home as HomeIcon, Info as InfoIcon, Calendar as CalendarIcon } from "lucide-react"
 
@@ -32,7 +34,7 @@ export default function Home() {
       <div className="bg-black text-white min-h-screen font-sans">
         {/* Navbar now rendered globally via RootLayout */}
         {/* Hero Section */}
-        <section className="px-1 lg:px-16 pt-6 pb-14 max-w-[1400px] mx-auto">
+        <section className="px-6 lg:px-16 pt-6 pb-14 max-w-[1400px] mx-auto">
           {/* Top thin line */}
           {/* <div className="h-px bg-white/60 w-full mb-6" /> */}
           <div className="flex flex-col lg:flex-row gap-10 items-start">
@@ -317,43 +319,96 @@ export default function Home() {
                      <IconBrandLinkedin size={18} stroke={1.5} />
                    </a>
                  )}
-                <div className="flex flex-col md:flex-row items-start gap-6">
-                  {/* Left: Portrait + name/role */}
-                  <div className="w-full md:w-44 flex flex-col items-center">
-                    <img
-                      src={card.img}
-                      alt={card.name}
-                      className={`w-28 h-28 md:w-32 md:h-32 rounded-xl object-cover border ${card.ring}`}
-                      onError={(e) => {
-                        e.currentTarget.onerror = null;
-                        e.currentTarget.src = DEFAULT_CLOUDINARY_AVATAR;
-                      }}
-                    />
-                    <div className="mt-3 text-center">
-                      <div className="font-semibold text-cyan-400 leading-tight">
-                        {card.name}
-                      </div>
-                      <div className="text-gray-400 text-xs">{card.role}</div>
-                    </div>
-                  </div>
-                  {/* Right: Quote */}
-                  <div className="flex-1 text-gray-300 text-sm leading-relaxed">
-                    <p className="">“{card.quote}”</p>
-                  </div>
+                <div className="flex flex-col md:flex-row items-start gap-6 p-5 rounded-2xl bg-gradient-to-br from-gray-900/60 via-gray-800/40 to-gray-900/60 backdrop-blur-xl shadow-lg border border-gray-700/50 hover:shadow-cyan-500/20 transition-all duration-300">
+  {/* Left: Portrait + name/role */}
+  <div className="w-full md:w-44 flex flex-col items-center">
+    <img
+      src={card.img}
+      alt={card.name}
+      className={`w-28 h-28 md:w-32 md:h-32 rounded-2xl object-cover border-2 shadow-md hover:scale-105 transition-transform duration-300 ${card.ring}`}
+      onError={(e) => {
+        e.currentTarget.onerror = null;
+        e.currentTarget.src = DEFAULT_CLOUDINARY_AVATAR;
+      }}
+    />
+    <div className="mt-3 text-center">
+      <div className="font-semibold text-lg text-cyan-400 tracking-wide">
+        {card.name}
+      </div>
+      <div className="text-gray-400 text-xs uppercase tracking-wider">
+        {card.role}
+      </div>
+    </div>
+  </div>
+
+  {/* Right: Quote */}
+  <div className="flex-1 text-gray-300 text-sm leading-relaxed italic border-l border-gray-700 pl-4">
+    <p>“{card.quote}”</p>
+  </div>
+</div>
+
                 </div>
-              </div>
+              
             ))}
           </div>
         </section>
         {/* Footer */}
-        <footer className="bg-black/60 backdrop-blur-xl border-t border-white/10 text-center py-8 mt-8">
-          <div className="max-w-4xl mx-auto px-6">
-            <p className="text-gray-400 text-sm mb-4">Empowering the next generation of AI innovators at VIT-AP</p>
-            <p className="text-gray-500 text-xs">
-              © {new Date().getFullYear()} Machine Learning Club, VIT-AP. All rights reserved.
-            </p>
-          </div>
-        </footer>
+      <footer className="bg-black/60 backdrop-blur-xl border-t border-white/10 py-8 mt-8">
+      <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+        
+        {/* Left: Email */}
+        <div className="flex items-center gap-2 text-gray-400 hover:text-gray-200 transition-colors text-sm">
+          <Mail size={16} />
+          <a href="mailto:ml.club@vitap.ac.in">ml.club@vitap.ac.in</a>
+        </div>
+
+        {/* Center: Info lines */}
+        <div className="text-center text-sm">
+          <p className="text-gray-400">
+            Empowering the next generation of AI innovators at VIT-AP
+          </p>
+          <p className="text-gray-500 text-xs">
+            © {new Date().getFullYear()} Machine Learning Club, VIT-AP. All rights reserved.
+          </p>
+        </div>
+
+        {/* Right: Socials */}
+        <div className="flex items-center gap-5">
+          <a
+            href="https://www.linkedin.com/company/machinelearningclubvitap/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-400 hover:text-gray-200 transition-colors"
+          >
+            <Linkedin size={18} />
+          </a>
+          <a
+            href="https://www.instagram.com/mlc_vitap?igsh=MTc5cGZzaXU5cXo5YQ=="
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-400 hover:text-gray-200 transition-colors"
+          >
+            <Instagram size={18} />
+          </a>
+          <a
+            href="https://github.com/MLC-VIT-AP"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-400 hover:text-gray-200 transition-colors"
+          >
+            <Github size={18} />
+          </a>
+          <a
+            href="https://www.youtube.com/@MLCVIT-AP"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-400 hover:text-gray-200 transition-colors"
+          >
+            <Youtube size={18} />
+          </a>
+        </div>
+      </div>
+    </footer>
         <Chatbot />
       </div>
       <style jsx>{`

@@ -36,7 +36,7 @@ const chatData = [
     response: "👑 The current MLC President is part of the 2024-25 executive board. You can find all the details about our leadership on the About page."
   },
   {
-    keywords: ["technical team", "core technical", "gen ai", "llm", "deep learning", "computer vision", "data science", "ml", "ai team", "programming", "developers", "coders"],
+    keywords: ["technical team", "core technical", "gen ai & llm", "deep learning & computer vision", "data science & machine learning",  "programming & developers"],
     response: [
       "💻 Meet our amazing Technical Teams:",
       "▫️ Core Technical: Nicholas (Lead)",
