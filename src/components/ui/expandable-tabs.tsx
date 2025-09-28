@@ -59,9 +59,11 @@ export function ExpandableTabs({
   onChange,
 }: ExpandableTabsProps) {
   const [selected, setSelected] = React.useState<number | null>(null);
-  const outsideClickRef = React.useRef(null);
 
-  useOnClickOutside(outsideClickRef, () => {
+  // ✅ FIX: Match the element type with the actual element (<div>)
+  const outsideClickRef = React.useRef<HTMLDivElement>(null);
+
+ useOnClickOutside(outsideClickRef as React.RefObject<HTMLElement>, () => {
     setSelected(null);
     onChange?.(null);
   });
@@ -77,7 +79,7 @@ export function ExpandableTabs({
 
   return (
     <div
-      ref={outsideClickRef}
+      ref={outsideClickRef} // ✅ Now type-safe
       className={cn(
         "flex flex-wrap items-center gap-2 rounded-2xl border bg-background p-1 shadow-sm",
         className
@@ -106,7 +108,14 @@ export function ExpandableTabs({
                 : cn("hover:bg-white/5", inactiveColor)
             )}
           >
-            <Icon size={20} className={cn("transition-colors", selected === index ? activeColor : inactiveColor, iconClass)} />
+            <Icon
+              size={20}
+              className={cn(
+                "transition-colors",
+                selected === index ? activeColor : inactiveColor,
+                iconClass
+              )}
+            />
             <AnimatePresence initial={false}>
               {selected === index && (
                 <motion.span
@@ -126,4 +135,4 @@ export function ExpandableTabs({
       })}
     </div>
   );
-} 
+}
