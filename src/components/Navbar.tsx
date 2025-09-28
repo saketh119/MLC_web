@@ -7,7 +7,7 @@ import Image from "next/image"
 export default function Navbar() {
   return (
     <nav className="sticky top-0 z-50 flex justify-between items-center px-6 py-3 bg-black/95 border-b border-white/10 shadow-sm">
-      <a href="/" className="flex items-center gap-3 group">
+      <link href="/" className="flex items-center gap-3 group">
         <Image
           src="/mlc-logo.svg"
           alt="MLC Logo"
@@ -19,7 +19,7 @@ export default function Navbar() {
         <span className="text-[10px] sm:text-xs tracking-[0.25em] font-medium text-white group-hover:text-cyan-300 transition-colors">
           MACHINE LEARNING CLUB
         </span>
-      </a>
+      </link>
       <div className="hidden md:flex">
         <ExpandableTabs
           tabs={[
