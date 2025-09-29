@@ -105,7 +105,7 @@ export default function ContactPage() {
               {status === "sending" ? "Sending..." : status === "sent" ? "Sent!" : "Submit"}
             </button>
             {status === "sent" && (
-              <p className="text-xs text-emerald-400">Message sent successfully. We'll get back soon.</p>
+              <p className="text-xs text-emerald-400">Message sent successfully. We&aposll get back soon.</p>
             )}
             {status === "error" && (
               <p className="text-xs text-red-400">Something went wrong. Please try again later.</p>
