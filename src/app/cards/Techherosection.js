@@ -157,13 +157,13 @@ const TechHeroSection = () => {
         {/* Mission Statement */}
         <div className="text-center max-w-4xl mx-auto">
           <p className="text-xl text-muted-foreground mb-8">
-            This isn&apost just a motto — it&aposs our <span className="text-primary font-semibold">mission</span>.
+            This isn&apos;t just a motto — it&apos;s our <span className="text-primary font-semibold">mission</span>.
           </p>
 
           <p className="text-lg text-muted-foreground mb-12 leading-relaxed">
             Join the <span className="text-accent font-semibold">Best Technical Club</span> of VIT-AP, where curiosity
             meets innovation. Engage in hands-on learning, develop groundbreaking projects, and be part of a community
-            that&aposs shaping the future of <span className="text-secondary font-semibold">AI & ML</span>.
+            that&apos;s shaping the future of <span className="text-secondary font-semibold">AI & ML</span>.
           </p>
         </div>
       </div>
