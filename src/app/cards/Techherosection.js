@@ -1,30 +1,30 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { Brain, Code2, Lightbulb, Play, BookOpen, Cpu, Zap } from "lucide-react"
+import { useState, useEffect } from "react";
+import { Brain, Code2, Lightbulb, Play, BookOpen, Cpu, Zap } from "lucide-react";
 
 const codeSnippets = [
   "import tensorflow as tf",
   "model = tf.keras.Sequential()",
   "model.add(Dense(128, activation='relu'))",
   "model.compile(optimizer='adam')",
-]
+];
 
 const TechHeroSection = () => {
-  const [currentCodeIndex, setCurrentCodeIndex] = useState(0)
-  const [isTyping, setIsTyping] = useState(true)
+  const [currentCodeIndex, setCurrentCodeIndex] = useState(0);
+  const [isTyping, setIsTyping] = useState(true);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setIsTyping(false)
+      setIsTyping(false);
       setTimeout(() => {
-        setCurrentCodeIndex((prev) => (prev + 1) % codeSnippets.length)
-        setIsTyping(true)
-      }, 500)
-    }, 3000)
+        setCurrentCodeIndex((prev) => (prev + 1) % codeSnippets.length);
+        setIsTyping(true);
+      }, 500);
+    }, 3000);
 
-    return () => clearInterval(interval)
-  }, [])
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-black via-neutral-900 to-black overflow-hidden">
@@ -157,18 +157,18 @@ const TechHeroSection = () => {
         {/* Mission Statement */}
         <div className="text-center max-w-4xl mx-auto">
           <p className="text-xl text-muted-foreground mb-8">
-            This isn&apos;t just a motto — it&apos;s our <span className="text-primary font-semibold">mission</span>.
+            This isn&apos;t just a motto &mdash; it&apos;s our <span className="text-primary font-semibold">mission</span>.
           </p>
 
           <p className="text-lg text-muted-foreground mb-12 leading-relaxed">
             Join the <span className="text-accent font-semibold">Best Technical Club</span> of VIT-AP, where curiosity
             meets innovation. Engage in hands-on learning, develop groundbreaking projects, and be part of a community
-            that&apos;s shaping the future of <span className="text-secondary font-semibold">AI & ML</span>.
+            that&apos;s shaping the future of <span className="text-secondary font-semibold">AI &amp; ML</span>.
           </p>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default TechHeroSection
+export default TechHeroSection;

@@ -1,6 +1,16 @@
 "use client";
 import { useState } from "react";
-import { IconMapPin, IconMail, IconPhone, IconSend, IconBrandLinkedin, IconWorld, IconBrandGithub, IconBrandTwitter, IconBrandYoutube } from "@tabler/icons-react";
+import { 
+  IconMapPin, 
+  IconMail, 
+  IconPhone, 
+  IconSend, 
+  IconBrandLinkedin, 
+  IconWorld, 
+  IconBrandGithub, 
+  IconBrandTwitter, 
+  IconBrandYoutube 
+} from "@tabler/icons-react";
 
 export default function ContactPage() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
@@ -136,15 +146,13 @@ export default function ContactPage() {
                     <IconBrandYoutube size={16}/> YouTube
                   </a>
                 </li>
-                <li>
-                  
-                </li>
+                <li></li>
               </ul>
             </div>
             <div className="rounded-xl border border-white/10 bg-gradient-to-br from-gray-900/70 to-gray-800/50 p-6 shadow-md">
               <h3 className="font-semibold text-white mb-4">Why Reach Out?</h3>
               <p className="text-sm text-gray-300 leading-relaxed">
-                Collaborations, event hosting, mentorship, project showcases, or speaking engagements—our team is open to impactful partnerships that empower student innovation.
+                Collaborations, event hosting, mentorship, project showcases, or speaking engagements&mdash;our team is open to impactful partnerships that empower student innovation.
               </p>
             </div>
           </div>
