@@ -408,7 +408,7 @@ export default function Home() {
         </div>
       </div>
     </footer>
-        <Chatbot />
+        {/* <Chatbot /> */}
       </div>
       <style jsx>{`
         .animate-marquee { animation: marquee 10s linear infinite; }

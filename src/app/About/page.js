@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Timeline from '../cards/Timeline';
 import { FloatingDock } from "../cards/floatingdock";
 import { IconHome, IconInfoCircle, IconCalendarEvent, IconBrandLinkedin } from '@tabler/icons-react';
+import Navbar from '@/components/Navbar';
 
 // Dummy core team data (replace with real data later)
 const coreTeam = [
@@ -50,11 +51,7 @@ const MemberCard = ({ name, role, image, linkedin }) => (
   </div>
 );
 
-const navItems = [
-  { title: "Home", icon: <IconHome />, href: "/" },
-  { title: "About", icon: <IconInfoCircle />, href: "/About" },
-  { title: "Events", icon: <IconCalendarEvent />, href: "/events" },
-];
+<Navbar />;
 
 export default function AboutUs() {
   const [members, setMembers] = useState([]);

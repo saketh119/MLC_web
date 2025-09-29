@@ -6,13 +6,10 @@ import { IconHome, IconInfoCircle, IconCalendarEvent } from '@tabler/icons-react
 import Head from "next/head"; 
 import React from "react";
 import Image from 'next/image';
+import Navbar from '@/components/Navbar';
 import { FloatingDock } from "../cards/floatingdock";
 
-const navItems = [
-  { title: "Home", icon: <IconHome />, href: "/" },
-  { title: "About", icon: <IconInfoCircle />, href: "/About" },
-  { title: "Events", icon: <IconCalendarEvent />, href: "/events" },
-];
+<Navbar />;
 
 // Helper to detect Cloudinary URLs
 const isCloudinary = (u) => typeof u === 'string' && u.includes('res.cloudinary.com');

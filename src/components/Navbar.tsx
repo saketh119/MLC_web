@@ -27,7 +27,7 @@ export default function Navbar() {
             { title: "About", icon: InfoIcon },
             { type: "separator" },
             { title: "Events", icon: CalendarIcon },
-            { title: "Contact", icon: ContactIcon },
+            // { title: "Contact", icon: ContactIcon },
           ]}
           className="bg-white/5 border border-white/10 shadow-sm hover:border-cyan-400/40 transition-colors"
           activeColor="text-cyan-400"
@@ -35,7 +35,7 @@ export default function Navbar() {
           iconClass=""
           onChange={(idx) => {
             if (idx === null) return;
-            const routes = ["/", "/About", "/events", "/contact"]; // respect separator indexing
+            const routes = ["/", "/About", "/events",]; //"/contact" // respect separator indexing
             const mapIdx = idx <= 1 ? idx : idx - 1; // separator at position 2
             const href = routes[mapIdx];
             if (href) window.location.href = href;
