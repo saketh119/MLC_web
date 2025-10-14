@@ -32,11 +32,10 @@ export default function Home() {
         <link rel="dns-prefetch" href="//res.cloudinary.com" />
       </Head>
       <div className="bg-black text-white min-h-screen font-sans">
-        {/* Navbar now rendered globally via RootLayout */}
+    
         {/* Hero Section */}
         <section className="px-6 lg:px-16 pt-6 pb-14 max-w-[1400px] mx-auto">
-          {/* Top thin line */}
-          {/* <div className="h-px bg-white/60 w-full mb-6" /> */}
+    
           <div className="flex flex-col lg:flex-row gap-10 items-start">
             {/* Left Title Block */}
             <div className="flex-1 relative">
@@ -162,19 +161,7 @@ export default function Home() {
                   />
                 ),
               },
-              {
-                title: "Achievements",
-                description:
-                  "We've been awarded Best Technical Club of VIT-AP 2023-2024, recognizing our excellence.",
-                content: (
-                  <img
-                    // TODO: Replace with your Cloudinary secure_url for Achievements
-                    src="https://res.cloudinary.com/djl3h6ql8/image/upload/v1757875771/mlc_events/couhsclljjdtg0fkbjie.jpg"
-                    alt="Award"
-                    className="w-full h-full object-cover rounded-lg"
-                  />
-                ),
-              },
+              
               {
                 title: "Bootcamps",
                 description:
@@ -197,6 +184,19 @@ export default function Home() {
                     // TODO: Replace with your Cloudinary secure_url for Codeathons & Ideathons
                     src="https://res.cloudinary.com/djl3h6ql8/image/upload/f_auto,q_auto,c_fill,w_600,h_400/v1234567890/mlc_events/replace_codeathons.jpg"
                     alt="Competition"
+                    className="w-full h-full object-cover rounded-lg"
+                  />
+                ),
+              },
+              {
+                title: "Achievements",
+                description:
+                  "We&apos;ve been awarded Best Technical Club of VIT-AP 2023-2024, recognizing our excellence.",
+                content: (
+                  <img
+                    // TODO: Replace with your Cloudinary secure_url for Achievements
+                    src="https://res.cloudinary.com/djl3h6ql8/image/upload/v1757875771/mlc_events/couhsclljjdtg0fkbjie.jpg"
+                    alt="Award"
                     className="w-full h-full object-cover rounded-lg"
                   />
                 ),

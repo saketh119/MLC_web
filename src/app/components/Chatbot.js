@@ -5,7 +5,7 @@ import chatData from "./chatData";
 export default function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { sender: "bot", text: "👋 Hey! I'm Vaani, your friendly MLC assistant." },
+    { sender: "bot", text: "👋 Hey! I&apos;m Vaani, your friendly MLC assistant." },
   ]);
   const [input, setInput] = useState("");
   const chatRef = useRef(null);
@@ -61,7 +61,7 @@ export default function Chatbot() {
         if (Array.isArray(data) && data[0]?.generated_text) {
           response = data[0].generated_text;
         } else {
-          response = "⚠️ Sorry, Vaani couldn't generate a response.";
+          response = "⚠️ Sorry, Vaani couldn&apos;t generate a response.";
         }
       } catch (err) {
         console.warn("Hugging Face AI failed:", err);
