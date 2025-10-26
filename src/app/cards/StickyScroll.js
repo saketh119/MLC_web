@@ -51,8 +51,8 @@ export const StickyScroll = ({ content = [], contentClassName }) => {
     <div className="relative w-full max-w-7xl mx-auto px-4 py-16" ref={sectionRef}>
       <div className="relative h-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
         {/* Text content */}
-        <div className="relative flex items-start">
-          <div className="max-w-2xl space-y-8">
+          <div className="relative flex items-start">
+          <div className="max-w-2xl space-y-6">
             {/* Progress indicator */}
             <div className="hidden lg:block absolute -left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-transparent via-cyan-500/30 to-transparent rounded-full">
               <div
@@ -61,11 +61,11 @@ export const StickyScroll = ({ content = [], contentClassName }) => {
               />
             </div>
 
-            {content.map((item, index) => (
+              {content.map((item, index) => (
               <div
                 key={`${item.title}-${index}`}
                 ref={(el) => (itemRefs.current[index] = el)}
-                className="relative py-12 group transition-all duration-300 will-change-transform"
+                className="relative py-8 group transition-all duration-300 will-change-transform"
                 style={{
                   opacity: activeCard === index ? 1 : 0.4,
                   transform: activeCard === index ? "scale(1) translateX(0)" : "scale(0.95) translateX(-10px)",
@@ -98,7 +98,7 @@ export const StickyScroll = ({ content = [], contentClassName }) => {
                 </div>
               </div>
             ))}
-            <div className="h-40" />
+            <div className="h-24" />
           </div>
         </div>
 

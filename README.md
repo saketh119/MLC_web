@@ -58,3 +58,6 @@ Click the 💬 chat button, type a message, and Vaani will reply. If AI takes to
 *Tech Stack*
 
 Next.js 13, Tailwind CSS + Tailwind Animate, React Hooks, Hugging Face Inference API
+
+
+<!-- Admin UI removed -->

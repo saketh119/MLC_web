@@ -1,31 +1,23 @@
-import { MongoClient } from "mongodb";
-
-const uri = process.env.MONGODB_URI;
-if (!uri) {
-  throw new Error("Please define MONGODB_URI in .env.local");
-}
-
-let client;
-let clientPromise;
-
-if (!global._mongoClientPromise) {
-  client = new MongoClient(uri);
-  global._mongoClientPromise = client.connect();
-}
-
-clientPromise = global._mongoClientPromise;
+import dbConnect from '@/lib/mongodb';
+import Event from '@/models/Event';
 
 export async function GET() {
   try {
-    const client = await clientPromise;
-    const db = client.db("MLC");
-    const events = await db.collection("events").find({}).toArray();
+    // Ensure mongoose connection (uses MONGODB_URI from env)
+    await dbConnect();
 
-    return Response.json(events);
+  // Return events sorted by creation time (newest first)
+  const events = await Event.find({}).sort({ createdAt: -1 }).lean();
+
+    return new Response(JSON.stringify(events), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    });
   } catch (err) {
-    console.error("Error fetching events:", err);
-    return new Response(JSON.stringify({ error: "Failed to fetch events" }), {
+    console.error('Error fetching events:', err);
+    return new Response(JSON.stringify({ error: 'Failed to fetch events' }), {
       status: 500,
+      headers: { 'Content-Type': 'application/json' },
     });
   }
 }

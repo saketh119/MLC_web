@@ -16,8 +16,11 @@ async function dbConnect() {
   if (cached.conn) return cached.conn;
 
   if (!cached.promise) {
-    // Connect with default options; deprecated driver flags removed
-    cached.promise = mongoose.connect(MONGODB_URI).then((mongoose) => mongoose);
+    // Connect with default options; prefer explicit dbName when provided.
+    // If you want to change the database, set MONGODB_DB in your environment
+    const dbName = process.env.MONGODB_DB || null; // e.g. 'MLC'
+    const connectOpts = dbName ? { dbName } : {};
+    cached.promise = mongoose.connect(MONGODB_URI, connectOpts).then((mongoose) => mongoose);
   }
 
   cached.conn = await cached.promise;

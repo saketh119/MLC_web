@@ -1,0 +1,20 @@
+[
+  {
+    "title": "MLC Website",
+    "description": "This website for the Machine Learning Club. Built with Next.js and Tailwind.",
+    "githubUrl": "https://github.com/saketh119/MLC_web",
+    "image": "/mlc-default.jpg"
+  },
+  {
+    "title": "Image Classifier",
+    "description": "A simple CNN image classifier project using TensorFlow.",
+    "githubUrl": "https://github.com/saketh119/image-classifier",
+    "image": "/mlc-default.jpg"
+  },
+  {
+    "title": "Robotics Demo",
+    "description": "Autonomous robotics demo integrating ROS and perception modules.",
+    "githubUrl": "https://github.com/saketh119/robotics-demo",
+    "image": "/mlc-default.jpg"
+  }
+]
