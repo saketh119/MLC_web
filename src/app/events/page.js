@@ -43,7 +43,11 @@ export default function EventsPage() {
   useEffect(() => {
     fetch('/api/events')
       .then(res => res.json())
-      .then(data => setEvents(Array.isArray(data) ? data : []))
+      .then(data => {
+        if (Array.isArray(data)) return setEvents(data);
+        if (data && Array.isArray(data.events)) return setEvents(data.events);
+        return setEvents([]);
+      })
       .catch(err => console.error('Fetch /api/events failed:', err));
 
     // fetch upcoming event (single)
@@ -60,7 +64,11 @@ export default function EventsPage() {
   useEffect(() => {
     fetch('/api/projects')
       .then(res => res.json())
-      .then(data => setProjects(Array.isArray(data) ? data : []))
+      .then(data => {
+        if (Array.isArray(data)) return setProjects(data);
+        if (data && Array.isArray(data.projects)) return setProjects(data.projects);
+        return setProjects([]);
+      })
       .catch(err => console.error('Fetch /api/projects failed:', err));
   }, []);
   return (

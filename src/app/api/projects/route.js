@@ -1,15 +1,30 @@
 import dbConnect from '@/lib/mongodb';
 import Project from '@/models/Project';
+import cache from '@/lib/cache';
 
-export async function GET() {
+export async function GET(req) {
   try {
-    await dbConnect();
-    const projects = await Project.find({}).lean();
+    const url = new URL(req.url);
+    const page = Math.max(1, parseInt(url.searchParams.get('page') || '1', 10));
+    const limit = Math.min(50, Math.max(1, parseInt(url.searchParams.get('limit') || '12', 10)));
+    const skip = (page - 1) * limit;
 
-    return new Response(JSON.stringify(projects), {
-      status: 200,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    const cacheKey = `projects:page:${page}:limit:${limit}`;
+    const cached = await cache.getCache(cacheKey);
+    if (cached) {
+      return new Response(JSON.stringify(cached), { status: 200, headers: { 'Content-Type': 'application/json', 'Cache-Control': 'public, max-age=60' } });
+    }
+
+    await dbConnect();
+    const [projects, total] = await Promise.all([
+      Project.find({}, { title: 1, description: 1, githubUrl: 1 }).skip(skip).limit(limit).lean(),
+      Project.countDocuments(),
+    ]);
+
+    const payload = { projects, page, limit, total };
+    await cache.setCache(cacheKey, payload, 60 * 1000);
+
+    return new Response(JSON.stringify(payload), { status: 200, headers: { 'Content-Type': 'application/json', 'Cache-Control': 'public, max-age=60' } });
   } catch (err) {
     console.error('Error fetching projects:', err);
     return new Response(JSON.stringify({ error: 'Failed to fetch projects' }), { status: 500, headers: { 'Content-Type': 'application/json' } });

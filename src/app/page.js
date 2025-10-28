@@ -34,9 +34,9 @@ export default function Home() {
       <div className="bg-black text-white min-h-screen font-sans">
     
         {/* Hero Section */}
-        <section className="px-6 lg:px-16 pt-6 pb-14 max-w-[1400px] mx-auto">
-    
-          <div className="flex flex-col lg:flex-row gap-10 items-start">
+        <section className="px-4 sm:px-6 lg:px-12 pt-6 pb-14">
+
+          <div className="flex flex-col lg:flex-row gap-6 md:gap-10 items-start max-w-[1400px] mx-auto">
             {/* Left Title Block */}
             <div className="flex-1 relative">
              
@@ -67,10 +67,11 @@ export default function Home() {
               </div>
             </div>
             {/* Right Pill + Text replaced with Spline Card */}
-            <div className="w-full lg:w-[560px] h-[360px] md:h-[420px] relative">
+            <div className="w-full lg:w-[560px] h-[260px] sm:h-[320px] md:h-[360px] lg:h-[420px] relative">
               <SplineScene 
                 scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
                 className="w-full h-full"
+                fallbackImage="/mlc-family.jpg"
               />
             </div>
           </div>
@@ -92,22 +93,23 @@ export default function Home() {
             </div>
           </div>
           {/* Stats with separators */}
-          <div className="mt-12 flex w-full max-w-[1100px] justify-between text-left">
-            {[
-              { num: '200', label: 'STUDENTS' },
-              { num: '125', label: 'Events' },
-              { num: '6', label: 'Years' },
-              { num: '25', label: 'Patents' }
-            ].map((s,idx)=> (
-              <div key={idx} className="flex-1 flex flex-col items-start pl-2 relative">
-                <div className="flex items-end gap-1">
-                  <span className="text-[76px] font-extrabold leading-none font-black-future">{s.num}</span>
-                  <span className="text-[#0094FF] text-5xl font-extrabold leading-none mb-1">+</span>
+          <div className="mt-12 w-full max-w-[1100px] mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              {[
+                { num: '200', label: 'STUDENTS' },
+                { num: '125', label: 'Events' },
+                { num: '6', label: 'Years' },
+                { num: '25', label: 'Patents' }
+              ].map((s, idx) => (
+                <div key={idx} className="flex flex-col items-start md:items-center lg:items-start p-2">
+                  <div className="flex items-end gap-1">
+                    <span className="text-5xl md:text-[76px] font-extrabold leading-none font-black-future">{s.num}</span>
+                    <span className="text-[#0094FF] text-2xl md:text-5xl font-extrabold leading-none mb-1">+</span>
+                  </div>
+                  <span className="text-xs tracking-wider mt-2">{s.label}</span>
                 </div>
-                <span className="text-xs tracking-wider mt-2">{s.label}</span>
-                {idx !== 3 && <div className="absolute top-1/2 -right-[1px] -translate-y-1/2 h-40 w-px bg-white/40" />}
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </section>
         {/* Bottom Gallery removed as requested; you can add manual images here later */}

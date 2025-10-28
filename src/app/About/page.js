@@ -28,16 +28,16 @@ const coreTeam = [
 
 // Member card component
 const MemberCard = ({ name, role, image, linkedin }) => (
-  <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-5 w-64 flex flex-col items-center shadow-md hover:shadow-xl transition-transform transform hover:scale-105 duration-300">
+  <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4 w-full max-w-[280px] flex flex-col items-center shadow-md hover:shadow-xl transition-transform transform hover:scale-105 duration-300">
     <Image
       src={image}
       alt={name}
       width={96}
       height={96}
-      className="w-24 h-24 rounded-full object-cover mb-4 border-2 border-white/30"
+      className="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover mb-3 sm:mb-4 border-2 border-white/30"
     />
-    <h3 className="text-xl font-semibold text-white">{name}</h3>
-    <p className="text-sm text-gray-300">{role}</p>
+    <h3 className="text-lg sm:text-xl font-semibold text-white text-center">{name}</h3>
+    <p className="text-sm text-gray-300 text-center">{role}</p>
     {linkedin && (
       <a
         href={linkedin}
@@ -45,7 +45,7 @@ const MemberCard = ({ name, role, image, linkedin }) => (
         rel="noopener noreferrer"
         className="mt-3 text-blue-400 hover:text-blue-500 transition"
       >
-        <IconBrandLinkedin size={24} />
+        <IconBrandLinkedin size={20} />
       </a>
     )}
   </div>
@@ -55,11 +55,23 @@ const MemberCard = ({ name, role, image, linkedin }) => (
 
 export default function AboutUs() {
   const [members, setMembers] = useState([]);
+  const [membersPage, setMembersPage] = useState(1);
+  const [membersLimit] = useState(12);
+  const [membersTotal, setMembersTotal] = useState(null);
+  const [loadingMore, setLoadingMore] = useState(false);
 
   useEffect(() => {
-    fetch('/api/members')
+    // fetch first page of members (paginated)
+    fetch(`/api/members?page=1&limit=${membersLimit}`)
       .then((res) => res.json())
-      .then((data) => setMembers(data));
+      .then((data) => {
+        if (data && Array.isArray(data.members)) {
+          setMembers(data.members);
+          setMembersTotal(data.total || null);
+          setMembersPage(1);
+        }
+      })
+      .catch((err) => console.error('Failed to load members:', err));
   }, []);
 
   return (
@@ -91,8 +103,7 @@ export default function AboutUs() {
             <div className="flex flex-col">
               <h3 className="text-cyan-400 font-bold uppercase tracking-wide text-lg mb-3">ABOUT THE CLUB</h3>
               <p className="text-gray-300 leading-relaxed max-w-xl">
-                Lorem ipsum dolor sit amet consectetur. Dignissim facilisi accumsan pharetra aliquet
-                vestibulum facilisis eros adipiscing. Consectetur habitasse commodo ut volutpat.
+               Welcome to the Best Technical Club of vit-ap.A vibrant community of tech enthusiasts, innovators, and learners passionate about exploring the fascinating world of machine learning and artificial intelligence. Established in 2020, we have been at the forefront of fostering a culture of innovation and knowledge sharing among students and professionals alike.
               </p>
 
               {/* Stats */}
@@ -135,7 +146,7 @@ export default function AboutUs() {
         ).map(([category, membersInCategory]) => (
           <div key={category} className="mb-12">
             <h3 className="text-2xl font-semibold mb-6 text-center">{category}</h3>
-            <div className="flex flex-wrap justify-center gap-8">
+            <div className="flex flex-wrap justify-center gap-6 sm:gap-8">
               {membersInCategory.map((member) => (
                 <MemberCard
                   key={member._id}
@@ -152,7 +163,7 @@ export default function AboutUs() {
         {/* Static Core Team Grid (16 square boxes) */}
         <div className="mt-20">
           <h3 className="text-2xl font-semibold mb-8 text-center">Core Team (2025–2026)</h3>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6 gap-6 max-w-6xl mx-auto">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6 gap-4 sm:gap-6 max-w-6xl mx-auto">
             {coreTeam.map((member, i) => (
               <div key={member.name + i} className="flex flex-col items-center group">
                 <div
@@ -179,6 +190,33 @@ export default function AboutUs() {
             ))}
           </div>
           <p className="text-center text-xs text-gray-500 mt-4"></p>
+          {/* Load more members if available */}
+          {membersTotal !== null && members.length < membersTotal && (
+            <div className="text-center mt-6">
+              <button
+                className="px-4 py-2 bg-indigo-600 rounded-md hover:bg-indigo-700"
+                onClick={async () => {
+                  setLoadingMore(true);
+                  const next = membersPage + 1;
+                  try {
+                    const res = await fetch(`/api/members?page=${next}&limit=${membersLimit}`);
+                    const data = await res.json();
+                    if (data && Array.isArray(data.members)) {
+                      setMembers((prev) => [...prev, ...data.members]);
+                      setMembersPage(next);
+                    }
+                  } catch (e) {
+                    console.error('Load more failed', e);
+                  } finally {
+                    setLoadingMore(false);
+                  }
+                }}
+                disabled={loadingMore}
+              >
+                {loadingMore ? 'Loading…' : 'Load more members'}
+              </button>
+            </div>
+          )}
         </div>
       </div>
 

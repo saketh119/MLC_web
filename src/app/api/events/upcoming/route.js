@@ -1,63 +1,64 @@
 import dbConnect from '@/lib/mongodb';
 import Event from '@/models/Event';
+import cache from '@/lib/cache';
+
+const CACHE_KEY = 'upcoming:event:v1';
+const CACHE_TTL = 30 * 1000;
+
+function parseEventDate(e) {
+  const raw = e?.date || e?.Date || e?.eventDate || e?.EventDate || null;
+  if (!raw) return null;
+  if (raw instanceof Date) return raw;
+  if (typeof raw === 'number') return new Date(raw);
+  const parsed = new Date(raw);
+  return isNaN(parsed.getTime()) ? null : parsed;
+}
 
 export async function GET() {
   try {
+    const cached = await cache.getCache(CACHE_KEY);
+    if (cached) return new Response(JSON.stringify(cached), { status: 200, headers: { 'Content-Type': 'application/json' } });
+
     await dbConnect();
 
-    // Load all events and pick the nearest upcoming event by date.
-    const docs = await Event.find({}).lean();
-
-    const now = new Date();
-
-    // Helper to extract a usable Date object from common field shapes
-    function parseEventDate(e) {
-      const raw = e?.date || e?.Date || e?.eventDate || e?.EventDate || null;
-      if (!raw) return null;
-      // If it's already a Date object
-      if (raw instanceof Date) return raw;
-      // Try numeric (timestamp)
-      if (typeof raw === 'number') return new Date(raw);
-      // Try string
-      const parsed = new Date(raw);
-      return isNaN(parsed.getTime()) ? null : parsed;
+    // First try a DB-side query assuming date is stored as a Date type
+    let doc = null;
+    try {
+      doc = await Event.findOne({ date: { $gte: new Date() } }).sort({ date: 1 }).lean();
+    } catch (e) {
+      // ignore and fallback
+      doc = null;
     }
 
-    const upcoming = docs
-      .map(d => ({
-        original: d,
-        parsedDate: parseEventDate(d),
-      }))
-      .filter(x => x.parsedDate && x.parsedDate >= now)
-      .sort((a, b) => a.parsedDate - b.parsedDate)
-      .map(x => x.original)[0] || null;
-
-    if (!upcoming) {
-      return new Response(JSON.stringify(null), {
-        status: 200,
-        headers: { 'Content-Type': 'application/json' },
-      });
+    // Fallback: if DB-side query returned nothing, scan documents and parse date strings
+    if (!doc) {
+      const docs = await Event.find({}, { name: 1, title: 1, description: 1, Date: 1, date: 1, imageUrls: 1, "Image Url": 1, registerLink: 1, register_link: 1 }).lean();
+      const now = Date.now();
+      const found = docs
+        .map(d => ({ original: d, parsedDate: parseEventDate(d) }))
+        .filter(x => x.parsedDate && x.parsedDate.getTime() >= now)
+        .sort((a, b) => a.parsedDate - b.parsedDate)[0];
+      doc = found ? found.original : null;
     }
 
-    // Map common field names to a small canonical shape the frontend can rely on
+    if (!doc) {
+      await cache.setCache(CACHE_KEY, null, CACHE_TTL);
+      return new Response(JSON.stringify(null), { status: 200, headers: { 'Content-Type': 'application/json' } });
+    }
+
     const mapped = {
-      _id: upcoming._id,
-      title: upcoming['Event Name'] || upcoming.title || upcoming.name || null,
-      description: upcoming.Description || upcoming.description || null,
-      date: (upcoming.date || upcoming.Date) ? new Date(upcoming.date || upcoming.Date).toISOString() : null,
-      imageUrl: upcoming['Image Url'] || (Array.isArray(upcoming.imageUrls) && upcoming.imageUrls[0]) || upcoming.imageUrl || upcoming.image || null,
-      registerLink: upcoming.registerLink || upcoming.register_link || upcoming['Register Link'] || upcoming.register || upcoming.registerUrl || upcoming.registerurl || null,
+      _id: doc._id,
+      title: doc['Event Name'] || doc.title || doc.name || null,
+      description: doc.Description || doc.description || null,
+      date: (doc.date || doc.Date) ? new Date(doc.date || doc.Date).toISOString() : null,
+      imageUrl: doc['Image Url'] || (Array.isArray(doc.imageUrls) && doc.imageUrls[0]) || doc.imageUrl || doc.image || null,
+      registerLink: doc.registerLink || doc.register_link || doc['Register Link'] || doc.register || doc.registerUrl || doc.registerurl || null,
     };
 
-    return new Response(JSON.stringify(mapped), {
-      status: 200,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    await cache.setCache(CACHE_KEY, mapped, CACHE_TTL);
+    return new Response(JSON.stringify(mapped), { status: 200, headers: { 'Content-Type': 'application/json' } });
   } catch (err) {
     console.error('Error in upcoming event route:', err);
-    return new Response(JSON.stringify({ error: 'Failed to fetch upcoming event' }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return new Response(JSON.stringify({ error: 'Failed to fetch upcoming event' }), { status: 500, headers: { 'Content-Type': 'application/json' } });
   }
 }
