@@ -18,7 +18,8 @@ export async function GET(req) {
         status: 200,
         headers: {
           'Content-Type': 'application/json',
-          'Cache-Control': 'public, max-age=60',
+          'Cache-Control': 'public, max-age=300',
+          'X-Cache': 'HIT',
         },
       });
     }
@@ -30,13 +31,15 @@ export async function GET(req) {
     ]);
 
     const payload = { members, page, limit, total };
-    await cache.setCache(cacheKey, payload, 60 * 1000); // cache 60s
+    // Cache members page for 5 minutes
+    await cache.setCache(cacheKey, payload, 5 * 60 * 1000);
 
     return new Response(JSON.stringify(payload), {
       status: 200,
       headers: {
         'Content-Type': 'application/json',
-        'Cache-Control': 'public, max-age=60',
+        'Cache-Control': 'public, max-age=300',
+        'X-Cache': 'MISS',
       },
     });
   } catch (error) {

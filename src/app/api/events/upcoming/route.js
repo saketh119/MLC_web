@@ -3,7 +3,7 @@ import Event from '@/models/Event';
 import cache from '@/lib/cache';
 
 const CACHE_KEY = 'upcoming:event:v1';
-const CACHE_TTL = 30 * 1000;
+const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
 
 function parseEventDate(e) {
   const raw = e?.date || e?.Date || e?.eventDate || e?.EventDate || null;
@@ -16,8 +16,8 @@ function parseEventDate(e) {
 
 export async function GET() {
   try {
-    const cached = await cache.getCache(CACHE_KEY);
-    if (cached) return new Response(JSON.stringify(cached), { status: 200, headers: { 'Content-Type': 'application/json' } });
+  const cached = await cache.getCache(CACHE_KEY);
+  if (cached) return new Response(JSON.stringify(cached), { status: 200, headers: { 'Content-Type': 'application/json', 'X-Cache': 'HIT' } });
 
     await dbConnect();
 
@@ -55,8 +55,8 @@ export async function GET() {
       registerLink: doc.registerLink || doc.register_link || doc['Register Link'] || doc.register || doc.registerUrl || doc.registerurl || null,
     };
 
-    await cache.setCache(CACHE_KEY, mapped, CACHE_TTL);
-    return new Response(JSON.stringify(mapped), { status: 200, headers: { 'Content-Type': 'application/json' } });
+  await cache.setCache(CACHE_KEY, mapped, CACHE_TTL);
+  return new Response(JSON.stringify(mapped), { status: 200, headers: { 'Content-Type': 'application/json', 'X-Cache': 'MISS' } });
   } catch (err) {
     console.error('Error in upcoming event route:', err);
     return new Response(JSON.stringify({ error: 'Failed to fetch upcoming event' }), { status: 500, headers: { 'Content-Type': 'application/json' } });

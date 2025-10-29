@@ -12,7 +12,7 @@ export async function GET(req) {
     const cacheKey = `projects:page:${page}:limit:${limit}`;
     const cached = await cache.getCache(cacheKey);
     if (cached) {
-      return new Response(JSON.stringify(cached), { status: 200, headers: { 'Content-Type': 'application/json', 'Cache-Control': 'public, max-age=60' } });
+      return new Response(JSON.stringify(cached), { status: 200, headers: { 'Content-Type': 'application/json', 'Cache-Control': 'public, max-age=60', 'X-Cache': 'HIT' } });
     }
 
     await dbConnect();
@@ -21,10 +21,11 @@ export async function GET(req) {
       Project.countDocuments(),
     ]);
 
-    const payload = { projects, page, limit, total };
-    await cache.setCache(cacheKey, payload, 60 * 1000);
+  const payload = { projects, page, limit, total };
+  // Cache projects list for 5 minutes
+  await cache.setCache(cacheKey, payload, 5 * 60 * 1000);
 
-    return new Response(JSON.stringify(payload), { status: 200, headers: { 'Content-Type': 'application/json', 'Cache-Control': 'public, max-age=60' } });
+  return new Response(JSON.stringify(payload), { status: 200, headers: { 'Content-Type': 'application/json', 'Cache-Control': 'public, max-age=300', 'X-Cache': 'MISS' } });
   } catch (err) {
     console.error('Error fetching projects:', err);
     return new Response(JSON.stringify({ error: 'Failed to fetch projects' }), { status: 500, headers: { 'Content-Type': 'application/json' } });

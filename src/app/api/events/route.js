@@ -12,7 +12,7 @@ export async function GET(req) {
     const cacheKey = `events:page:${page}:limit:${limit}`;
     const cached = await cache.getCache(cacheKey);
     if (cached) {
-      return new Response(JSON.stringify(cached), { status: 200, headers: { 'Content-Type': 'application/json', 'Cache-Control': 'public, max-age=30' } });
+      return new Response(JSON.stringify(cached), { status: 200, headers: { 'Content-Type': 'application/json', 'Cache-Control': 'public, max-age=300', 'X-Cache': 'HIT' } });
     }
 
     await dbConnect();
@@ -23,9 +23,10 @@ export async function GET(req) {
     ]);
 
     const payload = { events, page, limit, total };
-    await cache.setCache(cacheKey, payload, 30 * 1000);
+  // Cache events page for 5 minutes to reduce DB hits for list view
+  await cache.setCache(cacheKey, payload, 5 * 60 * 1000);
 
-    return new Response(JSON.stringify(payload), { status: 200, headers: { 'Content-Type': 'application/json', 'Cache-Control': 'public, max-age=30' } });
+  return new Response(JSON.stringify(payload), { status: 200, headers: { 'Content-Type': 'application/json', 'Cache-Control': 'public, max-age=300', 'X-Cache': 'MISS' } });
   } catch (err) {
     console.error('Error fetching events:', err);
     return new Response(JSON.stringify({ error: 'Failed to fetch events' }), {
