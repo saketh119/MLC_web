@@ -1,6 +1,6 @@
- 'use client'
+'use client'
 
-import { Suspense, lazy, useEffect, useState } from 'react'
+import { Suspense, lazy } from 'react'
 const Spline = lazy(() => import('@splinetool/react-spline'))
 
 interface SplineSceneProps {
@@ -10,24 +10,8 @@ interface SplineSceneProps {
 }
 
 export function SplineScene({ scene, className, fallbackImage }: SplineSceneProps) {
-  // Render a static fallback on small screens to improve performance
-  const [useFallback, setUseFallback] = useState(false);
-
-  useEffect(() => {
-    const check = () => setUseFallback(window.innerWidth < 640);
-    check();
-    window.addEventListener('resize', check, { passive: true });
-    return () => window.removeEventListener('resize', check);
-  }, []);
-
-  if (useFallback) {
-    return (
-      <div className={className}>
-        <img src={fallbackImage || '/mlc-family.jpg'} alt="scene" className="w-full h-full object-cover rounded-md" />
-      </div>
-    );
-  }
-
+  // Always render the Spline 3D scene (desktop and mobile) so the same robot appears
+  // on all viewports. Keep the Suspense fallback for slow network/JS load.
   return (
     <Suspense
       fallback={
