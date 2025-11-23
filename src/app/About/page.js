@@ -5,27 +5,7 @@ import Timeline from '../cards/Timeline';
 import { FloatingDock } from "../cards/floatingdock";
 import { IconHome, IconInfoCircle, IconCalendarEvent, IconBrandLinkedin } from '@tabler/icons-react';
 import Navbar from '@/components/Navbar';
-
-// Dummy core team data (replace with real data later)
-const coreTeam = [
-  { name: "Akhil Reddy", role: "President", initials: "AR", linkedin: "https://linkedin.com" },
-  { name: "Irfan Saddiq", role: "Vice President", initials: "IS", linkedin: "https://linkedin.com" },
-  { name: "Preetham Reddy", role: "General Secretary", initials: "PR", linkedin: "https://linkedin.com" },
-  { name: "Sathwik Sangani", role: "Tech Lead", initials: "SS", linkedin: "https://linkedin.com" },
-  { name: "Krishna Reddy", role: "Projects Head", initials: "KR", linkedin: "https://linkedin.com" },
-  { name: "Rajesh Andra", role: "Research Lead", initials: "RA", linkedin: "https://linkedin.com" },
-  { name: "Abu Suleman", role: "Operations Lead", initials: "AS", linkedin: "https://linkedin.com" },
-  { name: "Meghana K", role: "Design Lead", initials: "MK", linkedin: "https://linkedin.com" },
-  { name: "Sree Vidya", role: "Outreach Lead", initials: "SV", linkedin: "https://linkedin.com" },
-  { name: "Bhavya Sri", role: "Event Coordinator", initials: "BS", linkedin: "https://linkedin.com" },
-  { name: "Harsha Vardhan", role: "AI Engineer", initials: "HV", linkedin: "https://linkedin.com" },
-  { name: "Tanvi Rao", role: "Content Strategist", initials: "TR", linkedin: "https://linkedin.com" },
-  { name: "Aditya Jain", role: "Data Lead", initials: "AJ", linkedin: "https://linkedin.com" },
-  { name: "Ritika Sharma", role: "ML Engineer", initials: "RS", linkedin: "https://linkedin.com" },
-  { name: "Yash Gupta", role: "Core Member", initials: "YG", linkedin: "https://linkedin.com" },
-  { name: "Navya Patel", role: "Core Member", initials: "NP", linkedin: "https://linkedin.com" },
-];
-
+import { Mail, Linkedin, Instagram, Github, Youtube } from "lucide-react";
 // Member card component
 const MemberCard = ({ name, role, image, linkedin }) => (
   <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4 w-full max-w-[280px] flex flex-col items-center shadow-md hover:shadow-xl transition-transform transform hover:scale-105 duration-300">
@@ -51,25 +31,22 @@ const MemberCard = ({ name, role, image, linkedin }) => (
   </div>
 );
 
-<Navbar />;
+// membersLimit removed by request — inline page sizes used instead
+
+// Fallback core team (empty if user removed dummy data)
+const coreTeam = [];
 
 export default function AboutUs() {
   const [members, setMembers] = useState([]);
-  const [membersPage, setMembersPage] = useState(1);
-  const [membersLimit] = useState(12);
-  const [membersTotal, setMembersTotal] = useState(null);
-  const [loadingMore, setLoadingMore] = useState(false);
 
   useEffect(() => {
-    // fetch first page of members (paginated)
-    fetch(`/api/members?page=1&limit=${membersLimit}`)
+    // fetch all members at once (server should limit/respond appropriately)
+    fetch(`/api/members?limit=1000`)
       .then((res) => res.json())
       .then((data) => {
-        if (data && Array.isArray(data.members)) {
-          setMembers(data.members);
-          setMembersTotal(data.total || null);
-          setMembersPage(1);
-        }
+        if (data && Array.isArray(data.members)) return setMembers(data.members);
+        if (Array.isArray(data)) return setMembers(data);
+        return setMembers([]);
       })
       .catch((err) => console.error('Failed to load members:', err));
   }, []);
@@ -160,72 +137,67 @@ export default function AboutUs() {
           </div>
         ))}
 
-        {/* Static Core Team Grid (16 square boxes) */}
-        <div className="mt-20">
-          <h3 className="text-2xl font-semibold mb-8 text-center">Core Team (2025–2026)</h3>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6 gap-4 sm:gap-6 max-w-6xl mx-auto">
-            {coreTeam.map((member, i) => (
-              <div key={member.name + i} className="flex flex-col items-center group">
-                <div
-                  className="relative aspect-square w-full max-w-[140px] rounded-xl overflow-hidden bg-gradient-to-br from-cyan-700/30 to-blue-800/30 border border-cyan-400/30 group-hover:border-cyan-300/60 backdrop-blur-md shadow-md group-hover:shadow-cyan-500/20 transition duration-300 flex items-center justify-center"
-                >
-                  <span className="text-cyan-200 font-semibold text-2xl tracking-wide select-none">{member.initials}</span>
-                  {member.linkedin && (
-                    <a
-                      href={member.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="absolute top-2 right-2 text-cyan-300 hover:text-cyan-200 transition"
-                      aria-label={`LinkedIn profile of ${member.name}`}
-                    >
-                      <IconBrandLinkedin size={22} />
-                    </a>
-                  )}
-                </div>
-                <div className="mt-3 text-center">
-                  <p className="text-sm font-semibold text-cyan-200 leading-tight">{member.name}</p>
-                  <p className="text-xs text-gray-400 mt-1">{member.role}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-          <p className="text-center text-xs text-gray-500 mt-4"></p>
-          {/* Load more members if available */}
-          {membersTotal !== null && members.length < membersTotal && (
-            <div className="text-center mt-6">
-              <button
-                className="px-4 py-2 bg-indigo-600 rounded-md hover:bg-indigo-700"
-                onClick={async () => {
-                  setLoadingMore(true);
-                  const next = membersPage + 1;
-                  try {
-                    const res = await fetch(`/api/members?page=${next}&limit=${membersLimit}`);
-                    const data = await res.json();
-                    if (data && Array.isArray(data.members)) {
-                      setMembers((prev) => [...prev, ...data.members]);
-                      setMembersPage(next);
-                    }
-                  } catch (e) {
-                    console.error('Load more failed', e);
-                  } finally {
-                    setLoadingMore(false);
-                  }
-                }}
-                disabled={loadingMore}
-              >
-                {loadingMore ? 'Loading…' : 'Load more members'}
-              </button>
-            </div>
-          )}
-        </div>
+        
       </div>
 
       {/* Footer */}
-      <footer className="bg-black/40 backdrop-blur-md text-center py-6 mt-1">
-        <p className="text-gray-400 text-sm">
-          © {new Date().getFullYear()} Machine Learning Club, VIT-AP. All rights reserved.
-        </p>
-      </footer>
+            {/* Footer */}
+      <footer className="bg-black/60 backdrop-blur-xl border-t border-white/10 py-8 mt-8">
+      <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+        
+        {/* Left: Email */}
+        <div className="flex items-center gap-2 text-gray-400 hover:text-gray-200 transition-colors text-sm">
+          <Mail size={16} />
+          <a href="mailto:ml.club@vitap.ac.in">ml.club@vitap.ac.in</a>
+        </div>
+
+        {/* Center: Info lines */}
+        <div className="text-center text-sm">
+          <p className="text-gray-400">
+            Empowering the next generation of AI innovators at VIT-AP
+          </p>
+          <p className="text-gray-500 text-xs">
+            © {new Date().getFullYear()} Machine Learning Club, VIT-AP. All rights reserved.
+          </p>
+        </div>
+
+        {/* Right: Socials */}
+        <div className="flex items-center gap-5">
+          <a
+            href="https://www.linkedin.com/company/machinelearningclubvitap/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-400 hover:text-gray-200 transition-colors"
+          >
+            <Linkedin size={18} />
+          </a>
+          <a
+            href="https://www.instagram.com/mlc_vitap?igsh=MTc5cGZzaXU5cXo5YQ=="
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-400 hover:text-gray-200 transition-colors"
+          >
+            <Instagram size={18} />
+          </a>
+          <a
+            href="https://github.com/MLC-VIT-AP"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-400 hover:text-gray-200 transition-colors"
+          >
+            <Github size={18} />
+          </a>
+          <a
+            href="https://www.youtube.com/@MLCVIT-AP"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-400 hover:text-gray-200 transition-colors"
+          >
+            <Youtube size={18} />
+          </a>
+        </div>
+      </div>
+    </footer>
     </div>
   );
 }

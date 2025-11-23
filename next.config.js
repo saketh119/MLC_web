@@ -15,6 +15,15 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'res.cloudinary.com',
       },
+      // Cloudinary console URLs (used for some asset links) and Unsplash
+      {
+        protocol: 'https',
+        hostname: 'console.cloudinary.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
     ],
   },
 }

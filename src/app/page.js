@@ -193,7 +193,7 @@ export default function Home() {
               {
                 title: "Achievements",
                 description:
-                  "We&apos;ve been awarded Best Technical Club of VIT-AP 2023-2024, recognizing our excellence.",
+                  "We&apos;                                                                                                                                                                                                                                          ve been awarded Best Technical Club of VIT-AP 2023-2024, recognizing our excellence.",
                 content: (
                   <img
                     // TODO: Replace with your Cloudinary secure_url for Achievements

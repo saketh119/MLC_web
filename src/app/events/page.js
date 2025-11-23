@@ -4,12 +4,13 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Head from 'next/head';
 import Navbar from '@/components/Navbar';
+import LazyImage from '@/components/LazyImage';
 // projects are now fetched from the API-backed Projects collection
 
 function EventCard({ title, desc, date, imageUrl }) {
   return (
     <div className="glass-card rounded-xl overflow-hidden border border-white/10 hover:shadow-xl transition duration-300" data-aos="fade-up">
-      <img src={imageUrl || '/mlc-default.jpg'} alt={title} className="w-full h-52 object-cover" />
+      <LazyImage src={imageUrl || '/mlc-default.jpg'} alt={title} className="w-full h-52 object-cover" />
       <div className="p-4">
         <h2 className="text-xl font-semibold mb-2">{title}</h2>
         <p className="text-sm mb-2 text-gray-300">{desc}</p>
@@ -22,7 +23,7 @@ function EventCard({ title, desc, date, imageUrl }) {
 function ProjectCard({ title, desc, githubUrl, image }) {
   return (
     <div className="glass-card rounded-xl overflow-hidden border border-white/10 hover:shadow-xl transition duration-300" data-aos="fade-up">
-      <img src={image || '/mlc-default.jpg'} alt={title} className="w-full h-44 object-cover" />
+      <LazyImage src={image || '/mlc-default.jpg'} alt={title} className="w-full h-44 object-cover" />
       <div className="p-4">
         <h3 className="text-lg font-semibold mb-1">{title}</h3>
         <p className="text-sm mb-3 text-gray-300">{desc}</p>
@@ -95,7 +96,7 @@ export default function EventsPage() {
         {upcoming && (
           <section className="py-10 px-4 max-w-4xl mx-auto" data-aos="fade-up">
             <div className="glass-card p-6 rounded-xl flex flex-col md:flex-row items-center gap-6 border border-white/10">
-              <img src={upcoming.imageUrl || '/mlc-default.jpg'} alt={upcoming.title || 'Upcoming event'} className="w-full md:w-48 h-40 object-cover rounded-md" />
+              <LazyImage src={upcoming.imageUrl || '/mlc-default.jpg'} alt={upcoming.title || 'Upcoming event'} className="w-full md:w-48 h-40 object-cover rounded-md" />
               <div className="flex-1">
                 <h3 className="text-2xl font-bold">Upcoming: {upcoming.title || 'Untitled Event'}</h3>
                 <p className="text-sm text-gray-300 mt-2">{upcoming.description || ''}</p>
