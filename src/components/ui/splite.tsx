@@ -7,19 +7,20 @@ interface SplineSceneProps {
   scene: string
   className?: string
   fallbackImage?: string
+  allowMobileSpline?: boolean
 }
 
-export function SplineScene({ scene, className, fallbackImage }: SplineSceneProps) {
+export function SplineScene({ scene, className, fallbackImage, allowMobileSpline = false }: SplineSceneProps) {
   // Render a static fallback on small screens to improve performance
   const [useFallback, setUseFallback] = useState(false);
   const [canLoadSpline, setCanLoadSpline] = useState(false);
 
   useEffect(() => {
-    const check = () => setUseFallback(window.innerWidth < 640);
+    const check = () => setUseFallback(window.innerWidth < 640 && !allowMobileSpline);
     check();
     window.addEventListener('resize', check, { passive: true });
     return () => window.removeEventListener('resize', check);
-  }, []);
+  }, [allowMobileSpline]);
 
   // Probe the Spline scene URL before attempting to mount the Spline runtime.
   // If the fetch fails (network/CORS), we fall back to a static image to avoid

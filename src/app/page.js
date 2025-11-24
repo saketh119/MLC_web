@@ -94,6 +94,7 @@ export default function Home() {
                 scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
                 className="w-full h-full"
                 fallbackImage="/mlc-family.jpg"
+                allowMobileSpline={true}
               />
             </div>
           </div>
