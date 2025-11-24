@@ -1,4 +1,5 @@
 "use client"
+import { useState } from 'react'
 import Head from "next/head"
 import Image from "next/image"
 import { IconHome, IconInfoCircle, IconCalendarEvent, IconBrandLinkedin } from "@tabler/icons-react"
@@ -54,13 +55,34 @@ export default function Home() {
                   </p>
                   
                   <div className="mt-5">
-                    <a
-                      href="/contact"
+                    <button
+                      onClick={() => {
+                        const url = process.env.NEXT_PUBLIC_JOIN_FORM_URL;
+                        if (url) {
+                          window.location.href = url;
+                        } else {
+                          // show a quick message using a small DOM alert — we keep this simple
+                          const msg = "We're not accepting new recruitments currently, you can contact us directly if needed.";
+                          // Try a nicer in-page toast if available, otherwise use alert
+                          if (typeof window !== 'undefined') {
+                            try {
+                              // create a temporary toast element
+                              const el = document.createElement('div');
+                              el.textContent = msg;
+                              el.className = 'fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-indigo-700 text-white px-4 py-2 rounded shadow-lg z-50';
+                              document.body.appendChild(el);
+                              setTimeout(() => el.remove(), 4500);
+                            } catch (e) {
+                              alert(msg);
+                            }
+                          }
+                        }
+                      }}
                       className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-2 text-xs font-semibold tracking-wide text-white shadow-lg shadow-cyan-500/20 hover:from-cyan-400 hover:to-blue-500 focus:outline-none focus:ring-2 focus:ring-cyan-400/60 transition"
                     >
                       Join Now
                       <span className="text-lg leading-none">→</span>
-                    </a>
+                    </button>
                   </div>
                   <div className="absolute -top-1 left-6 h-1 w-24 bg-gradient-to-r from-cyan-400 to-blue-600 rounded-full" />
                 </div>
@@ -329,8 +351,16 @@ export default function Home() {
             src={card.img}
             alt={card.name}
             onError={(e) => {
-              e.currentTarget.onerror = null;
-              e.currentTarget.src = '/images/default-avatar.png';
+              try {
+                // Prevent infinite retry loops: if already attempted fallback, don't reset again
+                const el = e.currentTarget;
+                if (el.dataset.__avatarErrored) return;
+                el.dataset.__avatarErrored = '1';
+                // Use a known existing fallback image in the repo
+                el.src = '/mlc-default.jpg';
+              } catch (err) {
+                // swallow
+              }
             }}
             className="w-28 h-28 md:w-32 md:h-32 rounded-2xl object-cover border-2 border-cyan-400 shadow-[0_0_15px_rgba(0,255,255,0.3)] group-hover:shadow-[0_0_25px_rgba(255,0,255,0.4)] transition-all duration-200"
           />

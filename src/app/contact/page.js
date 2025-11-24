@@ -25,24 +25,34 @@ export default function ContactPage() {
     e.preventDefault();
     setStatus("sending");
     try {
-      // Placeholder: you can wire to /api/contact later
-      await new Promise((r) => setTimeout(r, 900));
-      setStatus("sent");
-      setForm({ name: "", email: "", phone: "", message: "" });
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+
+      const payload = await res.json();
+      if (!res.ok || !payload.success) {
+        console.error('Contact error', payload);
+        setStatus('error');
+        return;
+      }
+
+      setStatus('sent');
+      setForm({ name: '', email: '', phone: '', message: '' });
     } catch (err) {
       console.error(err);
-      setStatus("error");
+      setStatus('error');
     }
   };
 
   const InfoCard = ({ icon: Icon, title, children }) => (
-    <div className="group relative rounded-xl border border-white/10 bg-gradient-to-br from-gray-900/80 to-gray-800/60 p-8 shadow-lg hover:shadow-cyan-500/10 transition-all">
-      <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-cyan-600 text-white shadow-md group-hover:scale-105 transition-transform">
-        <Icon size={28} />
+    <div className="group relative rounded-xl border border-white/6 bg-slate-900/70 p-8 shadow-md hover:shadow-lg hover:-translate-y-1 transform transition-all duration-200">
+      <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-slate-800 text-cyan-300 shadow-sm">
+        <Icon size={24} />
       </div>
       <h3 className="text-lg font-semibold text-white mb-2">{title}</h3>
       <p className="text-sm text-gray-300 leading-relaxed">{children}</p>
-      <div className="absolute inset-0 rounded-xl ring-1 ring-white/5 group-hover:ring-cyan-400/40 pointer-events-none" />
     </div>
   );
 
@@ -56,15 +66,15 @@ export default function ContactPage() {
         </p>
 
         {/* Info cards */}
-        <div className="grid gap-8 md:grid-cols-3 mb-20">
+        <div className="grid gap-6 md:grid-cols-3 mb-12">
           <InfoCard icon={IconMapPin} title="Address">
             VIT-AP University, Inavolu, Amaravati, Andhra Pradesh 522241
           </InfoCard>
           <InfoCard icon={IconMail} title="Email">
-            ML.club@vitap.ac.in
+            <a href="mailto:ML.club@vitap.ac.in" className="text-gray-300 hover:text-cyan-300 transition">ML.club@vitap.ac.in</a>
           </InfoCard>
           <InfoCard icon={IconPhone} title="Phone">
-            +91 93468 89973
+            <a href="tel:+919346889973" className="text-gray-300 hover:text-cyan-300 transition">+91 93468 89973</a>
           </InfoCard>
         </div>
 
@@ -78,7 +88,7 @@ export default function ContactPage() {
                 value={form.name}
                 onChange={handleChange}
                 required
-                className="w-full rounded-md bg-white/5 border border-white/10 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400/60 placeholder:text-gray-400"
+                className="w-full rounded-md bg-slate-800/60 border border-white/8 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400/30 placeholder:text-gray-400"
               />
               <input
                 type="email"
@@ -87,7 +97,7 @@ export default function ContactPage() {
                 value={form.email}
                 onChange={handleChange}
                 required
-                className="w-full rounded-md bg-white/5 border border-white/10 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400/60 placeholder:text-gray-400"
+                className="w-full rounded-md bg-slate-800/60 border border-white/8 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400/30 placeholder:text-gray-400"
               />
             </div>
             <input
@@ -95,7 +105,7 @@ export default function ContactPage() {
               placeholder="Your Phone"
               value={form.phone}
               onChange={handleChange}
-              className="w-full rounded-md bg-white/5 border border-white/10 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400/60 placeholder:text-gray-400"
+              className="w-full rounded-md bg-slate-800/60 border border-white/8 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400/30 placeholder:text-gray-400"
             />
             <textarea
               name="message"
@@ -104,12 +114,12 @@ export default function ContactPage() {
               value={form.message}
               onChange={handleChange}
               required
-              className="w-full rounded-md bg-white/5 border border-white/10 px-4 py-3 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-cyan-400/60 placeholder:text-gray-400"
+              className="w-full rounded-md bg-slate-800/60 border border-white/8 px-4 py-3 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-cyan-400/30 placeholder:text-gray-400"
             />
             <button
               type="submit"
               disabled={status === "sending"}
-              className="group relative inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 px-10 py-3 text-sm font-semibold text-white shadow-lg shadow-cyan-500/20 hover:from-cyan-400 hover:to-blue-500 transition disabled:opacity-60"
+              className="group relative inline-flex items-center justify-center gap-2 rounded-md bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-md hover:bg-indigo-700 transition disabled:opacity-60"
             >
               <IconSend size={16} className={status === "sending" ? "animate-pulse" : ""} />
               {status === "sending" ? "Sending..." : status === "sent" ? "Sent!" : "Submit"}

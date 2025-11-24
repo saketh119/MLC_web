@@ -5,6 +5,7 @@ import 'aos/dist/aos.css';
 import Head from 'next/head';
 import Navbar from '@/components/Navbar';
 import LazyImage from '@/components/LazyImage';
+import { Github } from 'lucide-react';
 // projects are now fetched from the API-backed Projects collection
 
 function EventCard({ title, desc, date, imageUrl }) {
@@ -22,14 +23,17 @@ function EventCard({ title, desc, date, imageUrl }) {
 
 function ProjectCard({ title, desc, githubUrl, image }) {
   return (
-    <div className="glass-card rounded-xl overflow-hidden border border-white/10 hover:shadow-xl transition duration-300" data-aos="fade-up">
+    <div className="glass-card rounded-2xl overflow-hidden border border-white/10 shadow-lg hover:shadow-2xl transform transition duration-300 hover:scale-[1.01]" data-aos="fade-up">
       <LazyImage src={image || '/mlc-default.jpg'} alt={title} className="w-full h-44 object-cover" />
-      <div className="p-4">
+      <div className="p-6">
         <h3 className="text-lg font-semibold mb-1">{title}</h3>
         <p className="text-sm mb-3 text-gray-300">{desc}</p>
-        <a href={githubUrl} target="_blank" rel="noreferrer" className="inline-block text-sm text-indigo-400 hover:underline">
-          View on GitHub
-        </a>
+        {githubUrl ? (
+          <a href={githubUrl} target="_blank" rel="noreferrer" aria-label={`Open ${title} on GitHub`} className="inline-flex items-center gap-2 text-sm text-indigo-400 hover:text-white">
+            <Github size={18} />
+            <span className="sr-only">View on GitHub</span>
+          </a>
+        ) : null}
       </div>
     </div>
   );
@@ -63,14 +67,16 @@ export default function EventsPage() {
   }, []);
 
   useEffect(() => {
-    fetch('/api/projects')
+    fetch('/api/github-repos')
       .then(res => res.json())
       .then(data => {
+        // our API returns { success: true, repos: [...] }
+        if (data && Array.isArray(data.repos)) return setProjects(data.repos);
+        // legacy: if top-level array returned
         if (Array.isArray(data)) return setProjects(data);
-        if (data && Array.isArray(data.projects)) return setProjects(data.projects);
         return setProjects([]);
       })
-      .catch(err => console.error('Fetch /api/projects failed:', err));
+      .catch(err => console.error('Fetch /api/github-repos failed:', err));
   }, []);
   return (
     <>
@@ -146,16 +152,16 @@ export default function EventsPage() {
           <div className="max-w-4xl mx-auto px-4">
             <ul className="space-y-4">
               {projects.map((p, i) => (
-                <li key={p._id?.toString() || p.githubUrl || i} className="p-4 bg-white/5 rounded-md border border-white/6">
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <h3 className="text-lg font-semibold">{p.title || p.name}</h3>
-                      <p className="text-sm text-gray-300 mt-1">{p.description}</p>
+                <li key={p.html_url || p.name || i} className="w-full p-6 bg-white/5 rounded-2xl border border-white/6 shadow-md hover:shadow-xl transition-transform duration-200 hover:-translate-y-0.5">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <div className="min-w-0 w-full max-w-full">
+                      <h3 className="text-lg font-semibold break-all overflow-hidden max-w-full">{p.name}</h3>
+                      <p className="text-sm text-gray-300 mt-1 break-words overflow-hidden">{p.description}</p>
                     </div>
-                    <div className="flex-shrink-0">
-                      {p.githubUrl ? (
-                        <a href={p.githubUrl} target="_blank" rel="noreferrer" className="text-indigo-400 hover:underline">
-                          View on GitHub
+                    <div className="flex-shrink-0 mt-3 sm:mt-0">
+                      {p.html_url ? (
+                        <a href={p.html_url} target="_blank" rel="noreferrer" aria-label={`Open ${p.name} on GitHub`} className="text-indigo-400 hover:text-white inline-flex items-center gap-2">
+                          <Github size={18} />
                         </a>
                       ) : null}
                     </div>

@@ -1,4 +1,5 @@
 import { Mail, Linkedin, Instagram, Github, Youtube } from "lucide-react";
+import Link from 'next/link';
 import React from "react";
 
 export default function Footer() {
@@ -18,9 +19,10 @@ export default function Footer() {
           <p className="text-gray-400">
             Empowering the next generation of AI innovators at VIT-AP
           </p>
-          <p className="text-gray-500 text-xs">
-            © {new Date().getFullYear()} Machine Learning Club, VIT-AP. All rights reserved.
-          </p>
+          <div className="flex items-center gap-4 justify-center mt-2">
+            <Link href="/contact" className="text-sm text-gray-300 hover:text-cyan-300">Contact</Link>
+            <span className="text-gray-500 text-xs">© {new Date().getFullYear()} Machine Learning Club, VIT-AP.</span>
+          </div>
         </div>
 
         {/* Right: Socials */}

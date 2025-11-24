@@ -1,7 +1,7 @@
 'use client'
 
 import { ExpandableTabs } from "@/components/ui/expandable-tabs"
-import { Home as HomeIcon, Info as InfoIcon, Calendar as CalendarIcon, Menu } from "lucide-react"
+import { Home as HomeIcon, Info as InfoIcon, Calendar as CalendarIcon, Mail as MailIcon, Menu } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react"
@@ -32,8 +32,8 @@ export default function Navbar() {
           tabs={[
             { title: "Home", icon: HomeIcon },
             { title: "About", icon: InfoIcon },
-            { type: "separator" },
             { title: "Events", icon: CalendarIcon },
+            { title: "Contact", icon: MailIcon },
           ]}
           className="bg-white/5 border border-white/10 shadow-sm hover:border-cyan-400/40 transition-colors"
           activeColor="text-cyan-400"
@@ -41,9 +41,8 @@ export default function Navbar() {
           iconClass=""
           onChange={(idx) => {
             if (idx === null) return;
-            const routes = ["/", "/About", "/events"];
-            const mapIdx = idx <= 1 ? idx : idx - 1;
-            const href = routes[mapIdx];
+            const routes = ["/", "/About", "/events", "/contact"];
+            const href = routes[idx];
             if (href) window.location.href = href;
           }}
         />
@@ -60,6 +59,7 @@ export default function Navbar() {
             <Link href="/" className="text-white hover:text-cyan-400" onClick={() => setOpen(false)}>Home</Link>
             <Link href="/About" className="text-white hover:text-cyan-400" onClick={() => setOpen(false)}>About</Link>
             <Link href="/events" className="text-white hover:text-cyan-400" onClick={() => setOpen(false)}>Events</Link>
+            <Link href="/contact" className="text-white hover:text-cyan-400" onClick={() => setOpen(false)}>Contact</Link>
           </div>
         )}
       </div>

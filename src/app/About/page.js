@@ -8,13 +8,13 @@ import Navbar from '@/components/Navbar';
 import { Mail, Linkedin, Instagram, Github, Youtube } from "lucide-react";
 // Member card component
 const MemberCard = ({ name, role, image, linkedin }) => (
-  <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4 w-full max-w-[280px] flex flex-col items-center shadow-md hover:shadow-xl transition-transform transform hover:scale-105 duration-300">
+  <div className="bg-white/6 backdrop-blur-md border border-white/10 rounded-2xl p-6 w-full max-w-[300px] flex flex-col items-center shadow-lg hover:shadow-2xl transition-transform transform hover:scale-105 duration-300">
     <Image
       src={image}
       alt={name}
       width={96}
       height={96}
-      className="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover mb-3 sm:mb-4 border-2 border-white/30"
+      className="w-24 h-24 rounded-full object-cover mb-4 border-2 border-white/20"
     />
     <h3 className="text-lg sm:text-xl font-semibold text-white text-center">{name}</h3>
     <p className="text-sm text-gray-300 text-center">{role}</p>
