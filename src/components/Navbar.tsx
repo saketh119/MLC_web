@@ -10,18 +10,18 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 z-50 flex justify-between items-center px-6 py-3 bg-black/95 border-b border-cyan-400/20 shadow-sm">
+    <nav className="sticky top-0 z-50 flex justify-between items-center px-6 py-4 bg-black/95 border-b border-cyan-400/20 shadow-sm">
       {/* Logo */}
-      <Link href="/" className="flex items-center gap-3 group">
+      <Link href="/" className="flex items-center gap-5 group">
         <Image
-          src="/mlc-logo.svg"
+          src="/logo-primary.png"
           alt="MLC Logo"
-          width={40}
-          height={40}
+          width={56}
+          height={56}
           priority
-          className="w-9 h-9 drop-shadow-md group-hover:scale-105 transition-transform"
+          className="w-14 h-14 drop-shadow-md group-hover:scale-105 transition-transform"
         />
-        <span className="text-[10px] sm:text-xs tracking-[0.25em] font-medium text-white group-hover:text-cyan-300 transition-colors">
+        <span className="text-base sm:text-lg md:text-xl tracking-[0.14em] font-bold text-white group-hover:text-cyan-300 transition-colors">
           MACHINE LEARNING CLUB
         </span>
       </Link>
@@ -52,7 +52,7 @@ export default function Navbar() {
       {/* Mobile Menu */}
       <div className="md:hidden relative">
         <button onClick={() => setOpen(!open)} className="text-white">
-          <Menu size={24} />
+          <Menu size={28} />
         </button>
 
         {open && (
