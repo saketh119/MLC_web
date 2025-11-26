@@ -1,6 +1,6 @@
-import Header from '../../_components/Header'
-import BlogView from '../../_components/BlogView'
-import { FEEDS } from '../../../../lib/blogs'
+import Header from '../_components/Header'
+import BlogView from '../_components/BlogView'
+import { FEEDS } from '../../../lib/blogs'
 
 export default async function BlogPage({ params }) {
   const feedIndex = FEEDS.findIndex(f => f.id === params.id)

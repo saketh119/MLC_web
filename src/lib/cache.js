@@ -7,9 +7,15 @@ const TTL_MS_DEFAULT = 30 * 1000;
 async function tryInitRedis() {
   if (redisClient !== null || !process.env.REDIS_URL) return;
   try {
-    // dynamic import to avoid hard dependency
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const IORedis = require('ioredis');
+    // dynamic import to avoid hard dependency and prevent webpack from
+    // statically requiring the module when it's not installed.
+    const mod = await import('ioredis').catch(() => null);
+    if (!mod) {
+      redisClient = null;
+      useRedis = false;
+      return;
+    }
+    const IORedis = mod.default || mod;
     redisClient = new IORedis(process.env.REDIS_URL);
     useRedis = true;
     redisClient.on('error', () => { useRedis = false; });
