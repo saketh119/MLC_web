@@ -257,16 +257,18 @@ export default function Home() {
         role: "Club Advisor (2023-24)",
         linkedin: "https://www.linkedin.com/in/abu-suleman",
       },
-      {
+        
+               {
                 quote:
-                  "I joined as a volunteer and ended up leading major events. MLC empowered me with leadership, technical, and networking skills that I carry even today.",
-                img: "/images/meghana.jpg",
-                name: "Yashasvi Koushik",
-                role: "Club Advisor(2023-25)",
-                linkedin: "https://www.linkedin.com/in/yashasvi-koushik",
-                border: "border-cyan-600",
-                ring: "border-cyan-400",
+                  "MLC gave me the platform to present ideas and collaborate with brilliant minds across domains.",
+                img: "https://res.cloudinary.com/djl3h6ql8/image/upload/v1757871603/mlc_events/djtudgtwqjpcs6qe3acd.jpg",
+                name: "Sathwik Sangani",
+                role: "President(2024-25)",
+                linkedin: "https://www.linkedin.com/in/sathwik-sangani",
+                border: "border-purple-600",
+                ring: "border-purple-400",
               },
+     
               {
                 quote:
                   "Managing events at MLC gave me valuable leadership experience, while mentorship and peer support accelerated my growth in AI/ML projects beyond the classroom.ntorship and peer support in MLC accelerated my growth in AI/ML projects far beyond classrooms.",
@@ -276,6 +278,37 @@ export default function Home() {
                 linkedin: "https://www.linkedin.com/in/preetham-reddy",
                 border: "border-cyan-600",
                 ring: "border-cyan-400",
+              },
+              {
+                quote:
+                  "MLC gave me the platform to present ideas and collaborate with brilliant minds across domains.",
+                img: "https://res.cloudinary.com/djl3h6ql8/image/upload/v1757847529/mlc_events/bifsbpnt4socpsrpi0ls.jpg",
+                name: "Nithya Ancha",
+                role: "Club Manager (2023-24)",
+                linkedin: "https://www.linkedin.com/in/nithya-ancha",
+                border: "border-pink-600",
+                ring: "border-pink-400",
+              },
+                {
+                quote:
+                  "At MLC, I found a community where every team — tech, creative, or social — supports you and pushes you to grow in your own way.",
+                img: "",
+                name: "Saketh Akula",
+                role: "Community Admin(2024-25)",
+                linkedin: "https://www.linkedin.com/in/saketh-akula-6ba3022b7/",
+                border: "border-cyan-600",
+                ring: "border-cyan-400",
+              },
+
+               {
+                quote:
+                  "The exposure to competitive coding and ML challenges helped me sharpen problem-solving skills.",
+                img: "https://res.cloudinary.com/djl3h6ql8/image/upload/v1757849254/mlc_events/ltemudphhov90z45mcua.jpg",
+                name: "Sai Krishna",
+                role: "Club Manager(2024-25)",
+                linkedin: "https://www.linkedin.com/in/sai-krishna",
+                border: "border-emerald-600",
+                ring: "border-emerald-400",
               },
               {
                 quote:
@@ -297,37 +330,17 @@ export default function Home() {
                 border: "border-cyan-600",
                 ring: "border-cyan-400",
               },
-              {
-                quote:
-                  "MLC gave me the platform to present ideas and collaborate with brilliant minds across domains.",
-                img: "https://res.cloudinary.com/djl3h6ql8/image/upload/v1757871603/mlc_events/djtudgtwqjpcs6qe3acd.jpg",
-                name: "Sathwik Sangani",
-                role: "President(2024-25)",
-                linkedin: "https://www.linkedin.com/in/sathwik-sangani",
-                border: "border-purple-600",
-                ring: "border-purple-400",
-              },
-              {
-                quote:
-                  "The exposure to competitive coding and ML challenges helped me sharpen problem-solving skills.",
-                img: "https://res.cloudinary.com/djl3h6ql8/image/upload/v1757849254/mlc_events/ltemudphhov90z45mcua.jpg",
-                name: "Sai Krishna",
-                role: "Club Manager(2024-25)",
-                linkedin: "https://www.linkedin.com/in/sai-krishna",
-                border: "border-emerald-600",
-                ring: "border-emerald-400",
-              },
-              {
-                quote:
-                  "MLC gave me the platform to present ideas and collaborate with brilliant minds across domains.",
-                img: "https://res.cloudinary.com/djl3h6ql8/image/upload/v1757847529/mlc_events/bifsbpnt4socpsrpi0ls.jpg",
-                name: "Nithya Ancha",
-                role: "Club Manager (2023-24)",
-                linkedin: "https://www.linkedin.com/in/nithya-ancha",
-                border: "border-pink-600",
-                ring: "border-pink-400",
-              },
-    
+
+    //  {
+    //             quote:
+    //               "I joined as a volunteer and ended up leading major events. MLC empowered me with leadership, technical, and networking skills that I carry even today.",
+    //             img: "/images/meghana.jpg",
+    //             name: "Yashasvi Koushik",
+    //             role: "Club Advisor(2023-25)",
+    //             linkedin: "https://www.linkedin.com/in/yashasvi-koushik",
+    //             border: "border-cyan-600",
+    //             ring: "border-cyan-400",
+    //           },
     ].map((card, i) => (
       <div
         key={i}
