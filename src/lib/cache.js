@@ -7,9 +7,17 @@ const TTL_MS_DEFAULT = 30 * 1000;
 async function tryInitRedis() {
   if (redisClient !== null || !process.env.REDIS_URL) return;
   try {
-    // dynamic import to avoid hard dependency and prevent webpack from
-    // statically requiring the module when it's not installed.
-    const mod = await import('ioredis').catch(() => null);
+    // Attempt to load `ioredis` at runtime without letting the bundler
+    // statically analyze the import. Using `eval('require')` prevents
+    // build tooling from trying to resolve the module when it's not
+    // installed (makes Redis optional).
+    let mod = null;
+    try {
+      const req = eval('require');
+      mod = req('ioredis');
+    } catch (e) {
+      mod = null;
+    }
     if (!mod) {
       redisClient = null;
       useRedis = false;

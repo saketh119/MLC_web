@@ -1,3 +1,5 @@
+export const metadata = { robots: { index: false, follow: false } }
+
 import Header from '../_components/Header'
 import AllView from '../_components/AllView'
 import { FEEDS } from '../../../lib/blogs'
