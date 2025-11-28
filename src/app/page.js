@@ -249,14 +249,17 @@ export default function Home() {
         role: "President (2023-24)",
         linkedin: "https://www.linkedin.com/in/irfan-saddiq",
       },
-      {
-        quote:
-          "Leading the projects division taught me how to work with teams, manage deadlines, and deliver real-world tech solutions. MLC is where you grow beyond the classroom.",
-        img: "https://res.cloudinary.com/djl3h6ql8/image/upload/v1757850255/mlc_events/zxwrkldcimoeictqwy9g.jpg",
-        name: "Abu Suleman",
-        role: "Club Advisor (2023-24)",
-        linkedin: "https://www.linkedin.com/in/abu-suleman",
-      },
+      
+     {
+                quote:
+                  "I joined as a volunteer and ended up leading major events. MLC empowered me with leadership, technical, and networking skills that I carry even today.",
+                img: "/images/meghana.jpg",
+                name: "Yashasvi Koushik",
+                role: "Club Advisor(2023-25)",
+                linkedin: "https://www.linkedin.com/in/yashasvi-koushik",
+                border: "border-cyan-600",
+                ring: "border-cyan-400",
+              },
         
                {
                 quote:
@@ -292,7 +295,7 @@ export default function Home() {
                 {
                 quote:
                   "At MLC, I found a community where every team — tech, creative, or social — supports you and pushes you to grow in your own way.",
-                img: "",
+                img: "https://res.cloudinary.com/djl3h6ql8/image/upload/v1764310081/saketh_xwwmdp.jpg",
                 name: "Saketh Akula",
                 role: "Community Admin(2024-25)",
                 linkedin: "https://www.linkedin.com/in/saketh-akula-6ba3022b7/",
@@ -306,7 +309,7 @@ export default function Home() {
                 img: "https://res.cloudinary.com/djl3h6ql8/image/upload/v1757849254/mlc_events/ltemudphhov90z45mcua.jpg",
                 name: "Sai Krishna",
                 role: "Club Manager(2024-25)",
-                linkedin: "https://www.linkedin.com/in/sai-krishna",
+                linkedin: "https://www.linkedin.com/in/masani-sai-krishna-reddy-16b5a5275/",
                 border: "border-emerald-600",
                 ring: "border-emerald-400",
               },
@@ -330,17 +333,15 @@ export default function Home() {
                 border: "border-cyan-600",
                 ring: "border-cyan-400",
               },
+      //         {
+      //   quote:
+      //     "Leading the projects division taught me how to work with teams, manage deadlines, and deliver real-world tech solutions. MLC is where you grow beyond the classroom.",
+      //   img: "https://res.cloudinary.com/djl3h6ql8/image/upload/v1757850255/mlc_events/zxwrkldcimoeictqwy9g.jpg",
+      //   name: "Abu Suleman",
+      //   role: "Club Advisor (2023-24)",
+      //   linkedin: "https://www.linkedin.com/in/abu-suleman",
+      // },
 
-    //  {
-    //             quote:
-    //               "I joined as a volunteer and ended up leading major events. MLC empowered me with leadership, technical, and networking skills that I carry even today.",
-    //             img: "/images/meghana.jpg",
-    //             name: "Yashasvi Koushik",
-    //             role: "Club Advisor(2023-25)",
-    //             linkedin: "https://www.linkedin.com/in/yashasvi-koushik",
-    //             border: "border-cyan-600",
-    //             ring: "border-cyan-400",
-    //           },
     ].map((card, i) => (
       <div
         key={i}
