@@ -52,7 +52,7 @@ export default function AboutUs() {
   }, []);
 
   return (
-    <div className="bg-black text-white min-h-screen font-sans">
+    <div className="bg-black text-white min-h-screen font-sans overflow-x-hidden">
       {/* Navbar removed (handled by RootLayout) */}
 
       {/* Hero Section: ABOUT US layout */}
@@ -63,13 +63,13 @@ export default function AboutUs() {
           </h1>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
             {/* Left: Big rounded image */}
-            <div className="relative rounded-[24px] overflow-hidden shadow-xl border border-white/10">
+            <div className="relative rounded-[24px] overflow-hidden shadow-xl border border-white/10 max-w-full">
               <Image
                 src="/mlc-family.jpg"
                 alt="MLC Group"
                 width={1200}
                 height={800}
-                className="w-full h-auto object-cover"
+                className="w-full h-auto object-cover max-w-full"
                 priority
               />
               {/* Accent bar (subtle) */}

@@ -5,7 +5,7 @@ import Image from "next/image"
 import { IconHome, IconInfoCircle, IconCalendarEvent, IconBrandLinkedin } from "@tabler/icons-react"
 import { FloatingDock } from "./cards/floatingdock"
 import { StickyScroll } from "./cards/StickyScroll"
-import Chatbot from "./components/Chatbot"
+
 import { SplineScene } from "@/components/ui/splite"
 import { Mail, Linkedin, Instagram, Github, Youtube } from "lucide-react";
 
@@ -167,7 +167,7 @@ export default function Home() {
                 content: (
                   <img
                     // TODO: Replace with your Cloudinary secure_url for Hackathons
-                    src="https://res.cloudinary.com/djl3h6ql8/image/upload/f_auto,q_auto,c_fill,w_600,h_400/v1234567890/mlc_events/replace_hackathons.jpg"
+                    src="https://res.cloudinary.com/djl3h6ql8/image/upload/v1764406186/IMG_9997_faa7gm.heic"
                     alt="Hackathon"
                     className="w-full h-full object-cover rounded-lg"
                   />
@@ -180,7 +180,7 @@ export default function Home() {
                 content: (
                   <img
                     // TODO: Replace with your Cloudinary secure_url for Workshops
-                    src="https://res.cloudinary.com/djl3h6ql8/image/upload/v1757875241/mlc_events/oj8ttkguywjxvg4rbcji.jpg"
+                    src="https://res.cloudinary.com/djl3h6ql8/image/upload/v1764407177/Minds_Machines__The_Art_of_Language_np5rka.heic"
                     alt="Workshop"
                     className="w-full h-full object-cover rounded-lg"
                   />
@@ -194,7 +194,7 @@ export default function Home() {
                 content: (
                   <img
                     // TODO: Replace with your Cloudinary secure_url for Bootcamps
-                    src="https://res.cloudinary.com/djl3h6ql8/image/upload/f_auto,q_auto,c_fill,w_600,h_400/v1234567890/mlc_events/replace_bootcamps.jpg"
+                    src="https://res.cloudinary.com/djl3h6ql8/image/upload/v1764406210/_SEP0291_o2uzrt.jpg"
                     alt="Bootcamp"
                     className="w-full h-full object-cover rounded-lg"
                   />
@@ -207,8 +207,7 @@ export default function Home() {
                 content: (
                   <img
                     // TODO: Replace with your Cloudinary secure_url for Codeathons & Ideathons
-                    src="https://res.cloudinary.com/djl3h6ql8/image/upload/f_auto,q_auto,c_fill,w_600,h_400/v1234567890/mlc_events/replace_codeathons.jpg"
-                    alt="Competition"
+                    src="https://res.cloudinary.com/djl3h6ql8/image/upload/v1764406208/image_24_fss5it.jpg"
                     className="w-full h-full object-cover rounded-lg"
                   />
                 ),
@@ -295,7 +294,7 @@ export default function Home() {
                 {
                 quote:
                   "At MLC, I found a community where every team — tech, creative, or social — supports you and pushes you to grow in your own way.",
-                img: "https://res.cloudinary.com/djl3h6ql8/image/upload/v1764310081/saketh_xwwmdp.jpg",
+                img: "https://res.cloudinary.com/djl3h6ql8/image/upload/v1764444896/saketh-2_zvofyr.jpg",
                 name: "Saketh Akula",
                 role: "Community Admin(2024-25)",
                 linkedin: "https://www.linkedin.com/in/saketh-akula-6ba3022b7/",
@@ -455,12 +454,9 @@ export default function Home() {
         </div>
       </div>
     </footer>
-        {/* <Chatbot /> */}
+      
       </div>
-      <style jsx>{`
-        .animate-marquee { animation: marquee 10s linear infinite; }
-        @keyframes marquee { 0% { transform: translateX(0%);} 100% { transform: translateX(-50%);} }
-      `}</style>
+      
     </>
   )
 }

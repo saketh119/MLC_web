@@ -6,6 +6,7 @@ import {
   IconPhone, 
   IconSend, 
   IconBrandLinkedin, 
+  IconBrandInstagram,
   IconWorld, 
   IconBrandGithub, 
   IconBrandTwitter, 
@@ -134,25 +135,25 @@ export default function ContactPage() {
 
           <div className="space-y-8">
             <div className="rounded-xl border border-white/10 bg-gradient-to-br from-gray-900/70 to-gray-800/50 p-6 shadow-md">
-              <h3 className="font-semibold text-white mb-4 flex items-center gap-2"><IconBrandLinkedin size={18}/> Connect</h3>
+              <h3 className="font-semibold text-white mb-4 flex items-center gap-2">Connect</h3>
               <ul className="space-y-3 text-sm text-gray-300">
                 <li>
-                  <a href="https://www.linkedin.com/company/mlc-vitap" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-cyan-300 transition-colors">
+                  <a href="https://www.linkedin.com/company/machinelearningclubvitap/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-cyan-300 transition-colors">
                     <IconBrandLinkedin size={16}/> LinkedIn
                   </a>
                 </li>
                 <li>
-                  <a href="https://github.com/mlc-vitap" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-cyan-300 transition-colors">
+                  <a href="https://github.com/MLC-VIT-AP" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-cyan-300 transition-colors">
                     <IconBrandGithub size={16}/> GitHub
                   </a>
                 </li>
                 <li>
-                  <a href="https://twitter.com/mlc_vitap" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-cyan-300 transition-colors">
-                    <IconBrandTwitter size={16}/> Twitter
+                  <a href="https://www.instagram.com/mlc_vitap?igsh=MTc5cGZzaXU5cXo5YQ==" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-cyan-300 transition-colors">
+                    <IconBrandInstagram size={16}/> Instagram
                   </a>
                 </li>
                 <li>
-                  <a href="https://www.youtube.com/@mlcvitap" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-cyan-300 transition-colors">
+                  <a href="https://www.youtube.com/@MLCVIT-AP" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-cyan-300 transition-colors">
                     <IconBrandYoutube size={16}/> YouTube
                   </a>
                 </li>

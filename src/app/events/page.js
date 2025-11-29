@@ -1,5 +1,6 @@
-'use client';
+ 'use client';
 import { useEffect, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Head from 'next/head';
@@ -15,10 +16,34 @@ function EventCard({ title, desc, date, imageUrl }) {
       <div className="p-4">
         <h2 className="text-xl font-semibold mb-2">{title}</h2>
         <p className="text-sm mb-2 text-gray-300">{desc}</p>
-        <p className="text-xs text-gray-500">{date ? new Date(date).toLocaleDateString() : ''}</p>
+        <p className="text-xs text-gray-500">{formatDate(date)}</p>
       </div>
     </div>
   );
+}
+
+function formatDate(val) {
+  if (!val) return ''
+  try {
+    const d = new Date(val)
+    if (!isNaN(d.getTime())) return d.toLocaleDateString()
+    // try swapping dd/mm/yyyy -> yyyy-mm-dd
+    const parts = String(val).trim().split(/[\sT]/)[0]
+    if (parts.match(/\d{1,2}\/\d{1,2}\/\d{2,4}/)) {
+      const [dP, mP, yP] = parts.split('/')
+      const candidate = new Date(`${yP}-${mP.padStart(2,'0')}-${dP.padStart(2,'0')}`)
+      if (!isNaN(candidate.getTime())) return candidate.toLocaleDateString()
+    }
+    if (parts.match(/\d{1,2}-\d{1,2}-\d{2,4}/)) {
+      const [dP, mP, yP] = parts.split('-')
+      const candidate = new Date(`${yP}-${mP.padStart(2,'0')}-${dP.padStart(2,'0')}`)
+      if (!isNaN(candidate.getTime())) return candidate.toLocaleDateString()
+    }
+    // last resort: return original string
+    return String(val)
+  } catch (e) {
+    return String(val)
+  }
 }
 
 function ProjectCard({ title, desc, githubUrl, image }) {
@@ -66,18 +91,22 @@ export default function EventsPage() {
     AOS.init({ once: true, duration: 1000 });
   }, []);
 
+  // Lazy-load projects when the projects section scrolls into view to improve initial load.
+  const [projectsRef, projectsInView] = useInView({ triggerOnce: true, rootMargin: '200px' })
   useEffect(() => {
+    if (!projectsInView) return
+    let mounted = true
     fetch('/api/github-repos')
       .then(res => res.json())
       .then(data => {
-        // our API returns { success: true, repos: [...] }
+        if (!mounted) return
         if (data && Array.isArray(data.repos)) return setProjects(data.repos);
-        // legacy: if top-level array returned
         if (Array.isArray(data)) return setProjects(data);
         return setProjects([]);
       })
       .catch(err => console.error('Fetch /api/github-repos failed:', err));
-  }, []);
+    return () => { mounted = false }
+  }, [projectsInView]);
   return (
     <>
       <Head>
@@ -149,9 +178,11 @@ export default function EventsPage() {
         <section className="py-12 px-4 bg-gradient-to-b from-black/20 to-transparent" data-aos="fade-up">
           <h2 className="text-4xl font-bold text-center mb-8">Projects</h2>
           <p className="text-center text-gray-300 max-w-2xl mx-auto mb-8">Projects built by our members — click through to the GitHub repositories to see code and instructions.</p>
-          <div className="max-w-4xl mx-auto px-4">
+          <div className="max-w-4xl mx-auto px-4" ref={projectsRef}>
             <ul className="space-y-4">
-              {projects.map((p, i) => (
+              {projects.length === 0 ? (
+                <li className="text-center text-gray-400">Loading projects…</li>
+              ) : projects.map((p, i) => (
                 <li key={p.html_url || p.name || i} className="w-full p-6 bg-white/5 rounded-2xl border border-white/6 shadow-md hover:shadow-xl transition-transform duration-200 hover:-translate-y-0.5">
                   <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                     <div className="min-w-0 w-full max-w-full">

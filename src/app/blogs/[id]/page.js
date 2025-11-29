@@ -1,4 +1,5 @@
 export const metadata = { robots: { index: false, follow: false } }
+export const dynamic = 'force-dynamic'
 
 import Header from '../_components/Header'
 import BlogView from '../_components/BlogView'

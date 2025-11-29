@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 import ClientBlogs from './ClientBlogs'
 import './styles.css'
 import { FEEDS, fetchFeed } from '@/lib/blogs'

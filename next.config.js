@@ -4,6 +4,11 @@ const nextConfig = {
    eslint: {
     ignoreDuringBuilds: true,
   },
+  typescript: {
+    // Skip type checking during build to speed up compilation.
+    // NOTE: This disables type-error blocking on build; keep locally enabled during dev if desired.
+    ignoreBuildErrors: true,
+  },
   images: {
     remotePatterns: [
       {
