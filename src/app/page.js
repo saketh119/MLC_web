@@ -167,7 +167,7 @@ export default function Home() {
                 content: (
                   <img
                     // TODO: Replace with your Cloudinary secure_url for Hackathons
-                    src="https://res.cloudinary.com/djl3h6ql8/image/upload/v1764406186/IMG_9997_faa7gm.heic"
+                    src="https://res.cloudinary.com/djl3h6ql8/image/upload/v1764513140/IMG_9997_11zon_fsrwxm.jpg"
                     alt="Hackathon"
                     className="w-full h-full object-cover rounded-lg"
                   />
@@ -180,7 +180,7 @@ export default function Home() {
                 content: (
                   <img
                     // TODO: Replace with your Cloudinary secure_url for Workshops
-                    src="https://res.cloudinary.com/djl3h6ql8/image/upload/v1764407177/Minds_Machines__The_Art_of_Language_np5rka.heic"
+                    src="https://res.cloudinary.com/djl3h6ql8/image/upload/v1764513098/Minds_Machines__The_Art_of_Language_11zon_szptey.jpg"
                     alt="Workshop"
                     className="w-full h-full object-cover rounded-lg"
                   />
@@ -194,7 +194,7 @@ export default function Home() {
                 content: (
                   <img
                     // TODO: Replace with your Cloudinary secure_url for Bootcamps
-                    src="https://res.cloudinary.com/djl3h6ql8/image/upload/v1764406210/_SEP0291_o2uzrt.jpg"
+                    src="https://res.cloudinary.com/djl3h6ql8/image/upload/v1764513525/_SEP0291_o2uzrt_11zon_djefsg.jpg"
                     alt="Bootcamp"
                     className="w-full h-full object-cover rounded-lg"
                   />
@@ -207,7 +207,7 @@ export default function Home() {
                 content: (
                   <img
                     // TODO: Replace with your Cloudinary secure_url for Codeathons & Ideathons
-                    src="https://res.cloudinary.com/djl3h6ql8/image/upload/v1764406208/image_24_fss5it.jpg"
+                    src="https://res.cloudinary.com/djl3h6ql8/image/upload/v1764513115/image_24_1_a7xbdl.jpg"
                     className="w-full h-full object-cover rounded-lg"
                   />
                 ),
